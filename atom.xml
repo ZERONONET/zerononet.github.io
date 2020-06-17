@@ -2,11 +2,36 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zerononet.github.io</id>
     <title>ZERONONET&apos;s blog</title>
-    <updated>2020-06-17T12:45:43.626Z</updated>
+    <updated>2020-06-17T13:24:50.247Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zerononet.github.io"/>
     <link rel="self" href="https://zerononet.github.io/atom.xml"/>
     <logo>https://zerononet.github.io/images/avatar.png</logo>
     <icon>https://zerononet.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ZERONONET&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[SpringAOP的配置使用与踩坑]]></title>
+        <id>https://zerononet.github.io/post/springaop-de-pei-zhi-shi-yong-yu-cai-keng/</id>
+        <link href="https://zerononet.github.io/post/springaop-de-pei-zhi-shi-yong-yu-cai-keng/">
+        </link>
+        <updated>2020-06-17T13:08:39.000Z</updated>
+        <content type="html"><![CDATA[<p>原理</p>
+<p>配置的两种方法<br>
+优先级的使用<br>
+以实现日志记录为例</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[【待补充】动态代理]]></title>
+        <id>https://zerononet.github.io/post/dai-bu-chong-dong-tai-dai-li/</id>
+        <link href="https://zerononet.github.io/post/dai-bu-chong-dong-tai-dai-li/">
+        </link>
+        <updated>2020-06-17T12:53:39.000Z</updated>
+        <content type="html"><![CDATA[<p>1、JDK动态代理<br>
+2、CGLIB动态代理<br>
+--配置与实现<br>
+--性能与优化<br>
+--效果</p>
+]]></content>
+    </entry>
 </feed>
