@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://zerononet.github.io/favicon.ico?v=1605583993507">
+<link rel="shortcut icon" href="https://zerononet.github.io/favicon.ico?v=1605584162045">
 <link rel="stylesheet" href="https://zerononet.github.io/styles/main.css">
 
 
@@ -18,14 +18,15 @@
 
 
 
-    <meta name="description" content="升级之路
-以实际应用结合讲设计模式
-1、数据库的锁
-行锁（共享锁和排他锁），表锁，页级锁，意向锁，读锁，写锁，悲观锁，乐观锁等
-2、数据结构
-红黑树，B树，B+树，二叉树，HashMap
-3、Redis
-分布式的哨兵到3.0之后的去中心化集..." />
+    <meta name="description" content="设计模式
+总结参考
+掘金JAVA设计模式
+设计模式分类
+
+0.1、七大原则
+
+开闭原则
+&lt;定义：&gt;1.软件实体应当对扩展开放，对修改关闭（Software entities should be open for extensio..." />
     <meta name="keywords" content="" />
   </head>
   <body>
@@ -35,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://zerononet.github.io">
-        <img src="https://zerononet.github.io/images/avatar.png?v=1605583993507" class="site-logo">
+        <img src="https://zerononet.github.io/images/avatar.png?v=1605584162045" class="site-logo">
         <h1 class="site-title">ZERONONET&#39;s blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -95,36 +96,7 @@
             <div class="post-date">2020-11-17</div>
             
             <div class="post-content" v-pre>
-              <h1 id="center升级之路center"><center>升级之路</center></h1>
-<h2 id="以实际应用结合讲设计模式">以实际应用结合讲设计模式</h2>
-<h2 id="1-数据库的锁">1、数据库的锁</h2>
-<h4 id="行锁共享锁和排他锁表锁页级锁意向锁读锁写锁悲观锁乐观锁等">行锁（共享锁和排他锁），表锁，页级锁，意向锁，读锁，写锁，悲观锁，乐观锁等</h4>
-<h2 id="2-数据结构">2、数据结构</h2>
-<h4 id="红黑树b树b树二叉树hashmap">红黑树，B树，B+树，二叉树，HashMap</h4>
-<h2 id="3-redis">3、Redis</h2>
-<h4 id="分布式的哨兵到30之后的去中心化集群奇数节点-高并发-单线程-在线扩容-持久化方式断电保护">分布式的哨兵到3.0之后的去中心化集群（奇数节点）、高并发、单线程、在线扩容、持久化方式(断电保护)</h4>
-<h2 id="4-hashmap">4、HashMap</h2>
-<h4 id="单向链表的特性导致会有entry链-putget原理初始容量rehash扩容问题线程不安全resize死循环与hashtable的区别">单向链表的特性导致会有Entry链、PUT&amp;GET原理，初始容量(rehash扩容问题)，线程不安全(resize死循环)，与HashTable的区别</h4>
-<h2 id="5-线程池">5、线程池</h2>
-<h4 id="四种线程池jdk拒绝策略">四种线程池，JDK拒绝策略</h4>
-<h2 id="6-jvm">6、JVM</h2>
-<h4 id="object的内存布局方法区卸载class的条件可以作为gc-root的对象包括jvm运行内存模型netty的bytebuffer的引用计数器机制对象是否存活的判断java对象的初始化类加载的双亲委派模型动态代理模式cglibjdk动态代理">Object的内存布局，方法区卸载Class的条件，可以作为GC ROOT的对象包括，JVM运行内存模型，Netty的ByteBuffer的引用计数器机制，对象是否存活的判断，JAVA对象的初始化，类加载的双亲委派模型，动态代理模式(cglib,jdk动态代理)####</h4>
-<h2 id="7-zookeeper">7、Zookeeper</h2>
-<h4 id="常见的应用场景分布式数据的一致性算法zk的启动及leader选举数据同步zk集群最少需要2n1zookeeper与eureka的区别">常见的应用场景，分布式数据的一致性算法，ZK的启动及Leader选举，数据同步，ZK集群最少需要2N+1，Zookeeper与Eureka的区别</h4>
-<h2 id="8-消息队列">8、消息队列</h2>
-<h4 id="消费者宕机保证消息不丢失集群宕机保证消息不丢失">消费者宕机保证消息不丢失，集群宕机保证消息不丢失</h4>
-<h2 id="9-spring源码">9、Spring源码</h2>
-<h4 id="springmvc如何解决循环依赖的问题spring事务的传播行为和隔离级别spring事务的五种隔离级别springaop">springmvc如何解决循环依赖的问题，spring事务的传播行为和隔离级别，Spring事务的五种隔离级别，SpringAOP</h4>
-<h2 id="10-设计模式">10、设计模式</h2>
-<h4 id="单例模式7种策略模式">单例模式(7种)，策略模式</h4>
-<h2 id="11-jdk源码">11、JDK源码</h2>
-<h4 id="threadlocal的实现原理aqs实现公平锁和非公平锁rpc的序列方式">ThreadLocal的实现原理，AQS实现公平锁和非公平锁，RPC的序列方式</h4>
-<h2 id="12-服务熔断与降级概念">12、服务熔断与降级概念</h2>
-<h4 id="服务熔断服务降级">服务熔断，服务降级</h4>
-<h2 id="13-索引">13、索引</h2>
-<h4 id="正排索引倒排索引">正排索引，倒排索引</h4>
-<h1 id="center笔记center"><center>笔记</center></h1>
-<h2 id="设计模式">设计模式</h2>
+              <h2 id="设计模式">设计模式</h2>
 <p><a href="https://www.cnblogs.com/pony1223/p/7608955.html">总结参考</a><br>
 <br><a href="https://juejin.im/post/6844903695667167240">掘金JAVA设计模式</a><br>
 <br>设计模式分类<br>
@@ -221,9 +193,9 @@
 <h3 id="9-适配器模式">9、<a href="http://c.biancheng.net/view/1361.html">适配器模式</a></h3>
 <ul>
 <li><strong>类适配器UML图</strong><br>
-<br>![]((https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/shipeiqi-lei.png)</li>
+<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/shipeiqi-lei.png" alt="" loading="lazy"></li>
 <li><strong>对象适配器UML图</strong><br>
-<br>![]((https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/shipeiqi-duixiang.png)</li>
+<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/shipeiqi-duixiang.png" alt="" loading="lazy"></li>
 <li><strong>定义</strong><br>1.适配器模式（Adapter）的定义如下：将一个类的接口转换成客户希望的另外一个接口，使得原本由于接口不兼容而不能一起工作的那些类能一起工作。适配器模式分为类结构型模式和对象结构型模式两种，前者类之间的耦合度比后者高，且要求程序员了解现有组件库中的相关组件的内部结构，所以应用相对较少些。<br>2.类适配器模式可采用多重继承方式实现，如 C++ 可定义一个适配器类来同时继承当前系统的业务接口和现有组件库中已经存在的组件接口；Java 不支持多继承，但可以定义一个适配器类来实现当前系统的业务接口，同时又继承现有组件库中已经存在的组件。对象适配器模式可釆用将现有组件库中已经实现的组件引入适配器类中，该类同时实现当前系统的业务接口。现在来介绍它们的基本结构。</li>
 <li><strong>优点</strong><br>1.客户端通过适配器可以透明地调用目标接口。<br>2.复用了现存的类，程序员不需要修改原有代码而重用现有的适配者类。<br>3.将目标类和适配者类解耦，解决了目标类和适配者类接口不一致的问题。<br>4.在很多业务场景中符合开闭原则。</li>
 <li><strong>缺点</strong><br>1.适配器编写过程需要结合业务场景全面考虑，可能会增加系统的复杂性。<br>2.增加代码阅读难度，降低代码可读性，过多使用适配器会使系统代码变得凌乱。</li>
