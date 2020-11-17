@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zerononet.github.io</id>
     <title>ZERONONET&apos;s blog</title>
-    <updated>2020-11-17T05:44:54.048Z</updated>
+    <updated>2020-11-17T06:07:12.819Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zerononet.github.io"/>
     <link rel="self" href="https://zerononet.github.io/atom.xml"/>
@@ -18,65 +18,61 @@
         <content type="html"><![CDATA[<h2 id="设计模式">设计模式</h2>
 <p><a href="https://www.cnblogs.com/pony1223/p/7608955.html">总结参考</a><br>
 <br><a href="https://juejin.im/post/6844903695667167240">掘金JAVA设计模式</a><br>
-<br>设计模式分类<br>
-<img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/401339-20170928225241215-295252070.png" alt="设计模式分类" loading="lazy"></p>
-<h3 id="01-七大原则">0.1、七大原则</h3>
-<ol>
-<li><strong><a href="http://c.biancheng.net/view/1322.html">开闭原则</a></strong><br>
-<br>&lt;<strong>定义：</strong>&gt;<br>1.软件实体应当对扩展开放，对修改关闭（Software entities should be open for extension，but closed for modification），这就是开闭原则的经典定义。<br>2.开闭原则的含义是：当应用的需求改变时，在不修改软件实体的源代码或者二进制代码的前提下，可以扩展模块的功能，使其满足新的需求。<br>&lt;<strong>作用：</strong>&gt;<br>1.对软件测试的影响：软件遵守开闭原则的话，软件测试时只需要对扩展的代码进行测试就可以了，因为原有的测试代码仍然能够正常运行。<br>2.提高代码的可复用性：粒度越小，被复用的可能性就越大；在面向对象的程序设计中，根据原子和抽象编程可以提高代码的可复用性。<br>&lt;<strong>实现：</strong>&gt;<br>&lt;a&gt;可以通过“抽象约束、封装变化”来实现开闭原则，即通过接口或者抽象类为软件实体定义一个相对稳定的抽象层，而将相同的可变因素封装在相同的具体实现类中。<br>&lt;b&gt;由于抽象类的灵活性好，适应性广的特点。可以作为软件的架构主心骨。当需要变化而不影响原本功能的情况下，可以根据需要派生一个实现类扩展即可。</li>
-<li><strong><a href="http://c.biancheng.net/view/1324.html">里氏替换原则</a></strong><br>&lt;<strong>定义：</strong>&gt;<br>主要阐述了有关继承的一些原则，也就是什么时候应该使用继承，什么时候不应该使用继承，以及其中蕴含的原理。里氏替换原则是继承复用的基础，它反映了基类与子类之间的关系，<strong>是对开闭原则的补充，是对实现抽象化的具体步骤的规范</strong><br>&lt;<strong>作用：</strong>&gt;<br>1.里氏替换原则是实现开闭原则的重要方式之一。<br>2.它克服了继承中重写父类造成的可复用性变差的缺点。<br>3.它是动作正确性的保证。即类的扩展不会给已有的系统引入新的错误，降低了代码出错的可能性。<br>4.加强程序的健壮性，同时变更时可以做到非常好的兼容性，提高程序的维护性、可扩展性，降低需求变更时引入的风险。<br>&lt;<strong>实现：</strong>&gt;<br>1.子类可以实现父类的抽象方法，但不能覆盖父类的非抽象方法。<br>2.子类中可以增加自己特有的方法。<br>3.当子类的方法重载父类的方法时，方法的前置条件（即方法的输入参数）要比父类的方法更宽松。<br>4.当子类的方法实现父类的方法时（重写/重载或实现抽象方法），方法的后置条件（即方法的的输出/返回值）要比父类的方法更严格或相等</li>
-<li><strong><a href="http://c.biancheng.net/view/1326.html">依赖倒置原则</a></strong><br>&lt;<strong>定义：</strong>&gt;<br>高层模块不应该依赖低层模块，两者都应该依赖其抽象；抽象不应该依赖细节，细节应该依赖抽象（High level modules shouldnot depend upon low level modules.Both should depend upon abstractions.Abstractions should not depend upon details. Details should depend upon abstractions）。<strong>其核心思想是：要面向接口编程，不要面向实现编程。</strong><br>&lt;<strong>作用：</strong>&gt;<br>1.依赖倒置原则可以降低类间的耦合性。<br>2.依赖倒置原则可以提高系统的稳定性。<br>3.依赖倒置原则可以减少并行开发引起的风险。<br>4.依赖倒置原则可以提高代码的可读性和可维护性。<br>&lt;<strong>实现：</strong>&gt;<br>1.每个类尽量提供接口或抽象类，或者两者都具备。<br>2.变量的声明类型尽量是接口或者是抽象类。<br>3.任何类都不应该从具体类派生。<br>4.使用继承时尽量遵循里氏替换原则。</li>
-<li><strong><a href="http://c.biancheng.net/view/1327.html">单一职责原则</a></strong><br>&lt;<strong>定义：</strong>&gt;<br>该原则提出对象不应该承担太多职责，如果一个对象承担了太多的职责，至少存在以下两个缺点：<br>1.一个职责的变化可能会削弱或者抑制这个类实现其他职责的能力；<br>2.当客户端需要该对象的某一个职责时，不得不将其他不需要的职责全都包含进来，从而造成冗余代码或代码的浪费。<br>&lt;<strong>作用(优点)：</strong>&gt;<br>单一职责原则的核心就是控制类的粒度大小、将对象解耦、提高其内聚性。如果遵循单一职责原则将有以下优点。<br>1.降低类的复杂度。一个类只负责一项职责，其逻辑肯定要比负责多项职责简单得多。<br>2.提高类的可读性。复杂性降低，自然其可读性会提高。<br>3.提高系统的可维护性。可读性提高，那自然更容易维护了。<br>4.变更引起的风险降低。变更是必然的，如果单一职责原则遵守得好，当修改一个功能时，可以显著降低对其他功能的影响。<br>&lt;<strong>实现：</strong>&gt;<br>1.单一职责原则是最简单但又最难运用的原则，需要设计人员发现类的不同职责并将其分离，再封装到不同的类或模块中。而发现类的多重职责需要设计人员具有较强的分析设计能力和相关重构经验。下面以大学学生工作管理程序为例介绍单一职责原则的应用。<br>2.单一职责同样也适用于方法。一个方法应该尽可能做好一件事情。如果一个方法处理的事情太多，其颗粒度会变得很粗，不利于重用。</li>
-<li><strong><a href="http://c.biancheng.net/view/1330.html">接口隔离原则</a></strong><br>&lt;<strong>定义：</strong>&gt;<br>要为各个类建立它们需要的专用接口，而不要试图去建立一个很庞大的接口供所有依赖它的类去调用。<br><strong>对比：</strong>接口隔离原则和单一职责都是为了提高类的内聚性、降低它们之间的耦合性，体现了封装的思想，但两者是不同的：<br>1.单一职责原则注重的是职责，而接口隔离原则注重的是对接口依赖的隔离。<br>2.单一职责原则主要是约束类，它针对的是程序中的实现和细节；接口隔离原则主要约束接口，主要针对抽象和程序整体框架的构建。<br>&lt;<strong>作用(优点)：</strong>&gt;<br>接口隔离原则是为了约束接口、降低类对接口的依赖性，遵循接口隔离原则有以下5个优点<br>1.将臃肿庞大的接口分解为多个粒度小的接口，可以预防外来变更的扩散，提高系统的灵活性和可维护性。<br>2.接口隔离提高了系统的内聚性，减少了对外交互，降低了系统的耦合性。<br>3.如果接口的粒度大小定义合理，能够保证系统的稳定性；但是，如果定义过小，则会造成接口数量过多，使设计复杂化；如果定义太大，灵活性降低，无法提供定制服务，给整体项目带来无法预料的风险。<br>4.使用多个专门的接口还能够体现对象的层次，因为可以通过接口的继承，实现对总接口的定义。<br>5.能减少项目工程中的代码冗余。过大的大接口里面通常放置许多不用的方法，当实现这个接口的时候，被迫设计冗余的代码。<br>&lt;<strong>实现：</strong>&gt;<br>1.接口尽量小，但是要有限度。一个接口只服务于一个子模块或业务逻辑。<br>2.为依赖接口的类定制服务。只提供调用者需要的方法，屏蔽不需要的方法。<br>3.了解环境，拒绝盲从。每个项目或产品都有选定的环境因素，环境不同，接口拆分的标准就不同深入了解业务逻辑。<br>4.提高内聚，减少对外交互。使接口用最少的方法去完成最多的事情。</li>
-<li><strong><a href="http://c.biancheng.net/view/1331.html">迪米特法则</a></strong><br>&lt;<strong>定义：</strong>&gt;<br>迪米特法则的定义是：只与你的直接朋友交谈，不跟“陌生人”说话（Talk only to your immediate friends and not to strangers）。其含义是：如果两个软件实体无须直接通信，那么就不应当发生直接的相互调用，可以通过第三方转发该调用。其目的是降低类之间的耦合度，提高模块的相对独立性。迪米特法则中的“朋友”是指：当前对象本身、当前对象的成员对象、当前对象所创建的对象、当前对象的方法参数等，这些对象同当前对象存在关联、聚合或组合关系，可以直接访问这些对象的方法。<br>&lt;<strong>作用：</strong>&gt;<br>1.降低了类之间的耦合度，提高了模块的相对独立性。<br>2.由于亲合度降低，从而提高了类的可复用率和系统的扩展性。<br>&lt;<strong>实现：</strong>&gt;<br>强调1.从依赖者的角度来说，只依赖应该依赖的对象。<br>强调2.从被依赖者的角度说，只暴露应该暴露的方法。<br>注意1.在类的划分上，应该创建弱耦合的类。类与类之间的耦合越弱，就越有利于实现可复用的目标。<br>注意2.在类的结构设计上，尽量降低类成员的访问权限。<br>注意3.在类的设计上，优先考虑将一个类设置成不变类。<br>注意4.在对其他类的引用上，将引用其他对象的次数降到最低。<br>注意5.不暴露类的属性成员，而应该提供相应的访问器（set 和 get 方法）。<br>注意6.谨慎使用序列化（Serializable）功能。</li>
-<li><strong><a href="http://c.biancheng.net/view/1333.html">合成复用原则</a></strong><br>&lt;<strong>定义：</strong>&gt;<br>1.它要求在软件复用时，要尽量先使用组合或者聚合等关联关系来实现，其次才考虑使用继承关系来实现。<br>2.如果要使用继承关系，则必须严格遵循里氏替换原则。合成复用原则同里氏替换原则相辅相成的，两者都是开闭原则的具体实现规范。<br>&lt;<strong>作用：</strong>&gt;<br>优点1.它维持了类的封装性。因为成分对象的内部细节是新对象看不见的，所以这种复用又称为“黑箱”复用。<br>优点2.新旧类之间的耦合度低。这种复用所需的依赖较少，新对象存取成分对象的唯一方法是通过成分对象的接口。<br>优点3.复用的灵活性高。这种复用可以在运行时动态进行，新对象可以动态地引用与成分对象类型相同的对象。<br>缺点1.继承复用破坏了类的封装性。因为继承会将父类的实现细节暴露给子类，父类对子类是透明的，所以这种复用又称为“白箱”复用。<br>缺点2.子类与父类的耦合度高。父类的实现的任何改变都会导致子类的实现发生变化，这不利于类的扩展与维护。<br>缺点3.它限制了复用的灵活性。从父类继承而来的实现是静态的，在编译时已经定义，所以在运行时不可能发生变化。<br>&lt;<strong>实现：</strong>&gt;<br>合成复用原则是通过将已有的对象纳入新对象中，作为新对象的成员对象来实现的，新对象可以调用已有对象的功能，从而达到复用。<br>
-<br><h3>小结：</h3>这 7 种设计原则是软件设计模式必须尽量遵循的原则，各种原则要求的侧重点不同。其中，开闭原则是总纲，它告诉我们要对扩展开放，对修改关闭；里氏替换原则告诉我们不要破坏继承体系；依赖倒置原则告诉我们要面向接口编程；单一职责原则告诉我们实现类要职责单一；接口隔离原则告诉我们在设计接口的时候要精简单一；迪米特法则告诉我们要降低耦合度；合成复用原则告诉我们要优先使用组合或者聚合关系复用，少用继承关系复用。</li>
-</ol>
-<h3 id="1-简单工厂模式">1、<a href="http://c.biancheng.net/view/8385.html">简单工厂模式</a></h3>
-<ul>
-<li><strong>UML图</strong><br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/jiandangongchang.png" alt="工厂方法模式的结构图" loading="lazy"></li>
-<li><strong>定义</strong>：<br>    定义一个创建产品对象的工厂接口，将产品对象的实际创建工作推迟到具体子工厂类当中。这满足创建型模式中所要求的“创建与使用相分离”的特点。我们把被创建的对象称为“产品”，把创建产品的对象称为“工厂”。<br>    如果要创建的产品不多，只要一个工厂类就可以完成，这种模式叫“简单工厂模式”。<br>    在简单工厂模式中创建实例的方法通常为静态（static）方法，因此简单工厂模式（Simple Factory Pattern）又叫作静态工厂方法模式（Static Factory Method Pattern）。</li>
-<li><strong>优点</strong><br>1.工厂类包含必要的逻辑判断，可以决定在什么时候创建哪一个产品的实例。客户端可以免除直接创建产品对象的职责，很方便的创建出相应的产品。工厂和产品的职责区分明确。<br>2.客户端无需知道所创建具体产品的类名，只需知道参数即可。<br>3.也可以引入配置文件，在不修改客户端代码的情况下更换和添加新的具体产品类。</li>
-<li><strong>缺点</strong><br>1.简单工厂模式的工厂类单一，负责所有产品的创建，职责过重，一旦异常，整个系统将受影响。且工厂类代码会非常臃肿，违背高聚合原则。<br>2.使用简单工厂模式会增加系统中类的个数（引入新的工厂类），增加系统的复杂度和理解难度。<br>3.系统扩展困难，一旦增加新产品不得不修改工厂逻辑，在产品类型较多时，可能造成逻辑过于复杂。<br>4.简单工厂模式使用了 static 工厂方法，造成工厂角色无法形成基于继承的等级结构。</li>
-<li><strong><font color="red">CFC总结：</font></strong>增加抽象产品的具体产品需要修改工厂类。</li>
-</ul>
+<br><center>设计模式分类</center></p>
+<center>![设计模式分类](https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/401339-20170928225241215-295252070.png)</center>
+### 0.1、七大原则 ###
+1. <strong>[开闭原则](http://c.biancheng.net/view/1322.html)</strong>
+<br><<strong>定义：</strong>\><br>1.软件实体应当对扩展开放，对修改关闭（Software entities should be open for extension，but closed for modification），这就是开闭原则的经典定义。<br>2.开闭原则的含义是：当应用的需求改变时，在不修改软件实体的源代码或者二进制代码的前提下，可以扩展模块的功能，使其满足新的需求。<br><<strong>作用：</strong>\><br>1.对软件测试的影响：软件遵守开闭原则的话，软件测试时只需要对扩展的代码进行测试就可以了，因为原有的测试代码仍然能够正常运行。<br>2.提高代码的可复用性：粒度越小，被复用的可能性就越大；在面向对象的程序设计中，根据原子和抽象编程可以提高代码的可复用性。<br><<strong>实现：</strong>\><br><a\>可以通过“抽象约束、封装变化”来实现开闭原则，即通过接口或者抽象类为软件实体定义一个相对稳定的抽象层，而将相同的可变因素封装在相同的具体实现类中。<br><b\>由于抽象类的灵活性好，适应性广的特点。可以作为软件的架构主心骨。当需要变化而不影响原本功能的情况下，可以根据需要派生一个实现类扩展即可。
+2. <strong>[里氏替换原则](http://c.biancheng.net/view/1324.html)</strong><br><<strong>定义：</strong>\><br>主要阐述了有关继承的一些原则，也就是什么时候应该使用继承，什么时候不应该使用继承，以及其中蕴含的原理。里氏替换原则是继承复用的基础，它反映了基类与子类之间的关系，<strong>是对开闭原则的补充，是对实现抽象化的具体步骤的规范</strong><br><<strong>作用：</strong>\><br>1.里氏替换原则是实现开闭原则的重要方式之一。<br>2.它克服了继承中重写父类造成的可复用性变差的缺点。<br>3.它是动作正确性的保证。即类的扩展不会给已有的系统引入新的错误，降低了代码出错的可能性。<br>4.加强程序的健壮性，同时变更时可以做到非常好的兼容性，提高程序的维护性、可扩展性，降低需求变更时引入的风险。<br><<strong>实现：</strong>\><br>1.子类可以实现父类的抽象方法，但不能覆盖父类的非抽象方法。<br>2.子类中可以增加自己特有的方法。<br>3.当子类的方法重载父类的方法时，方法的前置条件（即方法的输入参数）要比父类的方法更宽松。<br>4.当子类的方法实现父类的方法时（重写/重载或实现抽象方法），方法的后置条件（即方法的的输出/返回值）要比父类的方法更严格或相等
+3. <strong>[依赖倒置原则](http://c.biancheng.net/view/1326.html)</strong><br><<strong>定义：</strong>\><br>高层模块不应该依赖低层模块，两者都应该依赖其抽象；抽象不应该依赖细节，细节应该依赖抽象（High level modules shouldnot depend upon low level modules.Both should depend upon abstractions.Abstractions should not depend upon details. Details should depend upon abstractions）。<strong>其核心思想是：要面向接口编程，不要面向实现编程。</strong><br><<strong>作用：</strong>\><br>1.依赖倒置原则可以降低类间的耦合性。<br>2.依赖倒置原则可以提高系统的稳定性。<br>3.依赖倒置原则可以减少并行开发引起的风险。<br>4.依赖倒置原则可以提高代码的可读性和可维护性。<br><<strong>实现：</strong>\><br>1.每个类尽量提供接口或抽象类，或者两者都具备。<br>2.变量的声明类型尽量是接口或者是抽象类。<br>3.任何类都不应该从具体类派生。<br>4.使用继承时尽量遵循里氏替换原则。
+4. <strong>[单一职责原则](http://c.biancheng.net/view/1327.html)</strong><br><<strong>定义：</strong>\><br>该原则提出对象不应该承担太多职责，如果一个对象承担了太多的职责，至少存在以下两个缺点：<br>1.一个职责的变化可能会削弱或者抑制这个类实现其他职责的能力；<br>2.当客户端需要该对象的某一个职责时，不得不将其他不需要的职责全都包含进来，从而造成冗余代码或代码的浪费。<br><<strong>作用(优点)：</strong>\><br>单一职责原则的核心就是控制类的粒度大小、将对象解耦、提高其内聚性。如果遵循单一职责原则将有以下优点。<br>1.降低类的复杂度。一个类只负责一项职责，其逻辑肯定要比负责多项职责简单得多。<br>2.提高类的可读性。复杂性降低，自然其可读性会提高。<br>3.提高系统的可维护性。可读性提高，那自然更容易维护了。<br>4.变更引起的风险降低。变更是必然的，如果单一职责原则遵守得好，当修改一个功能时，可以显著降低对其他功能的影响。<br><<strong>实现：</strong>\><br>1.单一职责原则是最简单但又最难运用的原则，需要设计人员发现类的不同职责并将其分离，再封装到不同的类或模块中。而发现类的多重职责需要设计人员具有较强的分析设计能力和相关重构经验。下面以大学学生工作管理程序为例介绍单一职责原则的应用。<br>2.单一职责同样也适用于方法。一个方法应该尽可能做好一件事情。如果一个方法处理的事情太多，其颗粒度会变得很粗，不利于重用。
+5. <strong>[接口隔离原则](http://c.biancheng.net/view/1330.html)</strong><br><<strong>定义：</strong>\><br>要为各个类建立它们需要的专用接口，而不要试图去建立一个很庞大的接口供所有依赖它的类去调用。<br><strong>对比：</strong>接口隔离原则和单一职责都是为了提高类的内聚性、降低它们之间的耦合性，体现了封装的思想，但两者是不同的：<br>1.单一职责原则注重的是职责，而接口隔离原则注重的是对接口依赖的隔离。<br>2.单一职责原则主要是约束类，它针对的是程序中的实现和细节；接口隔离原则主要约束接口，主要针对抽象和程序整体框架的构建。<br><<strong>作用(优点)：</strong>\><br>接口隔离原则是为了约束接口、降低类对接口的依赖性，遵循接口隔离原则有以下5个优点<br>1.将臃肿庞大的接口分解为多个粒度小的接口，可以预防外来变更的扩散，提高系统的灵活性和可维护性。<br>2.接口隔离提高了系统的内聚性，减少了对外交互，降低了系统的耦合性。<br>3.如果接口的粒度大小定义合理，能够保证系统的稳定性；但是，如果定义过小，则会造成接口数量过多，使设计复杂化；如果定义太大，灵活性降低，无法提供定制服务，给整体项目带来无法预料的风险。<br>4.使用多个专门的接口还能够体现对象的层次，因为可以通过接口的继承，实现对总接口的定义。<br>5.能减少项目工程中的代码冗余。过大的大接口里面通常放置许多不用的方法，当实现这个接口的时候，被迫设计冗余的代码。<br><<strong>实现：</strong>\><br>1.接口尽量小，但是要有限度。一个接口只服务于一个子模块或业务逻辑。<br>2.为依赖接口的类定制服务。只提供调用者需要的方法，屏蔽不需要的方法。<br>3.了解环境，拒绝盲从。每个项目或产品都有选定的环境因素，环境不同，接口拆分的标准就不同深入了解业务逻辑。<br>4.提高内聚，减少对外交互。使接口用最少的方法去完成最多的事情。
+6. <strong>[迪米特法则](http://c.biancheng.net/view/1331.html)</strong><br><<strong>定义：</strong>\><br>迪米特法则的定义是：只与你的直接朋友交谈，不跟“陌生人”说话（Talk only to your immediate friends and not to strangers）。其含义是：如果两个软件实体无须直接通信，那么就不应当发生直接的相互调用，可以通过第三方转发该调用。其目的是降低类之间的耦合度，提高模块的相对独立性。迪米特法则中的“朋友”是指：当前对象本身、当前对象的成员对象、当前对象所创建的对象、当前对象的方法参数等，这些对象同当前对象存在关联、聚合或组合关系，可以直接访问这些对象的方法。<br><<strong>作用：</strong>\><br>1.降低了类之间的耦合度，提高了模块的相对独立性。<br>2.由于亲合度降低，从而提高了类的可复用率和系统的扩展性。<br><<strong>实现：</strong>\><br>强调1.从依赖者的角度来说，只依赖应该依赖的对象。<br>强调2.从被依赖者的角度说，只暴露应该暴露的方法。<br>注意1.在类的划分上，应该创建弱耦合的类。类与类之间的耦合越弱，就越有利于实现可复用的目标。<br>注意2.在类的结构设计上，尽量降低类成员的访问权限。<br>注意3.在类的设计上，优先考虑将一个类设置成不变类。<br>注意4.在对其他类的引用上，将引用其他对象的次数降到最低。<br>注意5.不暴露类的属性成员，而应该提供相应的访问器（set 和 get 方法）。<br>注意6.谨慎使用序列化（Serializable）功能。
+7. <strong>[合成复用原则](http://c.biancheng.net/view/1333.html)</strong><br><<strong>定义：</strong>\><br>1.它要求在软件复用时，要尽量先使用组合或者聚合等关联关系来实现，其次才考虑使用继承关系来实现。<br>2.如果要使用继承关系，则必须严格遵循里氏替换原则。合成复用原则同里氏替换原则相辅相成的，两者都是开闭原则的具体实现规范。<br><<strong>作用：</strong>\><br>优点1.它维持了类的封装性。因为成分对象的内部细节是新对象看不见的，所以这种复用又称为“黑箱”复用。<br>优点2.新旧类之间的耦合度低。这种复用所需的依赖较少，新对象存取成分对象的唯一方法是通过成分对象的接口。<br>优点3.复用的灵活性高。这种复用可以在运行时动态进行，新对象可以动态地引用与成分对象类型相同的对象。<br>缺点1.继承复用破坏了类的封装性。因为继承会将父类的实现细节暴露给子类，父类对子类是透明的，所以这种复用又称为“白箱”复用。<br>缺点2.子类与父类的耦合度高。父类的实现的任何改变都会导致子类的实现发生变化，这不利于类的扩展与维护。<br>缺点3.它限制了复用的灵活性。从父类继承而来的实现是静态的，在编译时已经定义，所以在运行时不可能发生变化。<br><<strong>实现：</strong>\><br>合成复用原则是通过将已有的对象纳入新对象中，作为新对象的成员对象来实现的，新对象可以调用已有对象的功能，从而达到复用。
+<br><h3>小结：</h3>这 7 种设计原则是软件设计模式必须尽量遵循的原则，各种原则要求的侧重点不同。其中，开闭原则是总纲，它告诉我们要对扩展开放，对修改关闭；里氏替换原则告诉我们不要破坏继承体系；依赖倒置原则告诉我们要面向接口编程；单一职责原则告诉我们实现类要职责单一；接口隔离原则告诉我们在设计接口的时候要精简单一；迪米特法则告诉我们要降低耦合度；合成复用原则告诉我们要优先使用组合或者聚合关系复用，少用继承关系复用。
+### 1、[简单工厂模式](http://c.biancheng.net/view/8385.html) ###
+- <strong>UML图</strong>
+<br><center>![工厂方法模式的结构图](https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/jiandangongchang.png)</center>
+- <strong>定义</strong>：<br>&nbsp;&nbsp;&nbsp;&nbsp;定义一个创建产品对象的工厂接口，将产品对象的实际创建工作推迟到具体子工厂类当中。这满足创建型模式中所要求的“创建与使用相分离”的特点。我们把被创建的对象称为“产品”，把创建产品的对象称为“工厂”。<br>&nbsp;&nbsp;&nbsp;&nbsp;如果要创建的产品不多，只要一个工厂类就可以完成，这种模式叫“简单工厂模式”。<br>&nbsp;&nbsp;&nbsp;&nbsp;在简单工厂模式中创建实例的方法通常为静态（static）方法，因此简单工厂模式（Simple Factory Pattern）又叫作静态工厂方法模式（Static Factory Method Pattern）。
+- <strong>优点</strong><br>1.工厂类包含必要的逻辑判断，可以决定在什么时候创建哪一个产品的实例。客户端可以免除直接创建产品对象的职责，很方便的创建出相应的产品。工厂和产品的职责区分明确。<br>2.客户端无需知道所创建具体产品的类名，只需知道参数即可。<br>3.也可以引入配置文件，在不修改客户端代码的情况下更换和添加新的具体产品类。
+- <strong>缺点</strong><br>1.简单工厂模式的工厂类单一，负责所有产品的创建，职责过重，一旦异常，整个系统将受影响。且工厂类代码会非常臃肿，违背高聚合原则。<br>2.使用简单工厂模式会增加系统中类的个数（引入新的工厂类），增加系统的复杂度和理解难度。<br>3.系统扩展困难，一旦增加新产品不得不修改工厂逻辑，在产品类型较多时，可能造成逻辑过于复杂。<br>4.简单工厂模式使用了 static 工厂方法，造成工厂角色无法形成基于继承的等级结构。
+- <strong><font color="red">CFC总结：</font></strong>增加抽象产品的具体产品需要修改工厂类。
 <h3 id="2-工厂方法模式">2、<a href="http://c.biancheng.net/view/1348.html">工厂方法模式</a></h3>
 <ul>
 <li><strong>UML图</strong><br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/gongchang.png" alt="" loading="lazy"></li>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/gongchang.png" alt="" loading="lazy"></center></li>
 <li><strong>定义</strong>：<br>简单工厂模式违背了开闭原则，而“工厂方法模式”是对简单工厂模式的进一步抽象化，其好处是可以使系统在不修改原来代码的情况下引进新的产品，即满足开闭原则。</li>
 <li><strong>优点</strong><br>1.用户只需要知道具体工厂的名称就可得到所要的产品，无须知道产品的具体创建过程。<br>2.灵活性增强，对于新产品的创建，只需多写一个相应的工厂类。<br>3.典型的解耦框架。高层模块只需要知道产品的抽象类，无须关心其他实现类，满足迪米特法则、依赖倒置原则和里氏替换原则。</li>
 <li><strong>缺点</strong><br>1.类的个数容易过多，增加复杂度。<br>2.增加了系统的抽象性和理解难度。<br>3.抽象产品只能生产一种产品，此弊端可使用抽象工厂模式解决。</li>
-<li><strong>实际应用UML</strong><br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/3-1Q11413554DT.png" alt="工厂模式实际应用" loading="lazy"></li>
+<li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/3-1Q11413554DT.png" alt="工厂模式实际应用" loading="lazy"></center></li>
 <li><strong><font color="red">CFC总结：</font></strong>相同产品等级(同类)增加，需要增加对应的工厂类。</li>
 </ul>
 <h3 id="3-抽象工厂模式">3、<a href="http://c.biancheng.net/view/1351.html">抽象工厂模式</a></h3>
 <ul>
 <li><strong>UML图</strong><br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/chouxianggongchang.png" alt="" loading="lazy"></li>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/chouxianggongchang.png" alt="" loading="lazy"></center></li>
 <li><strong>定义</strong>：<br>工厂方法模式中考虑的是一类产品的生产，如畜牧场只养动物、电视机厂只生产电视机、计算机软件学院只培养计算机软件专业的学生等。同种类称为同等级，也就是说：工厂方法模式只考虑生产同等级的产品，但是在现实生活中许多工厂是综合型的工厂，能生产多等级（种类） 的产品，如农场里既养动物又种植物，电器厂既生产电视机又生产洗衣机或空调，大学既有软件专业又有生物专业等。<br><strong>抽象工厂（AbstractFactory）模式的定义</strong>：是一种为访问类提供一个创建一组相关或相互依赖对象的接口，且访问类无须指定所要产品的具体类就能得到同族的不同等级的产品的模式结构。<br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/dianqigongchangdechanpingdengjiyuchanpingzu.png" alt="电器工厂的产品等级与产品族" loading="lazy"></li>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/dianqigongchangdechanpingdengjiyuchanpingzu.png" alt="电器工厂的产品等级与产品族" loading="lazy"></center></li>
 <li><strong>优点</strong></li>
 <li><strong>缺点</strong></li>
-<li><strong>实际应用UML</strong><br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/chouxianggongchangYY.png" alt="抽象工厂实际应用" loading="lazy"></li>
+<li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/chouxianggongchangYY.png" alt="抽象工厂实际应用" loading="lazy"></center></li>
 <li><strong><font color="red">CFC总结：</font></strong>工厂只能消费同产品簇，产品簇增加，工厂类增加。</li>
 </ul>
 <h3 id="4-建造者模式">4、<a href="http://c.biancheng.net/view/1354.html">建造者模式</a></h3>
 <ul>
 <li><strong>UML图</strong><br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/jianzaozhe.png" alt="建造者模式的结构图" loading="lazy"></li>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/jianzaozhe.png" alt="建造者模式的结构图" loading="lazy"></center></li>
 <li><strong>定义</strong>：指将一个复杂对象的构造与它的表示分离，使同样的构建过程可以创建不同的表示，这样的设计模式被称为建造者模式。它是将一个复杂的对象分解为多个简单的对象，然后一步一步构建而成。它将变与不变相分离，即产品的组成部分是不变的，但每一部分是可以灵活选择的。</li>
 <li><strong>优点</strong><br>1.封装性好，构建和表示分离。<br>2.扩展性好，各个具体的建造者相互独立，有利于系统的解耦。<br>3.客户端不必知道产品内部组成的细节，建造者可以对创建过程逐步细化，而不对其它模块产生任何影响，便于控制细节风险。</li>
 <li><strong>缺点</strong><br>1.产品的组成部分必须相同，这限制了其使用范围。<br>2.如果产品的内部变化复杂，如果产品内部发生变化，则建造者也要同步修改，后期维护成本较大。</li>
 <li><strong>结合</strong>：建造者（Builder）模式和工厂模式的关注点不同：建造者模式注重零部件的组装过程，而工厂方法模式更注重零部件的创建过程，但两者可以结合使用。</li>
-<li><strong>实际应用UML</strong><br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/jianzaozheYY.png" alt="抽象工厂实际应用" loading="lazy"></li>
+<li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/jianzaozheYY.png" alt="抽象工厂实际应用" loading="lazy"></center></li>
 <li><strong><font color="red">CFC总结：</font></strong></li>
 </ul>
 <h3 id="5-单例模式">5、<a href="http://c.biancheng.net/view/1338.html">单例模式</a></h3>
 <ul>
 <li><strong>UML图</strong><br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/danli.png" alt="单例模式的结构图" loading="lazy"></li>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/danli.png" alt="单例模式的结构图" loading="lazy"></center></li>
 <li><strong>定义</strong><br>单例模式有 3 个特点：<br>1.单例类只有一个实例对象；<br>2.该单例对象必须由单例类自行创建；<br>3.单例类对外提供一个访问该单例的全局访问点。</li>
 <li><strong>优点</strong><br>1.单例模式可以保证内存里只有一个实例，减少了内存的开销。<br>2.可以避免对资源的多重占用。<br>3.单例模式设置全局访问点，可以优化和共享资源的访问。</li>
 <li><strong>缺点</strong><br>1.单例模式一般没有接口，扩展困难。如果要扩展，则除了修改原来的代码，没有第二种途径，违背开闭原则。<br>2.在并发测试中，单例模式不利于代码调试。在调试过程中，如果单例中的代码没有执行完，也不能模拟生成一个新的对象。<br>3.单例模式的功能代码通常写在一个类中，如果功能设计不合理，则很容易违背单一职责原则。</li>
@@ -85,80 +81,80 @@
 <h3 id="6-原型模式">6、<a href="http://c.biancheng.net/view/1343.html">原型模式</a></h3>
 <ul>
 <li><strong>UML图</strong><br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/yuanxing.png" alt="原型模式的结构图" loading="lazy"></li>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/yuanxing.png" alt="原型模式的结构图" loading="lazy"></center></li>
 <li><strong>定义</strong>：用一个已经创建的实例作为原型，通过复制该原型对象来创建一个和原型相同或相似的新对象。在这里，原型实例指定了要创建的对象的种类。用这种方式创建对象非常高效，根本无须知道对象创建的细节。例如，Windows 操作系统的安装通常较耗时，如果复制就快了很多。在生活中复制的例子非常多，这里不一一列举了。</li>
 <li><strong>优点</strong><br>1.Java 自带的原型模式基于内存二进制流的复制，在性能上比直接 new 一个对象更加优良。<br>2.可以使用深克隆方式保存对象的状态，使用原型模式将对象复制一份，并将其状态保存起来，简化了创建对象的过程，以便在需要的时候使用（例如恢复到历史某一状态），可辅助实现撤销操作。</li>
 <li><strong>缺点</strong><br>1.需要为每一个类都配置一个 clone 方法。<br>2.clone 方法位于类的内部，当对已有类进行改造的时候，需要修改代码，违背了开闭原则。<br>3.当实现深克隆时，需要编写较为复杂的代码，而且当对象之间存在多重嵌套引用时，为了实现深克隆，每一层对象对应的类都必须支持深克隆，实现起来会比较麻烦。因此，深克隆、浅克隆需要运用得当。</li>
-<li><strong>实际应用UML</strong><br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/yuanxingYY.png" alt="原型模式的实际应用" loading="lazy"></li>
+<li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/yuanxingYY.png" alt="原型模式的实际应用" loading="lazy"></center></li>
 </ul>
 <h3 id="7-外观模式">7、<a href="http://c.biancheng.net/view/1369.html">外观模式</a></h3>
 <ul>
 <li><strong>UML图</strong><br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/waiguan.png" alt="外观模式结构图" loading="lazy"></li>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/waiguan.png" alt="外观模式结构图" loading="lazy"></center></li>
 <li><strong>定义</strong>：<font color="blue" >外观（Facade）模式又叫作门面模式，是一种通过为多个复杂的子系统提供一个一致的接口，而使这些子系统更加容易被访问的模式。该模式对外有一个统一接口，外部应用程序不用关心内部子系统的具体细节，这样会大大降低应用程序的复杂度，提高了程序的可维护性。</font>在日常编码工作中，我们都在有意无意的大量使用外观模式。只要是高层模块需要调度多个子系统（2个以上的类对象），我们都会自觉地创建一个新的类封装这些子系统，提供精简的接口，让高层模块可以更加容易地间接调用这些子系统的功能。尤其是现阶段各种第三方SDK、开源类库，很大概率都会使用外观模式。</li>
 <li><strong>优点</strong><br>1.降低了子系统与客户端之间的耦合度，使得子系统的变化不会影响调用它的客户类。<br>2.对客户屏蔽了子系统组件，减少了客户处理的对象数目，并使得子系统使用起来更加容易。<br>3.降低了大型软件系统中的编译依赖性，简化了系统在不同平台之间的移植过程，因为编译一个子系统不会影响其他的子系统，也不会影响外观对象。</li>
 <li><strong>缺点</strong><br>1.不能很好地限制客户使用子系统类，很容易带来未知风险。<br>2.增加新的子系统可能需要修改外观类或客户端的源代码，违背了“开闭原则”。</li>
-<li><strong>实际应用UML</strong><br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/waiguanYY.png" alt="外观模式实际应用" loading="lazy"></li>
+<li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/waiguanYY.png" alt="外观模式实际应用" loading="lazy"></center></li>
 </ul>
 <h3 id="8-装饰模式">8、<a href="http://c.biancheng.net/view/1366.html">装饰模式</a></h3>
 <ul>
 <li><strong>UML图</strong><br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zhuangshi.png" alt="装饰模式的结构图" loading="lazy"></li>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zhuangshi.png" alt="装饰模式的结构图" loading="lazy"></center></li>
 <li><strong>定义</strong>：装饰（Decorator）指在不改变现有对象结构的情况下，动态地给该对象增加一些职责（即增加其额外功能）的模式，它属于对象结构型模式。</li>
 <li><strong>优点</strong><br>1.装饰器是继承的有力补充，比继承灵活，在不改变原有对象的情况下，动态的给一个对象扩展功能，即插即用。<br>2.通过使用不用装饰类及这些装饰类的排列组合，可以实现不同效果。<br>3.装饰器模式完全遵守开闭原则。</li>
 <li><strong>缺点</strong>：装饰模式会增加许多子类，过度使用会增加程序得复杂性。</li>
-<li><strong>实际应用UML</strong><br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zhuangshiYY.png" alt="装饰模式实际应用" loading="lazy"></li>
+<li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zhuangshiYY.png" alt="装饰模式实际应用" loading="lazy"></center></li>
 </ul>
 <h3 id="9-适配器模式">9、<a href="http://c.biancheng.net/view/1361.html">适配器模式</a></h3>
 <ul>
 <li><strong>类适配器UML图</strong><br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/shipeiqi-lei.png" alt="" loading="lazy"></li>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/shipeiqi-lei.png" alt="" loading="lazy"></center></li>
 <li><strong>对象适配器UML图</strong><br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/shipeiqi-duixiang.png" alt="" loading="lazy"></li>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/shipeiqi-duixiang.png" alt="" loading="lazy"></center></li>
 <li><strong>定义</strong><br>1.适配器模式（Adapter）的定义如下：将一个类的接口转换成客户希望的另外一个接口，使得原本由于接口不兼容而不能一起工作的那些类能一起工作。适配器模式分为类结构型模式和对象结构型模式两种，前者类之间的耦合度比后者高，且要求程序员了解现有组件库中的相关组件的内部结构，所以应用相对较少些。<br>2.类适配器模式可采用多重继承方式实现，如 C++ 可定义一个适配器类来同时继承当前系统的业务接口和现有组件库中已经存在的组件接口；Java 不支持多继承，但可以定义一个适配器类来实现当前系统的业务接口，同时又继承现有组件库中已经存在的组件。对象适配器模式可釆用将现有组件库中已经实现的组件引入适配器类中，该类同时实现当前系统的业务接口。现在来介绍它们的基本结构。</li>
 <li><strong>优点</strong><br>1.客户端通过适配器可以透明地调用目标接口。<br>2.复用了现存的类，程序员不需要修改原有代码而重用现有的适配者类。<br>3.将目标类和适配者类解耦，解决了目标类和适配者类接口不一致的问题。<br>4.在很多业务场景中符合开闭原则。</li>
 <li><strong>缺点</strong><br>1.适配器编写过程需要结合业务场景全面考虑，可能会增加系统的复杂性。<br>2.增加代码阅读难度，降低代码可读性，过多使用适配器会使系统代码变得凌乱。</li>
-<li><strong>实际应用UML</strong><br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/shipeiqiYY.png" alt="发动机适配器实际应用" loading="lazy"></li>
+<li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/shipeiqiYY.png" alt="发动机适配器实际应用" loading="lazy"></center></li>
 <li><strong><font color="red">CFC总结：</font></strong>类适配器与对象适配器在简单且单一的时候是差不多的，但是当适配器需要处理复杂的适配的时候，涉及多种的情况下，对象适配器可以变种传入对象为传入继承该抽象基类对象的对象(Class&lt;? extends xxx&gt;)来实现多种复杂的适配。</li>
 </ul>
 <h3 id="10-亨元模式">10、<a href="http://c.biancheng.net/view/1371.html">亨元模式</a></h3>
 <ul>
 <li><strong>UML图</strong><br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/hengyuan.png" alt="亨元模式结构图" loading="lazy"></li>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/hengyuan.png" alt="亨元模式结构图" loading="lazy"></center></li>
 <li><strong>定义</strong>：享元（Flyweight）模式：运用共享技术来有效地支持大量细粒度对象的复用。它通过共享已经存在的对象来大幅度减少需要创建的对象数量、避免大量相似类的开销，从而提高系统资源的利用率。</li>
 <li><strong>优点</strong>1.相同对象只要保存一份，这降低了系统中对象的数量，从而降低了系统中细粒度对象给内存带来的压力。</li>
 <li><strong>缺点</strong>1.为了使对象可以共享，需要将一些不能共享的状态外部化，这将增加程序的复杂性。<br>2.读取享元模式的外部状态会使得运行时间稍微变长。</li>
-<li><strong>实际应用UML</strong><br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/hengyuanYY.png" alt="亨元模式五子棋游戏实际应用" loading="lazy"></li>
+<li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/hengyuanYY.png" alt="亨元模式五子棋游戏实际应用" loading="lazy"></center></li>
 </ul>
 <h3 id="11-组合模式">11、<a href="http://c.biancheng.net/view/1373.html">组合模式</a></h3>
 <ul>
 <li><strong>UML图</strong><br>
 <br><strong>透明式组合模式</strong>中，由于抽象构件声明了所有子类中的全部方法，所以客户端无须区别树叶对象和树枝对象，对客户端来说是透明的。但其缺点是：树叶构件本来没有 Add()、Remove() 及 GetChild() 方法，却要实现它们（空实现或抛异常），这样会带来一些安全性问题。其结构图如图所示。<br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zuhe-touming.png" alt="透明式组合模式结构图" loading="lazy"><br>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zuhe-touming.png" alt="透明式组合模式结构图" loading="lazy"></center><br>
 <br><strong>安全式组合模式</strong>中，将管理子构件的方法移到树枝构件中，抽象构件和树叶构件没有对子对象的管理方法，这样就避免了上一种方式的安全性问题，但由于叶子和分支有不同的接口，客户端在调用时要知道树叶对象和树枝对象的存在，所以失去了透明性。其结构图如图所示。<br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zuhe-anquan.png" alt="安全式组合模式结构图" loading="lazy"></li>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zuhe-anquan.png" alt="安全式组合模式结构图" loading="lazy"></center></li>
 <li><strong>定义</strong>：组合（Composite Pattern）模式有时又叫作整体-部分（Part-Whole）模式，它是一种将对象组合成树状的层次结构的模式，用来表示“整体-部分”的关系，使用户对单个对象和组合对象具有一致的访问性，属于结构型设计模式。组合模式一般用来描述整体与部分的关系，它将对象组织到树形结构中，顶层的节点被称为根节点，根节点下面可以包含树枝节点和叶子节点，树枝节点下面又可以包含树枝节点和叶子节点，树形结构图如下。<br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zuheshuxingjiegoutu.png" alt="组合模式树形结构图" loading="lazy"><br>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zuheshuxingjiegoutu.png" alt="组合模式树形结构图" loading="lazy"></center><br>
 <br>由上图可以看出，其实根节点和树枝节点本质上属于同一种数据类型，可以作为容器使用；而叶子节点与树枝节点在语义上不属于用一种类型。但是在组合模式中，会把树枝节点和叶子节点看作属于同一种数据类型（用统一接口定义），让它们具备一致行为。这样，在组合模式中，整个树形结构中的对象都属于同一种类型，带来的好处就是用户不需要辨别是树枝节点还是叶子节点，可以直接进行操作，给用户的使用带来极大的便利</li>
 <li><strong>优点</strong><br>1.组合模式使得客户端代码可以一致地处理单个对象和组合对象，无须关心自己处理的是单个对象，还是组合对象，这简化了客户端代码。<br>2.更容易在组合体内加入新的对象，客户端不会因为加入了新的对象而更改源代码，满足“开闭原则”。</li>
 <li><strong>缺点</strong><br>1.设计较复杂，客户端需要花更多时间理清类之间的层次关系。<br>2.不容易限制容器中的构件。<br>3.不容易用继承的方法来增加构件的新功能。</li>
-<li><strong>实际应用UML</strong><br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zuheYY-tjyj.gif" alt="组合模式实际应用" loading="lazy"></li>
-<li><strong>复杂实际应用UML</strong><br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zuheYY-fuza.gif" alt="组合模式复杂应用" loading="lazy"></li>
+<li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zuheYY-tjyj.gif" alt="组合模式实际应用" loading="lazy"></center></li>
+<li><strong>复杂实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zuheYY-fuza.gif" alt="组合模式复杂应用" loading="lazy"></center></li>
 </ul>
 <h3 id="12-桥接模式">12、<a href="http://c.biancheng.net/view/1364.html">桥接模式</a></h3>
 <ul>
 <li><strong>UML图</strong><br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/qiaojie.png" alt="桥接模式结构图" loading="lazy"></li>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/qiaojie.png" alt="桥接模式结构图" loading="lazy"></center></li>
 <li><strong>定义</strong>：桥接（Bridge）模式：将抽象与实现分离，使它们可以独立变化。它是用组合关系代替继承关系来实现，从而降低了抽象和实现这两个可变维度的耦合度。</li>
 <li><strong>优点</strong><br>1.抽象与实现分离，扩展能力强。<br>2.符合开闭原则。<br>3.符合合成复用原则。<br>4.其实现细节对客户透明。</li>
 <li><strong>缺点</strong><br>1.于聚合关系建立在抽象层，要求开发者针对抽象化进行设计与编程，能正确地识别出系统中两个独立变化的维度，这增加了系统的理解与设计难度。</li>
-<li><strong>实际应用UML</strong><br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/qiaojieYY.png" alt="桥接模式实际应用" loading="lazy"></li>
+<li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/qiaojieYY.png" alt="桥接模式实际应用" loading="lazy"></center></li>
 </ul>
 <h3 id="13-代理模式">13、<a href="http://c.biancheng.net/view/1359.html">代理模式</a></h3>
 <ul>
 <li>
 <p><strong>UML图</strong><br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/daili.gif" alt="" loading="lazy"></p>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/daili.gif" alt="" loading="lazy"></center></p>
 </li>
 <li>
 <p><strong>定义</strong>：由于某些原因需要给某对象提供一个代理以控制对该对象的访问。这时，访问对象不适合或者不能直接引用目标对象，代理对象作为访问对象和目标对象之间的中介。</p>
@@ -174,64 +170,48 @@
 <br>1.远程代理，这种方式通常是为了隐藏目标对象存在于不同地址空间的事实，方便客户端访问。例如，用户申请某些网盘空间时，会在用户的文件系统中建立一个虚拟的硬盘，用户访问虚拟硬盘时实际访问的是网盘空间。<br>2.虚拟代理，这种方式通常用于要创建的目标对象开销很大时。例如，下载一幅很大的图像需要很长时间，因某种计算比较复杂而短时间无法完成，这时可以先用小比例的虚拟代理替换真实的对象，消除用户对服务器慢的感觉。<br>3.安全代理，这种方式通常用于控制不同种类客户对真实对象的访问权限。<br>4.智能指引，主要用于调用目标对象时，代理附加一些额外的处理功能。例如，增加计算真实对象的引用次数的功能，这样当该对象没有被引用时，就可以自动释放它。<br>5.延迟加载，指为了提高系统的性能，延迟对目标的加载。例如，Hibernate 中就存在属性的延迟加载和关联表的延时加载。</p>
 </li>
 <li>
-<p><strong>实际应用UML</strong><br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/dailiYY.gif" alt="代理模式实际应用" loading="lazy"></p>
+<p><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/dailiYY.gif" alt="代理模式实际应用" loading="lazy"></center></p>
 </li>
 <li>
-<p><strong>动态代理UML</strong><br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/dailiKZdongtai.gif" alt="代理模式实际应用" loading="lazy"></p>
+<p><strong>动态代理UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/dailiKZdongtai.gif" alt="代理模式实际应用" loading="lazy"></center></p>
 </li>
 </ul>
 <h3 id="14-模板方法模式">14、<a href="http://c.biancheng.net/view/1376.html">模板方法模式</a></h3>
 <ul>
-<li>
-<p><strong>UML图</strong><br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/mubanfangfa.png" alt="" loading="lazy"></p>
-</li>
-<li>
-<p><strong>优点</strong></p>
-</li>
-<li>
-<ul>
-<li><strong>定义</strong>：</li>
-</ul>
-</li>
-<li>
-<p><strong>缺点</strong></p>
-</li>
+<li><strong>UML图</strong><br>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/mubanfangfa.gif" alt="模板方法结构图" loading="lazy"></center></li>
+<li><strong>定义</strong>：模板方法（Template Method）定义一个操作中的算法骨架，而将算法的一些步骤延迟到子类中，使得子类可以不改变该算法结构的情况下重定义该算法的某些特定步骤。它是一种类行为型模式。</li>
+<li><strong>优点</strong><br>1.它封装了不变部分，扩展可变部分。它把认为是不变部分的算法封装到父类中实现，而把可变部分算法由子类继承实现，便于子类继续扩展。<br>2.它在父类中提取了公共的部分代码，便于代码复用。<br>3.部分方法是由子类实现的，因此子类可以通过扩展方式增加相应的功能，符合开闭原则。</li>
+<li><strong>缺点</strong><br>1.对每个不同的实现都需要定义一个子类，这会导致类的个数增加，系统更加庞大，设计也更加抽象，间接地增加了系统实现的复杂度。<br>2.父类中的抽象方法由子类实现，子类执行的结果会影响父类的结果，这导致一种反向的控制结构，它提高了代码阅读的难度。<br>3.由于继承关系自身的缺点，如果父类添加新的抽象方法，则所有子类都要改一遍。</li>
+<li><strong>应用场景</strong><br>1.算法的整体步骤很固定，但其中个别部分易变时，这时候可以使用模板方法模式，将容易变的部分抽象出来，供子类实现。<br>2.当多个子类存在公共的行为时，可以将其提取出来并集中到一个公共父类中以避免代码重复。首先，要识别现有代码中的不同之处，并且将不同之处分离为新的操作。最后，用一个调用这些新的操作的模板方法来替换这些不同的代码。<br>3.当需要控制子类的扩展时，模板方法只在特定点调用钩子操作，这样就只允许在这些点进行扩展。</li>
+<li><strong>扩展</strong>：在模板方法模式中，基本方法包含：抽象方法、具体方法和钩子方法，正确使用“钩子方法”可以使得子类控制父类的行为。如下面例子中，可以通过在具体子类中重写钩子方法 HookMethod1() 和 HookMethod2() 来改变抽象父类中的运行结果，其结构图如图所示<br>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/mubanfangfahangouzi.png" alt="含钩子方法的模板方法模式的结构图" loading="lazy"></center></li>
+<li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/mubanfangfaYY.gif" alt="模板方法实际应用" loading="lazy"></center></li>
 </ul>
 <h3 id="15-迭代器模式">15、<a href="http://c.biancheng.net/view/1395.html">迭代器模式</a></h3>
 <ul>
-<li>
-<p><strong>UML图</strong><br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/diedaiqi.png" alt="" loading="lazy"></p>
-</li>
-<li>
-<p><strong>定义</strong>：</p>
-</li>
-<li>
-<p><strong>优点</strong></p>
-</li>
-<li>
-<p><strong>缺点</strong></p>
-</li>
+<li><strong>UML图</strong><br>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/diedaiqi.gif" alt="迭代器结构图" loading="lazy"></center></li>
+<li><strong>定义</strong>：迭代器（Iterator）模式提供一个对象来顺序访问聚合对象中的一系列数据，而不暴露聚合对象的内部表示。迭代器模式是一种对象行为型模式</li>
+<li><strong>优点</strong><br>1.访问一个聚合对象的内容而无须暴露它的内部表示。<br>2.遍历任务交由迭代器完成，这简化了聚合类。<br>3.它支持以不同方式遍历一个聚合，甚至可以自定义迭代器的子类以支持新的遍历。<br>4.增加新的聚合类和迭代器类都很方便，无须修改原有代码。<br>5.封装性良好，为遍历不同的聚合结构提供一个统一的接口。</li>
+<li><strong>缺点</strong><br>1.增加了类的个数，这在一定程度上增加了系统的复杂性。</li>
+<li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/diedaiqiYY.gif" alt="迭代器模式实际应用" loading="lazy"></center></li>
 </ul>
 <h3 id="16-策略模式">16、<a href="http://c.biancheng.net/view/1378.html">策略模式</a></h3>
 <ul>
-<li>
-<p><strong>UML图</strong><br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/celue.png" alt="" loading="lazy"></p>
-</li>
-<li>
-<p><strong>优点</strong></p>
-</li>
-<li>
-<p><strong>缺点</strong></p>
-</li>
+<li><strong>UML图</strong><br>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/celue.gif" alt="策略模式结构图" loading="lazy"></center></li>
+<li><strong>定义</strong>：策略（Strategy）模式定义了一系列算法，并将每个算法封装起来，使它们可以相互替换，且算法的变化不会影响使用算法的客户。策略模式属于对象行为模式，它通过对算法进行封装，把使用算法的责任和算法的实现分割开来，并委派给不同的对象对这些算法进行管理。</li>
+<li><strong>优点</strong><br>1.多重条件语句不易维护，而使用策略模式可以避免使用多重条件语句，如 if...else 语句、switch...case 语句。<br>2.策略模式提供了一系列的可供重用的算法族，恰当使用继承可以把算法族的公共代码转移到父类里面，从而避免重复的代码。<br>3.策略模式可以提供相同行为的不同实现，客户可以根据不同时间或空间要求选择不同的。<br>4.策略模式提供了对开闭原则的完美支持，可以在不修改原代码的情况下，灵活增加新算法。<br>5.策略模式把算法的使用放到环境类中，而算法的实现移到具体策略类中，实现了二者的分离。</li>
+<li><strong>缺点</strong><br>1.客户端必须理解所有策略算法的区别，以便适时选择恰当的算法类。<br>2.策略模式造成很多的策略类，增加维护难度。</li>
+<li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/celueYY.gif" alt="" loading="lazy"></center><br>
+<br><center>大闸蟹做菜策略的结构图</center></li>
 </ul>
 <h3 id="17-解释器模式">17、<a href="http://c.biancheng.net/view/1402.html">解释器模式</a></h3>
 <ul>
 <li>
 <p><strong>UML图</strong><br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/jieshiqi.png" alt="" loading="lazy"></p>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/jieshiqi.png" alt="" loading="lazy"></center></p>
 </li>
 <li>
 <p><strong>优点</strong></p>
@@ -244,7 +224,7 @@
 <ul>
 <li>
 <p><strong>UML图</strong><br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/guanchazhe.png" alt="" loading="lazy"></p>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/guanchazhe.png" alt="" loading="lazy"></center></p>
 </li>
 <li>
 <p><strong>优点</strong></p>
@@ -257,7 +237,7 @@
 <ul>
 <li>
 <p><strong>UML图</strong><br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/beiwanglu.png" alt="" loading="lazy"></p>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/beiwanglu.png" alt="" loading="lazy"></center></p>
 </li>
 <li>
 <p><strong>优点</strong></p>
@@ -270,7 +250,7 @@
 <ul>
 <li>
 <p><strong>UML图</strong><br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/mingling.png" alt="" loading="lazy"></p>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/mingling.png" alt="" loading="lazy"></center></p>
 </li>
 <li>
 <p><strong>优点</strong></p>
@@ -283,7 +263,7 @@
 <ul>
 <li>
 <p><strong>UML图</strong><br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zhongjiezhe.png" alt="" loading="lazy"></p>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zhongjiezhe.png" alt="" loading="lazy"></center></p>
 </li>
 <li>
 <p><strong>优点</strong></p>
@@ -296,7 +276,7 @@
 <ul>
 <li>
 <p><strong>UML图</strong><br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zerenlian.png" alt="" loading="lazy"></p>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zerenlian.png" alt="" loading="lazy"></center></p>
 </li>
 <li>
 <p><strong>优点</strong></p>
@@ -308,14 +288,14 @@
 <h3 id="23-访问者模式">23、<a href="http://c.biancheng.net/view/1397.html">访问者模式</a></h3>
 <ul>
 <li><strong>UML图</strong><br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/fangwenzhe.png" alt="" loading="lazy"></li>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/fangwenzhe.png" alt="" loading="lazy"></center></li>
 <li><strong>优点</strong></li>
 <li><strong>缺点</strong></li>
 </ul>
 <h3 id="24-状态模式">24、<a href="http://c.biancheng.net/view/1388.html">状态模式</a></h3>
 <ul>
 <li><strong>UML图</strong><br>
-<br><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zhuangtai.png" alt="" loading="lazy"></li>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zhuangtai.png" alt="" loading="lazy"></center></li>
 <li><strong>优点</strong></li>
 <li><strong>缺点</strong></li>
 </ul>
