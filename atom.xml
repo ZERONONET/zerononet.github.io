@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zerononet.github.io</id>
     <title>ZERONONET&apos;s blog</title>
-    <updated>2020-11-17T08:43:44.678Z</updated>
+    <updated>2020-11-17T10:11:59.490Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zerononet.github.io"/>
     <link rel="self" href="https://zerononet.github.io/atom.xml"/>
@@ -482,7 +482,52 @@
 <p><strong>ArrayList与Vector的区别</strong>：<br>
 Vector所有方法都是同步的，在不需要多线程保证线程安全的情况下可以使用ArrayList减少不必要的大量同步操作。<br>
 <br><strong>ArrayList的扩容机制</strong>：<br>
-<br><br><br><br></p>
+<br>自动扩容源码</p>
+<blockquote>
+<p>// 扩容一个<br>
+<br>private Object[] grow() {<br>
+<br>   	return grow(size + 1);<br>
+<br> }<br>
+<br>// 保证扩容到期望容量minCapacity及以上<br>
+<br>private Object[] grow(int minCapacity) {<br>
+<br>      return elementData = Arrays.copyOf(elementData,newCapacity(minCapacity));<br>
+<br>}<br>
+<br>// 根据期望容量minCapacity计算实际需要扩容的容量<br>
+<br>private int newCapacity(int minCapacity) {<br>
+<br>    // overflow-conscious code<br>
+<br>    int oldCapacity = elementData.length; // 得到旧容量<br>
+<br>    int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1); // 设置新容量为旧容量的1.5倍<br>
+<br>    if (newCapacity - minCapacity &lt;= 0) { // 如果新容量仍然小于期望容量<br>
+<br>    if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) // 如果是使用的默认容量<br>
+<br>        return Math.max(DEFAULT_CAPACITY, minCapacity); // 取默认容量和期望容量较大值返回<br>
+<br>    if (minCapacity &lt; 0) // overflow // 检查期望容量是否越界（int 的范围）<br>
+<br>        throw new OutOfMemoryError();<br>
+<br>        return minCapacity; // 返回期望容量<br>
+<br>  }<br>
+<br>  // 如果新容量大于期望容量，判断一下新容量是否越界<br>
+<br>  return (newCapacity - MAX_ARRAY_SIZE &lt;= 0)? newCapacity : hugeCapacity(minCapacity);<br>
+<br>}</p>
+</blockquote>
+<p>手动扩容源码</p>
+<blockquote>
+<p>public void ensureCapacity(int minCapacity) {<br>
+<br>  if (minCapacity &gt; elementData.length&amp;&amp; !(elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA&amp;&amp; minCapacity &lt;= DEFAULT_CAPACITY)) {<br>
+<br>       modCount++;<br>
+<br>       grow(minCapacity);<br>
+<br>    }<br>
+<br>  }</p>
+</blockquote>
+<p><strong>调用ADD方法执行流程</strong><br>
+<br>当使用无参构造的时候，在第一次调用add方法之后的执行流程<br>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/arraylistgrowflow.png" alt="调用ADD方法执行流程" loading="lazy"></center><br>
+<br>这是第一次调用add方法的过程，当扩容值capacity为10之后</p>
+<ul>
+<li>继续添加第2个元素（先注意调用ensureCapacityInternal方法传递的参数为size+1=1+1=2）</li>
+<li>ensureExplicitCapacity方法中minCapacity为刚刚传递的2，所以第二个if判断（2-10=-8）不会成立，即newCapacity 不比 MAX_ARRAY_SIZE大，则不会进入 grow 方法。数组容量为10，add方法中 return true,size增为1。</li>
+<li>假设又添加3、4......10个元素(其中过程类似，但是不会执行grow扩容方法)</li>
+<li>当add第11个元素时候，会进入grow方法时，计算newCapacity为15，比minCapacity（为10+1=11）大，第一个if判断不成立。新容量没有大于数组最大size，不会进入hugeCapacity方法。数组容量扩为15，add方法中return true,size增为11。<br>
+<strong>关于对指定位置插入数据的方法add(int index,E element)</strong>如非必要不要使用。在指定位置插入时，假设该位置合法，首先会检测是否有足够的数组空间，然后将index及其之后的数据都向后移动一位，最后将新的元素插入到index的位置。<br>其中<strong>复杂程度</strong>为O(N)，频繁移动导致的复杂程度将更高，影响效率。</li>
+</ul>
 <p><a name="HashMap底层实现"></a></p>
 <h3 id="hashmap底层实现">HashMap底层实现</h3>
 <p><strong>java1.8之前</strong>：数组加链表组成的链表散列，通过key的扰动函数处理后得到hash值，通过(n-1)&amp;hash判断当前元素存放位置，如果当前位置存在元素，相当于已经有了这个key，如果key与hash都相同，直接覆盖当前位置的值。如果不相同就通过拉链法解决冲突。<br>
