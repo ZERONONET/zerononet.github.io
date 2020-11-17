@@ -1,21 +1,101 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://zerononet.github.io</id>
-    <title>ZERONONET&apos;s blog</title>
-    <updated>2020-11-17T03:33:16.579Z</updated>
-    <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://zerononet.github.io"/>
-    <link rel="self" href="https://zerononet.github.io/atom.xml"/>
-    <logo>https://zerononet.github.io/images/avatar.png</logo>
-    <icon>https://zerononet.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, ZERONONET&apos;s blog</rights>
-    <entry>
-        <title type="html"><![CDATA[知识点备查手册(持续更新中)]]></title>
-        <id>https://zerononet.github.io/post/zhi-shi-dian-bei-cha-shou-ce/</id>
-        <link href="https://zerononet.github.io/post/zhi-shi-dian-bei-cha-shou-ce/">
-        </link>
-        <updated>2020-11-17T02:23:54.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="center升级之路center"><center>升级之路</center></h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>知识点备查手册(持续更新中) | ZERONONET&#39;s blog</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://zerononet.github.io/favicon.ico?v=1605583993507">
+<link rel="stylesheet" href="https://zerononet.github.io/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="升级之路
+以实际应用结合讲设计模式
+1、数据库的锁
+行锁（共享锁和排他锁），表锁，页级锁，意向锁，读锁，写锁，悲观锁，乐观锁等
+2、数据结构
+红黑树，B树，B+树，二叉树，HashMap
+3、Redis
+分布式的哨兵到3.0之后的去中心化集..." />
+    <meta name="keywords" content="" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://zerononet.github.io">
+        <img src="https://zerononet.github.io/images/avatar.png?v=1605583993507" class="site-logo">
+        <h1 class="site-title">ZERONONET&#39;s blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            目录
+          </a>
+        
+      
+        
+          <a href="https://zerononet.github.io/post/zhuan-zai" class="site-nav">
+            转载
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank"> ZERONONET</a> | <a class="rss" href="https://zerononet.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">知识点备查手册(持续更新中)</h2>
+            <div class="post-date">2020-11-17</div>
+            
+            <div class="post-content" v-pre>
+              <h1 id="center升级之路center"><center>升级之路</center></h1>
 <h2 id="以实际应用结合讲设计模式">以实际应用结合讲设计模式</h2>
 <h2 id="1-数据库的锁">1、数据库的锁</h2>
 <h4 id="行锁共享锁和排他锁表锁页级锁意向锁读锁写锁悲观锁乐观锁等">行锁（共享锁和排他锁），表锁，页级锁，意向锁，读锁，写锁，悲观锁，乐观锁等</h4>
@@ -455,6 +535,37 @@ Vector所有方法都是同步的，在不需要多线程保证线程安全的�
 <li><strong>插入</strong></li>
 <li><strong>删除</strong></li>
 </ul>
-]]></content>
-    </entry>
-</feed>
+
+            </div>
+            
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+
+  </body>
+</html>
