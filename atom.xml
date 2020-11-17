@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zerononet.github.io</id>
     <title>ZERONONET&apos;s blog</title>
-    <updated>2020-11-17T06:07:12.819Z</updated>
+    <updated>2020-11-17T06:13:39.818Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zerononet.github.io"/>
     <link rel="self" href="https://zerononet.github.io/atom.xml"/>
@@ -204,8 +204,12 @@
 <li><strong>定义</strong>：策略（Strategy）模式定义了一系列算法，并将每个算法封装起来，使它们可以相互替换，且算法的变化不会影响使用算法的客户。策略模式属于对象行为模式，它通过对算法进行封装，把使用算法的责任和算法的实现分割开来，并委派给不同的对象对这些算法进行管理。</li>
 <li><strong>优点</strong><br>1.多重条件语句不易维护，而使用策略模式可以避免使用多重条件语句，如 if...else 语句、switch...case 语句。<br>2.策略模式提供了一系列的可供重用的算法族，恰当使用继承可以把算法族的公共代码转移到父类里面，从而避免重复的代码。<br>3.策略模式可以提供相同行为的不同实现，客户可以根据不同时间或空间要求选择不同的。<br>4.策略模式提供了对开闭原则的完美支持，可以在不修改原代码的情况下，灵活增加新算法。<br>5.策略模式把算法的使用放到环境类中，而算法的实现移到具体策略类中，实现了二者的分离。</li>
 <li><strong>缺点</strong><br>1.客户端必须理解所有策略算法的区别，以便适时选择恰当的算法类。<br>2.策略模式造成很多的策略类，增加维护难度。</li>
+<li><strong>应用场景</strong>：策略模式在很多地方用到，如 Java SE 中的容器布局管理就是一个典型的实例，Java SE 中的每个容器都存在多种布局供用户选择。在程序设计中，通常在以下几种情况中使用策略模式较多。<br>1.一个系统需要动态地在几种算法中选择一种时，可将每个算法封装到策略类中。<br>2.一个类定义了多种行为，并且这些行为在这个类的操作中以多个条件语句的形式出现，可将每个条件分支移入它们各自的策略类中以代替这些条件语句。<br>3.系统中各算法彼此完全独立，且要求对客户隐藏具体算法的实现细节时。<br>4.系统要求使用算法的客户不应该知道其操作的数据时，可使用策略模式来隐藏与算法相关的数据结构。<br>5.多个类只区别在表现行为不同，可以使用策略模式，在运行时动态选择具体要执行的行为。</li>
 <li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/celueYY.gif" alt="" loading="lazy"></center><br>
-<br><center>大闸蟹做菜策略的结构图</center></li>
+<br><center>大闸蟹做菜策略的结构图</center><br></li>
+<li><strong>扩展</strong>：在一个使用策略模式的系统中，当存在的策略很多时，客户端管理所有策略算法将变得很复杂，如果在环境类中使用策略工厂模式来管理这些策略类将大大减少客户端的工作复杂度，其结构图如图所示<br>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/celuegongchang.png" alt="策略工厂模式的结构图" loading="lazy"></center><br>
+<br><center>策略工厂模式的结构图</center><br></li>
 </ul>
 <h3 id="17-解释器模式">17、<a href="http://c.biancheng.net/view/1402.html">解释器模式</a></h3>
 <ul>
