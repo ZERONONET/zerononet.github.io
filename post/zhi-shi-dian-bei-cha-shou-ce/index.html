@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://zerononet.github.io/favicon.ico?v=1605597496690">
+<link rel="shortcut icon" href="https://zerononet.github.io/favicon.ico?v=1605602387316">
 <link rel="stylesheet" href="https://zerononet.github.io/styles/main.css">
 
 
@@ -18,15 +18,25 @@
 
 
 
-    <meta name="description" content="设计模式
-总结参考
-掘金JAVA设计模式
-设计模式分类
-
-0.1、七大原则
-
+    <meta name="description" content="  目录  
+设计模式之七大原则
 开闭原则
-&lt;定义：&gt;1.软件实体应当对扩展开放，对修改关闭（Software entities should be open for extensio..." />
+里氏替换原则
+依赖倒置原则
+单一职责原则
+接口隔离原则
+迪米特法则
+合成复用原则
+设计模式
+简单工厂模式
+工厂方法模式
+抽象工厂模式
+建造者模式
+单例模式
+原型模式
+外观模式
+装饰模式
+适配器模式..." />
     <meta name="keywords" content="" />
   </head>
   <body>
@@ -36,7 +46,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://zerononet.github.io">
-        <img src="https://zerononet.github.io/images/avatar.png?v=1605597496690" class="site-logo">
+        <img src="https://zerononet.github.io/images/avatar.png?v=1605602387316" class="site-logo">
         <h1 class="site-title">ZERONONET&#39;s blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -96,23 +106,88 @@
             <div class="post-date">2020-11-17</div>
             
             <div class="post-content" v-pre>
-              <h2 id="设计模式">设计模式</h2>
+              <center> <h1><strong> 目录</strong> </h1> </center>
+<center><strong><h2>设计模式之七大原则</h2></strong></center>
+<center><a href="#开闭原则">开闭原则</a></center>
+<center><a href="#里氏替换原则">里氏替换原则</a></center>
+<center><a href="#依赖倒置原则">依赖倒置原则</a></center>
+<center><a href="#单一职责原则">单一职责原则</a></center>
+<center><a href="#接口隔离原则">接口隔离原则</a></center>
+<center><a href="#迪米特法则">迪米特法则</a></center>
+<center><a href="#合成复用原则">合成复用原则</a></center>
+<center><strong><h2>设计模式</h2></strong></center>
+<center><a href="#简单工厂模式">简单工厂模式</a></center>
+<center><a href="#工厂方法模式">工厂方法模式</a></center>
+<center><a href="#抽象工厂模式">抽象工厂模式</a></center>
+<center><a href="#建造者模式">建造者模式</a></center>
+<center><a href="#单例模式">单例模式</a></center>
+<center><a href="#原型模式">原型模式</a></center>
+<center><a href="#外观模式">外观模式</a></center>
+<center><a href="#装饰模式">装饰模式</a></center>
+<center><a href="#适配器模式">适配器模式</a></center>
+<center><a href="#亨元模式">亨元模式</a></center>
+<center><a href="#组合模式">组合模式</a></center>
+<center><a href="#桥接模式">桥接模式</a></center>
+<center><a href="#代理模式">代理模式</a></center>
+<center><a href="#模板方法模式">模板方法模式</a></center>
+<center><a href="#迭代器模式">迭代器模式</a></center>
+<center><a href="#策略模式">策略模式</a></center>
+<center><a href="#解释器模式">解释器模式</a></center>
+<center><a href="#观察者模式">观察者模式</a></center>
+<center><a href="#备忘录模式">备忘录模式</a></center>
+<center><a href="#命令模式">命令模式</a></center>
+<center><a href="#中介者模式">中介者模式</a></center>
+<center><a href="#责任链模式">责任链模式</a></center>
+<center><a href="#访问者模式">访问者模式</a></center>
+<center><a href="#状态模式">状态模式</a></center>
+<center><strong><h2>JAVA并发编程</h2></strong></center>
+<center><a href="#volatile">volatile</a></center>
+<center><a href="#JAVA8如何优化CAS性能">JAVA8如何优化CAS性能</a></center>
+<center><a href="#各种锁的应用场景">各种锁的应用场景</a></center>
+<center><strong><h2>JVM底层</h2></strong></center>
+<center><a href="#垃圾回收">垃圾回收</a></center>
+<center><a href="#AQS(AbstractQueuedSynchronizer)抽象队列同步器">AQS(AbstractQueuedSynchronizer)抽象队列同步器</a></center>
+<center><a href="#ArrayList">ArrayList</a></center>
+<center><a href="#HashMap底层实现">HashMap底层实现</a></center>
+<center><a href="#动态代理">动态代理</a></center>
+<center><strong><h2>Spring框架</h2></strong></center>
+<center><a href="#Spring-IOC">Spring IOC</a></center>
+<center><a href="#Spring-AOP">Spring AOP</a></center>
+<center><strong><h2>Redis</h2></strong></center>
+<center><a href="#五大数据结构">五大数据结构</a></center>
+<center><a href="#缓存过期">缓存过期</a></center>
+<center><a href="#持久化">持久化</a></center>
+<center><a href="#同步机制">同步机制</a></center>
+<center><a href="#集群与高可用">集群与高可用</a></center>
+<center><a href="#分布式锁">分布式锁</a></center>
+<center><a href="#跳跃表">跳跃表</a></center>
+<center><strong><h2>数据结构与算法</h2></strong></center>
+<center><a href="#红黑树(自平衡二叉查找树)">红黑树(自平衡二叉查找树)</a></center>
+<h2 id="设计模式">设计模式</h2>
 <p><a href="https://www.cnblogs.com/pony1223/p/7608955.html">总结参考</a><br>
 <br><a href="https://juejin.im/post/6844903695667167240">掘金JAVA设计模式</a><br>
 <br><center>设计模式分类<br>
 <img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/401339-20170928225241215-295252070.png" alt="设计模式分类" loading="lazy"></center></p>
 <h3 id="01-七大原则">0.1、七大原则</h3>
+<p><a name="开闭原则"></a></p>
 <ol>
 <li><strong><a href="http://c.biancheng.net/view/1322.html">开闭原则</a></strong><br>
 <br>&lt;<strong>定义：</strong>&gt;<br>1.软件实体应当对扩展开放，对修改关闭（Software entities should be open for extension，but closed for modification），这就是开闭原则的经典定义。<br>2.开闭原则的含义是：当应用的需求改变时，在不修改软件实体的源代码或者二进制代码的前提下，可以扩展模块的功能，使其满足新的需求。<br>&lt;<strong>作用：</strong>&gt;<br>1.对软件测试的影响：软件遵守开闭原则的话，软件测试时只需要对扩展的代码进行测试就可以了，因为原有的测试代码仍然能够正常运行。<br>2.提高代码的可复用性：粒度越小，被复用的可能性就越大；在面向对象的程序设计中，根据原子和抽象编程可以提高代码的可复用性。<br>&lt;<strong>实现：</strong>&gt;<br>&lt;a&gt;可以通过“抽象约束、封装变化”来实现开闭原则，即通过接口或者抽象类为软件实体定义一个相对稳定的抽象层，而将相同的可变因素封装在相同的具体实现类中。<br>&lt;b&gt;由于抽象类的灵活性好，适应性广的特点。可以作为软件的架构主心骨。当需要变化而不影响原本功能的情况下，可以根据需要派生一个实现类扩展即可。</li>
-<li><strong><a href="http://c.biancheng.net/view/1324.html">里氏替换原则</a></strong><br>&lt;<strong>定义：</strong>&gt;<br>主要阐述了有关继承的一些原则，也就是什么时候应该使用继承，什么时候不应该使用继承，以及其中蕴含的原理。里氏替换原则是继承复用的基础，它反映了基类与子类之间的关系，<strong>是对开闭原则的补充，是对实现抽象化的具体步骤的规范</strong><br>&lt;<strong>作用：</strong>&gt;<br>1.里氏替换原则是实现开闭原则的重要方式之一。<br>2.它克服了继承中重写父类造成的可复用性变差的缺点。<br>3.它是动作正确性的保证。即类的扩展不会给已有的系统引入新的错误，降低了代码出错的可能性。<br>4.加强程序的健壮性，同时变更时可以做到非常好的兼容性，提高程序的维护性、可扩展性，降低需求变更时引入的风险。<br>&lt;<strong>实现：</strong>&gt;<br>1.子类可以实现父类的抽象方法，但不能覆盖父类的非抽象方法。<br>2.子类中可以增加自己特有的方法。<br>3.当子类的方法重载父类的方法时，方法的前置条件（即方法的输入参数）要比父类的方法更宽松。<br>4.当子类的方法实现父类的方法时（重写/重载或实现抽象方法），方法的后置条件（即方法的的输出/返回值）要比父类的方法更严格或相等</li>
-<li><strong><a href="http://c.biancheng.net/view/1326.html">依赖倒置原则</a></strong><br>&lt;<strong>定义：</strong>&gt;<br>高层模块不应该依赖低层模块，两者都应该依赖其抽象；抽象不应该依赖细节，细节应该依赖抽象（High level modules shouldnot depend upon low level modules.Both should depend upon abstractions.Abstractions should not depend upon details. Details should depend upon abstractions）。<strong>其核心思想是：要面向接口编程，不要面向实现编程。</strong><br>&lt;<strong>作用：</strong>&gt;<br>1.依赖倒置原则可以降低类间的耦合性。<br>2.依赖倒置原则可以提高系统的稳定性。<br>3.依赖倒置原则可以减少并行开发引起的风险。<br>4.依赖倒置原则可以提高代码的可读性和可维护性。<br>&lt;<strong>实现：</strong>&gt;<br>1.每个类尽量提供接口或抽象类，或者两者都具备。<br>2.变量的声明类型尽量是接口或者是抽象类。<br>3.任何类都不应该从具体类派生。<br>4.使用继承时尽量遵循里氏替换原则。</li>
-<li><strong><a href="http://c.biancheng.net/view/1327.html">单一职责原则</a></strong><br>&lt;<strong>定义：</strong>&gt;<br>该原则提出对象不应该承担太多职责，如果一个对象承担了太多的职责，至少存在以下两个缺点：<br>1.一个职责的变化可能会削弱或者抑制这个类实现其他职责的能力；<br>2.当客户端需要该对象的某一个职责时，不得不将其他不需要的职责全都包含进来，从而造成冗余代码或代码的浪费。<br>&lt;<strong>作用(优点)：</strong>&gt;<br>单一职责原则的核心就是控制类的粒度大小、将对象解耦、提高其内聚性。如果遵循单一职责原则将有以下优点。<br>1.降低类的复杂度。一个类只负责一项职责，其逻辑肯定要比负责多项职责简单得多。<br>2.提高类的可读性。复杂性降低，自然其可读性会提高。<br>3.提高系统的可维护性。可读性提高，那自然更容易维护了。<br>4.变更引起的风险降低。变更是必然的，如果单一职责原则遵守得好，当修改一个功能时，可以显著降低对其他功能的影响。<br>&lt;<strong>实现：</strong>&gt;<br>1.单一职责原则是最简单但又最难运用的原则，需要设计人员发现类的不同职责并将其分离，再封装到不同的类或模块中。而发现类的多重职责需要设计人员具有较强的分析设计能力和相关重构经验。下面以大学学生工作管理程序为例介绍单一职责原则的应用。<br>2.单一职责同样也适用于方法。一个方法应该尽可能做好一件事情。如果一个方法处理的事情太多，其颗粒度会变得很粗，不利于重用。</li>
-<li><strong><a href="http://c.biancheng.net/view/1330.html">接口隔离原则</a></strong><br>&lt;<strong>定义：</strong>&gt;<br>要为各个类建立它们需要的专用接口，而不要试图去建立一个很庞大的接口供所有依赖它的类去调用。<br><strong>对比：</strong>接口隔离原则和单一职责都是为了提高类的内聚性、降低它们之间的耦合性，体现了封装的思想，但两者是不同的：<br>1.单一职责原则注重的是职责，而接口隔离原则注重的是对接口依赖的隔离。<br>2.单一职责原则主要是约束类，它针对的是程序中的实现和细节；接口隔离原则主要约束接口，主要针对抽象和程序整体框架的构建。<br>&lt;<strong>作用(优点)：</strong>&gt;<br>接口隔离原则是为了约束接口、降低类对接口的依赖性，遵循接口隔离原则有以下5个优点<br>1.将臃肿庞大的接口分解为多个粒度小的接口，可以预防外来变更的扩散，提高系统的灵活性和可维护性。<br>2.接口隔离提高了系统的内聚性，减少了对外交互，降低了系统的耦合性。<br>3.如果接口的粒度大小定义合理，能够保证系统的稳定性；但是，如果定义过小，则会造成接口数量过多，使设计复杂化；如果定义太大，灵活性降低，无法提供定制服务，给整体项目带来无法预料的风险。<br>4.使用多个专门的接口还能够体现对象的层次，因为可以通过接口的继承，实现对总接口的定义。<br>5.能减少项目工程中的代码冗余。过大的大接口里面通常放置许多不用的方法，当实现这个接口的时候，被迫设计冗余的代码。<br>&lt;<strong>实现：</strong>&gt;<br>1.接口尽量小，但是要有限度。一个接口只服务于一个子模块或业务逻辑。<br>2.为依赖接口的类定制服务。只提供调用者需要的方法，屏蔽不需要的方法。<br>3.了解环境，拒绝盲从。每个项目或产品都有选定的环境因素，环境不同，接口拆分的标准就不同深入了解业务逻辑。<br>4.提高内聚，减少对外交互。使接口用最少的方法去完成最多的事情。</li>
-<li><strong><a href="http://c.biancheng.net/view/1331.html">迪米特法则</a></strong><br>&lt;<strong>定义：</strong>&gt;<br>迪米特法则的定义是：只与你的直接朋友交谈，不跟“陌生人”说话（Talk only to your immediate friends and not to strangers）。其含义是：如果两个软件实体无须直接通信，那么就不应当发生直接的相互调用，可以通过第三方转发该调用。其目的是降低类之间的耦合度，提高模块的相对独立性。迪米特法则中的“朋友”是指：当前对象本身、当前对象的成员对象、当前对象所创建的对象、当前对象的方法参数等，这些对象同当前对象存在关联、聚合或组合关系，可以直接访问这些对象的方法。<br>&lt;<strong>作用：</strong>&gt;<br>1.降低了类之间的耦合度，提高了模块的相对独立性。<br>2.由于亲合度降低，从而提高了类的可复用率和系统的扩展性。<br>&lt;<strong>实现：</strong>&gt;<br>强调1.从依赖者的角度来说，只依赖应该依赖的对象。<br>强调2.从被依赖者的角度说，只暴露应该暴露的方法。<br>注意1.在类的划分上，应该创建弱耦合的类。类与类之间的耦合越弱，就越有利于实现可复用的目标。<br>注意2.在类的结构设计上，尽量降低类成员的访问权限。<br>注意3.在类的设计上，优先考虑将一个类设置成不变类。<br>注意4.在对其他类的引用上，将引用其他对象的次数降到最低。<br>注意5.不暴露类的属性成员，而应该提供相应的访问器（set 和 get 方法）。<br>注意6.谨慎使用序列化（Serializable）功能。</li>
-<li><strong><a href="http://c.biancheng.net/view/1333.html">合成复用原则</a></strong><br>&lt;<strong>定义：</strong>&gt;<br>1.它要求在软件复用时，要尽量先使用组合或者聚合等关联关系来实现，其次才考虑使用继承关系来实现。<br>2.如果要使用继承关系，则必须严格遵循里氏替换原则。合成复用原则同里氏替换原则相辅相成的，两者都是开闭原则的具体实现规范。<br>&lt;<strong>作用：</strong>&gt;<br>优点1.它维持了类的封装性。因为成分对象的内部细节是新对象看不见的，所以这种复用又称为“黑箱”复用。<br>优点2.新旧类之间的耦合度低。这种复用所需的依赖较少，新对象存取成分对象的唯一方法是通过成分对象的接口。<br>优点3.复用的灵活性高。这种复用可以在运行时动态进行，新对象可以动态地引用与成分对象类型相同的对象。<br>缺点1.继承复用破坏了类的封装性。因为继承会将父类的实现细节暴露给子类，父类对子类是透明的，所以这种复用又称为“白箱”复用。<br>缺点2.子类与父类的耦合度高。父类的实现的任何改变都会导致子类的实现发生变化，这不利于类的扩展与维护。<br>缺点3.它限制了复用的灵活性。从父类继承而来的实现是静态的，在编译时已经定义，所以在运行时不可能发生变化。<br>&lt;<strong>实现：</strong>&gt;<br>合成复用原则是通过将已有的对象纳入新对象中，作为新对象的成员对象来实现的，新对象可以调用已有对象的功能，从而达到复用。<br>
-<br><h3>小结：</h3>这 7 种设计原则是软件设计模式必须尽量遵循的原则，各种原则要求的侧重点不同。其中，开闭原则是总纲，它告诉我们要对扩展开放，对修改关闭；里氏替换原则告诉我们不要破坏继承体系；依赖倒置原则告诉我们要面向接口编程；单一职责原则告诉我们实现类要职责单一；接口隔离原则告诉我们在设计接口的时候要精简单一；迪米特法则告诉我们要降低耦合度；合成复用原则告诉我们要优先使用组合或者聚合关系复用，少用继承关系复用。</li>
 </ol>
+<p><a name="里氏替换原则"></a><br>
+2. <strong><a href="http://c.biancheng.net/view/1324.html">里氏替换原则</a></strong><br>&lt;<strong>定义：</strong>&gt;<br>主要阐述了有关继承的一些原则，也就是什么时候应该使用继承，什么时候不应该使用继承，以及其中蕴含的原理。里氏替换原则是继承复用的基础，它反映了基类与子类之间的关系，<strong>是对开闭原则的补充，是对实现抽象化的具体步骤的规范</strong><br>&lt;<strong>作用：</strong>&gt;<br>1.里氏替换原则是实现开闭原则的重要方式之一。<br>2.它克服了继承中重写父类造成的可复用性变差的缺点。<br>3.它是动作正确性的保证。即类的扩展不会给已有的系统引入新的错误，降低了代码出错的可能性。<br>4.加强程序的健壮性，同时变更时可以做到非常好的兼容性，提高程序的维护性、可扩展性，降低需求变更时引入的风险。<br>&lt;<strong>实现：</strong>&gt;<br>1.子类可以实现父类的抽象方法，但不能覆盖父类的非抽象方法。<br>2.子类中可以增加自己特有的方法。<br>3.当子类的方法重载父类的方法时，方法的前置条件（即方法的输入参数）要比父类的方法更宽松。<br>4.当子类的方法实现父类的方法时（重写/重载或实现抽象方法），方法的后置条件（即方法的的输出/返回值）要比父类的方法更严格或相等</p>
+<p><a name="依赖倒置原则"></a><br>
+3. <strong><a href="http://c.biancheng.net/view/1326.html">依赖倒置原则</a></strong><br>&lt;<strong>定义：</strong>&gt;<br>高层模块不应该依赖低层模块，两者都应该依赖其抽象；抽象不应该依赖细节，细节应该依赖抽象（High level modules shouldnot depend upon low level modules.Both should depend upon abstractions.Abstractions should not depend upon details. Details should depend upon abstractions）。<strong>其核心思想是：要面向接口编程，不要面向实现编程。</strong><br>&lt;<strong>作用：</strong>&gt;<br>1.依赖倒置原则可以降低类间的耦合性。<br>2.依赖倒置原则可以提高系统的稳定性。<br>3.依赖倒置原则可以减少并行开发引起的风险。<br>4.依赖倒置原则可以提高代码的可读性和可维护性。<br>&lt;<strong>实现：</strong>&gt;<br>1.每个类尽量提供接口或抽象类，或者两者都具备。<br>2.变量的声明类型尽量是接口或者是抽象类。<br>3.任何类都不应该从具体类派生。<br>4.使用继承时尽量遵循里氏替换原则。</p>
+<p><a name="单一职责原则"></a><br>
+4. <strong><a href="http://c.biancheng.net/view/1327.html">单一职责原则</a></strong><br>&lt;<strong>定义：</strong>&gt;<br>该原则提出对象不应该承担太多职责，如果一个对象承担了太多的职责，至少存在以下两个缺点：<br>1.一个职责的变化可能会削弱或者抑制这个类实现其他职责的能力；<br>2.当客户端需要该对象的某一个职责时，不得不将其他不需要的职责全都包含进来，从而造成冗余代码或代码的浪费。<br>&lt;<strong>作用(优点)：</strong>&gt;<br>单一职责原则的核心就是控制类的粒度大小、将对象解耦、提高其内聚性。如果遵循单一职责原则将有以下优点。<br>1.降低类的复杂度。一个类只负责一项职责，其逻辑肯定要比负责多项职责简单得多。<br>2.提高类的可读性。复杂性降低，自然其可读性会提高。<br>3.提高系统的可维护性。可读性提高，那自然更容易维护了。<br>4.变更引起的风险降低。变更是必然的，如果单一职责原则遵守得好，当修改一个功能时，可以显著降低对其他功能的影响。<br>&lt;<strong>实现：</strong>&gt;<br>1.单一职责原则是最简单但又最难运用的原则，需要设计人员发现类的不同职责并将其分离，再封装到不同的类或模块中。而发现类的多重职责需要设计人员具有较强的分析设计能力和相关重构经验。下面以大学学生工作管理程序为例介绍单一职责原则的应用。<br>2.单一职责同样也适用于方法。一个方法应该尽可能做好一件事情。如果一个方法处理的事情太多，其颗粒度会变得很粗，不利于重用。</p>
+<p><a name="接口隔离原则"></a><br>
+5. <strong><a href="http://c.biancheng.net/view/1330.html">接口隔离原则</a></strong><br>&lt;<strong>定义：</strong>&gt;<br>要为各个类建立它们需要的专用接口，而不要试图去建立一个很庞大的接口供所有依赖它的类去调用。<br><strong>对比：</strong>接口隔离原则和单一职责都是为了提高类的内聚性、降低它们之间的耦合性，体现了封装的思想，但两者是不同的：<br>1.单一职责原则注重的是职责，而接口隔离原则注重的是对接口依赖的隔离。<br>2.单一职责原则主要是约束类，它针对的是程序中的实现和细节；接口隔离原则主要约束接口，主要针对抽象和程序整体框架的构建。<br>&lt;<strong>作用(优点)：</strong>&gt;<br>接口隔离原则是为了约束接口、降低类对接口的依赖性，遵循接口隔离原则有以下5个优点<br>1.将臃肿庞大的接口分解为多个粒度小的接口，可以预防外来变更的扩散，提高系统的灵活性和可维护性。<br>2.接口隔离提高了系统的内聚性，减少了对外交互，降低了系统的耦合性。<br>3.如果接口的粒度大小定义合理，能够保证系统的稳定性；但是，如果定义过小，则会造成接口数量过多，使设计复杂化；如果定义太大，灵活性降低，无法提供定制服务，给整体项目带来无法预料的风险。<br>4.使用多个专门的接口还能够体现对象的层次，因为可以通过接口的继承，实现对总接口的定义。<br>5.能减少项目工程中的代码冗余。过大的大接口里面通常放置许多不用的方法，当实现这个接口的时候，被迫设计冗余的代码。<br>&lt;<strong>实现：</strong>&gt;<br>1.接口尽量小，但是要有限度。一个接口只服务于一个子模块或业务逻辑。<br>2.为依赖接口的类定制服务。只提供调用者需要的方法，屏蔽不需要的方法。<br>3.了解环境，拒绝盲从。每个项目或产品都有选定的环境因素，环境不同，接口拆分的标准就不同深入了解业务逻辑。<br>4.提高内聚，减少对外交互。使接口用最少的方法去完成最多的事情。</p>
+<p><a name="迪米特法则"></a><br>
+6. <strong><a href="http://c.biancheng.net/view/1331.html">迪米特法则</a></strong><br>&lt;<strong>定义：</strong>&gt;<br>迪米特法则的定义是：只与你的直接朋友交谈，不跟“陌生人”说话（Talk only to your immediate friends and not to strangers）。其含义是：如果两个软件实体无须直接通信，那么就不应当发生直接的相互调用，可以通过第三方转发该调用。其目的是降低类之间的耦合度，提高模块的相对独立性。迪米特法则中的“朋友”是指：当前对象本身、当前对象的成员对象、当前对象所创建的对象、当前对象的方法参数等，这些对象同当前对象存在关联、聚合或组合关系，可以直接访问这些对象的方法。<br>&lt;<strong>作用：</strong>&gt;<br>1.降低了类之间的耦合度，提高了模块的相对独立性。<br>2.由于亲合度降低，从而提高了类的可复用率和系统的扩展性。<br>&lt;<strong>实现：</strong>&gt;<br>强调1.从依赖者的角度来说，只依赖应该依赖的对象。<br>强调2.从被依赖者的角度说，只暴露应该暴露的方法。<br>注意1.在类的划分上，应该创建弱耦合的类。类与类之间的耦合越弱，就越有利于实现可复用的目标。<br>注意2.在类的结构设计上，尽量降低类成员的访问权限。<br>注意3.在类的设计上，优先考虑将一个类设置成不变类。<br>注意4.在对其他类的引用上，将引用其他对象的次数降到最低。<br>注意5.不暴露类的属性成员，而应该提供相应的访问器（set 和 get 方法）。<br>注意6.谨慎使用序列化（Serializable）功能。</p>
+<p><a name="合成复用原则"></a><br>
+7. <strong><a href="http://c.biancheng.net/view/1333.html">合成复用原则</a></strong><br>&lt;<strong>定义：</strong>&gt;<br>1.它要求在软件复用时，要尽量先使用组合或者聚合等关联关系来实现，其次才考虑使用继承关系来实现。<br>2.如果要使用继承关系，则必须严格遵循里氏替换原则。合成复用原则同里氏替换原则相辅相成的，两者都是开闭原则的具体实现规范。<br>&lt;<strong>作用：</strong>&gt;<br>优点1.它维持了类的封装性。因为成分对象的内部细节是新对象看不见的，所以这种复用又称为“黑箱”复用。<br>优点2.新旧类之间的耦合度低。这种复用所需的依赖较少，新对象存取成分对象的唯一方法是通过成分对象的接口。<br>优点3.复用的灵活性高。这种复用可以在运行时动态进行，新对象可以动态地引用与成分对象类型相同的对象。<br>缺点1.继承复用破坏了类的封装性。因为继承会将父类的实现细节暴露给子类，父类对子类是透明的，所以这种复用又称为“白箱”复用。<br>缺点2.子类与父类的耦合度高。父类的实现的任何改变都会导致子类的实现发生变化，这不利于类的扩展与维护。<br>缺点3.它限制了复用的灵活性。从父类继承而来的实现是静态的，在编译时已经定义，所以在运行时不可能发生变化。<br>&lt;<strong>实现：</strong>&gt;<br>合成复用原则是通过将已有的对象纳入新对象中，作为新对象的成员对象来实现的，新对象可以调用已有对象的功能，从而达到复用。<br>
+<br><h3>小结：</h3>这 7 种设计原则是软件设计模式必须尽量遵循的原则，各种原则要求的侧重点不同。其中，开闭原则是总纲，它告诉我们要对扩展开放，对修改关闭；里氏替换原则告诉我们不要破坏继承体系；依赖倒置原则告诉我们要面向接口编程；单一职责原则告诉我们实现类要职责单一；接口隔离原则告诉我们在设计接口的时候要精简单一；迪米特法则告诉我们要降低耦合度；合成复用原则告诉我们要优先使用组合或者聚合关系复用，少用继承关系复用。<br>
+<a name="简单工厂模式"></a></p>
 <h3 id="1-简单工厂模式">1、<a href="http://c.biancheng.net/view/8385.html">简单工厂模式</a></h3>
 <ul>
 <li><strong>UML图</strong><br>
@@ -123,6 +198,7 @@
 <li><strong>应用场景</strong><br></li>
 <li><strong><font color="red">CFC总结：</font></strong>增加抽象产品的具体产品需要修改工厂类。</li>
 </ul>
+<p><a name="工厂方法模式"></a></p>
 <h3 id="2-工厂方法模式">2、<a href="http://c.biancheng.net/view/1348.html">工厂方法模式</a></h3>
 <ul>
 <li><strong>UML图</strong><br>
@@ -134,6 +210,7 @@
 <li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/3-1Q11413554DT.png" alt="工厂模式实际应用" loading="lazy"></center></li>
 <li><strong><font color="red">CFC总结：</font></strong>相同产品等级(同类)增加，需要增加对应的工厂类。</li>
 </ul>
+<p><a name="抽象工厂模式"></a></p>
 <h3 id="3-抽象工厂模式">3、<a href="http://c.biancheng.net/view/1351.html">抽象工厂模式</a></h3>
 <ul>
 <li><strong>UML图</strong><br>
@@ -146,6 +223,7 @@
 <li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/chouxianggongchangYY.png" alt="抽象工厂实际应用" loading="lazy"></center></li>
 <li><strong><font color="red">CFC总结：</font></strong>工厂只能消费同产品簇，产品簇增加，工厂类增加。</li>
 </ul>
+<p><a name="建造者模式"></a></p>
 <h3 id="4-建造者模式">4、<a href="http://c.biancheng.net/view/1354.html">建造者模式</a></h3>
 <ul>
 <li><strong>UML图</strong><br>
@@ -158,6 +236,7 @@
 <li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/jianzaozheYY.png" alt="抽象工厂实际应用" loading="lazy"></center></li>
 <li><strong><font color="red">CFC总结：</font></strong></li>
 </ul>
+<p><a name="单例模式"></a></p>
 <h3 id="5-单例模式">5、<a href="http://c.biancheng.net/view/1338.html">单例模式</a></h3>
 <ul>
 <li><strong>UML图</strong><br>
@@ -168,6 +247,7 @@
 <li><strong>应用场景</strong><br>1.</li>
 <li><strong><font color="red">CFC总结：</font></strong>懒汉模式与饿汉模式中，懒汉虽然节省了初始化时对单例对象的初始化，但是由于每次都需要判断空，并且多线程下可能会有重复创建对象的线程不安全性。导致需要加volatile synchronized关键字，影响了性能。而饿汉模式在初始化时就已经加载了新的对象，而且所有后续的使用都只对这个单例对象做获取动作，不存在线程同步的问题，性能较好。</li>
 </ul>
+<p><a name="原型模式"></a></p>
 <h3 id="6-原型模式">6、<a href="http://c.biancheng.net/view/1343.html">原型模式</a></h3>
 <ul>
 <li><strong>UML图</strong><br>
@@ -178,7 +258,9 @@
 <li><strong>应用场景</strong><br>1.</li>
 <li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/yuanxingYY.png" alt="原型模式的实际应用" loading="lazy"></center></li>
 </ul>
+<p><a name="外观模式"></a></p>
 <h3 id="7-外观模式">7、<a href="http://c.biancheng.net/view/1369.html">外观模式</a></h3>
+<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/waiguan.png" alt="外观模式结构图" loading="lazy"></center></li>
@@ -188,7 +270,9 @@
 <li><strong>应用场景</strong><br>1.</li>
 <li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/waiguanYY.png" alt="外观模式实际应用" loading="lazy"></center></li>
 </ul>
+<p><a name="装饰模式"></a></p>
 <h3 id="8-装饰模式">8、<a href="http://c.biancheng.net/view/1366.html">装饰模式</a></h3>
+<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zhuangshi.png" alt="装饰模式的结构图" loading="lazy"></center></li>
@@ -198,7 +282,9 @@
 <li><strong>应用场景</strong><br>1.</li>
 <li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zhuangshiYY.png" alt="装饰模式实际应用" loading="lazy"></center></li>
 </ul>
+<p><a name="适配器模式"></a></p>
 <h3 id="9-适配器模式">9、<a href="http://c.biancheng.net/view/1361.html">适配器模式</a></h3>
+<p><a href=""></a></p>
 <ul>
 <li><strong>类适配器UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/shipeiqi-lei.png" alt="" loading="lazy"></center></li>
@@ -211,7 +297,9 @@
 <li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/shipeiqiYY.png" alt="发动机适配器实际应用" loading="lazy"></center></li>
 <li><strong><font color="red">CFC总结：</font></strong>类适配器与对象适配器在简单且单一的时候是差不多的，但是当适配器需要处理复杂的适配的时候，涉及多种的情况下，对象适配器可以变种传入对象为传入继承该抽象基类对象的对象(Class&lt;? extends xxx&gt;)来实现多种复杂的适配。</li>
 </ul>
+<p><a name="亨元模式"></a></p>
 <h3 id="10-亨元模式">10、<a href="http://c.biancheng.net/view/1371.html">亨元模式</a></h3>
+<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/hengyuan.png" alt="亨元模式结构图" loading="lazy"></center></li>
@@ -221,7 +309,9 @@
 <li><strong>应用场景</strong><br>1.</li>
 <li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/hengyuanYY.png" alt="亨元模式五子棋游戏实际应用" loading="lazy"></center></li>
 </ul>
+<p><a name="组合模式"></a></p>
 <h3 id="11-组合模式">11、<a href="http://c.biancheng.net/view/1373.html">组合模式</a></h3>
+<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><strong>透明式组合模式</strong>中，由于抽象构件声明了所有子类中的全部方法，所以客户端无须区别树叶对象和树枝对象，对客户端来说是透明的。但其缺点是：树叶构件本来没有 Add()、Remove() 及 GetChild() 方法，却要实现它们（空实现或抛异常），这样会带来一些安全性问题。其结构图如图所示。<br>
@@ -237,7 +327,9 @@
 <li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zuheYY-tjyj.gif" alt="组合模式实际应用" loading="lazy"></center></li>
 <li><strong>复杂实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zuheYY-fuza.gif" alt="组合模式复杂应用" loading="lazy"></center></li>
 </ul>
+<p><a name="桥接模式"></a></p>
 <h3 id="12-桥接模式">12、<a href="http://c.biancheng.net/view/1364.html">桥接模式</a></h3>
+<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/qiaojie.png" alt="桥接模式结构图" loading="lazy"></center></li>
@@ -247,7 +339,9 @@
 <li><strong>应用场景</strong><br>1.</li>
 <li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/qiaojieYY.png" alt="桥接模式实际应用" loading="lazy"></center></li>
 </ul>
+<p><a name="代理模式"></a></p>
 <h3 id="13-代理模式">13、<a href="http://c.biancheng.net/view/1359.html">代理模式</a></h3>
+<p><a href=""></a></p>
 <ul>
 <li>
 <p><strong>UML图</strong><br>
@@ -273,7 +367,9 @@
 <p><strong>动态代理UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/dailiKZdongtai.gif" alt="代理模式实际应用" loading="lazy"></center></p>
 </li>
 </ul>
+<p><a name="模板方法模式"></a></p>
 <h3 id="14-模板方法模式">14、<a href="http://c.biancheng.net/view/1376.html">模板方法模式</a></h3>
+<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/mubanfangfa.gif" alt="模板方法结构图" loading="lazy"></center></li>
@@ -285,7 +381,9 @@
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/mubanfangfahangouzi.png" alt="含钩子方法的模板方法模式的结构图" loading="lazy"></center></li>
 <li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/mubanfangfaYY.gif" alt="模板方法实际应用" loading="lazy"></center></li>
 </ul>
+<p><a name="迭代器模式"></a></p>
 <h3 id="15-迭代器模式">15、<a href="http://c.biancheng.net/view/1395.html">迭代器模式</a></h3>
+<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/diedaiqi.gif" alt="迭代器结构图" loading="lazy"></center></li>
@@ -295,7 +393,9 @@
 <li><strong>应用场景</strong><br>1.</li>
 <li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/diedaiqiYY.gif" alt="迭代器模式实际应用" loading="lazy"></center></li>
 </ul>
+<p><a name="策略模式"></a></p>
 <h3 id="16-策略模式">16、<a href="http://c.biancheng.net/view/1378.html">策略模式</a></h3>
+<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/celue.gif" alt="策略模式结构图" loading="lazy"></center></li>
@@ -309,7 +409,9 @@
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/celuegongchang.png" alt="策略工厂模式的结构图" loading="lazy"></center><br>
 <br><center>策略工厂模式的结构图</center><br></li>
 </ul>
+<p><a name="解释器模式"></a></p>
 <h3 id="17-解释器模式">17、<a href="http://c.biancheng.net/view/1402.html">解释器模式</a></h3>
+<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/jieshiqi.gif" alt="解释器模式结构图" loading="lazy"></center></li>
@@ -318,7 +420,9 @@
 <li><strong>缺点</strong><br>1.执行效率较低。解释器模式中通常使用大量的循环和递归调用，当要解释的句子较复杂时，其运行速度很慢，且代码的调试过程也比较麻烦。<br>2.会引起类膨胀。解释器模式中的每条规则至少需要定义一个类，当包含的文法规则很多时，类的个数将急剧增加，导致系统难以管理与维护。<br>3.可应用的场景比较少。在软件开发中，需要定义语言文法的应用实例非常少，所以这种模式很少被使用到。</li>
 <li><strong>应用场景</strong>：<br>1.当语言的文法较为简单，且执行效率不是关键问题时。<br>2.当问题重复出现，且可以用一种简单的语言来进行表达时。<br>3.当一个语言需要解释执行，并且语言中的句子可以表示为一个抽象语法树的时候，如 XML 文档解释。<br>注意：解释器模式在实际的软件开发中使用比较少，因为它会引起效率、性能以及维护等问题。如果碰到对表达式的解释，在 Java 中可以用 Expression4J 或 Jep 等来设计。</li>
 </ul>
+<p><a name="观察者模式"></a></p>
 <h3 id="18-观察者模式">18、<a href="http://c.biancheng.net/view/1390.html">观察者模式</a></h3>
+<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/guancazhe.gif" alt="" loading="lazy"></center></li>
@@ -329,7 +433,9 @@
 <li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/guancazheYY.gif" alt="" loading="lazy"></center><br>
 <br><center>人民币汇率分析程序的结构图</center></li>
 </ul>
+<p><a name="备忘录模式"></a></p>
 <h3 id="19-备忘录模式">19、<a href="http://c.biancheng.net/view/1400.html">备忘录模式</a></h3>
+<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/beiwanglu.gif" alt="备忘录模式结构图" loading="lazy"></center></li>
@@ -340,7 +446,9 @@
 <li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/beiwangluYY.png" alt="" loading="lazy"></center><br>
 <br><center>相亲游戏的结构图</center></li>
 </ul>
+<p><a name="命令模式"></a></p>
 <h3 id="20-命令模式">20、<a href="http://c.biancheng.net/view/1380.html">命令模式</a></h3>
+<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/mingling.gif" alt="命令模式结构图" loading="lazy"></center></li>
@@ -351,7 +459,9 @@
 <li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/minglingYY.gif" alt="" loading="lazy"></center><br>
 <br><center>客户在餐馆吃早餐的结构图</center></li>
 </ul>
+<p><a name="中介者模式"></a></p>
 <h3 id="21-中介者模式">21、<a href="http://c.biancheng.net/view/1393.html">中介者模式</a></h3>
+<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zhongjiezhe.gif" alt="中介者模式结构图" loading="lazy"></center></li>
@@ -362,7 +472,9 @@
 <li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zhongjiezheYY.gif" alt="中介者模式实际应用UML" loading="lazy"></center><br>
 <br><center>韶关房地产交流平台的结构图</center></li>
 </ul>
+<p><a name="责任链模式"></a></p>
 <h3 id="22-责任链模式">22、<a href="http://c.biancheng.net/view/1383.html">责任链模式</a></h3>
+<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zerenlian.gif" alt="责任链模式结构图" loading="lazy"></center></li>
@@ -373,6 +485,7 @@
 <li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zerenlianYY.gif" alt="责任链模式实际应用" loading="lazy"></center><br>
 <br><center>请假条审批模块的结构图</center></li>
 </ul>
+<p><a name="访问者模式"></a></p>
 <h3 id="23-访问者模式">23、<a href="http://c.biancheng.net/view/1397.html">访问者模式</a></h3>
 <ul>
 <li><strong>UML图</strong><br>
@@ -384,6 +497,7 @@
 <li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/fangwenzheYY.png" alt="访问者模式实际应用UML" loading="lazy"></center><br>
 <br><center>艺术公司与造币公司的结构图</center></li>
 </ul>
+<p><a name="状态模式"></a></p>
 <h3 id="24-状态模式">24、<a href="http://c.biancheng.net/view/1388.html">状态模式</a></h3>
 <ul>
 <li><strong>UML图</strong><br>
@@ -395,7 +509,9 @@
 <li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zhuangtaiYY.png" alt="状态模式实际应用UML" loading="lazy"></center><br>
 <br><center>学生成绩的状态转换程序的结构图</center></li>
 </ul>
+<p><a name="JAVA并发编程"></a></p>
 <h2 id="java并发编程">JAVA并发编程</h2>
+<p><a name="volatile"></a></p>
 <h3 id="1-volatile">1、volatile</h3>
 <ul>
 <li>强制将变量修改后的值从工作内存写入主内存，保证线程变量的可见性及有序性。但是有序又涉及到了复杂的指令重排、内存屏障等，未做了解。<br></li>
@@ -405,6 +521,7 @@
 <li><strong>问题二(禁止指令重排)</strong>：涉及很多计算机底层，告辞</li>
 <li><strong>指令重排(一般指令重排分为三种)</strong>：<br>&lt;a&gt;编译器优化的重排序。编译器在不改变单线程程序语义的前提下，可以重新安排语句的执行顺序;<br>&lt;b&gt;指令级并行的重排序。现代处理器采用了指令级并行技术来将多条指令重叠执行。如果不存在数据依赖性，处理器可以改变语句对应机器指令的执行顺序;<br>&lt;c&gt;内存系统的重排序。由于处理器使用缓存和读/写缓冲区，这使得加载和存储操作看上去可能是在乱序执行的。</li>
 </ul>
+<p><a name="JAVA8如何优化CAS性能"></a></p>
 <h3 id="2-java8如何优化cas性能">2、JAVA8如何优化CAS性能</h3>
 <ul>
 <li>全称compare and set——<strong>先比较再设置</strong></li>
@@ -417,6 +534,7 @@
 <li><strong>分段CAS机制</strong>：<br>
 需要再次梳理分段CAS机制</li>
 </ul>
+<p><a name="各种锁的应用场景"></a></p>
 <h3 id="3-各种锁的应用场景">3、各种锁的应用场景</h3>
 <ul>
 <li><strong>互斥锁</strong>：互斥锁加锁失败后会释放cpu给其他线程。<br>
@@ -434,7 +552,9 @@
 <li><strong>乐观锁</strong>：其实是没有锁的状态也称无锁编程。主要是在先修改后比较原先资源是否被修改过，如果被修改过则放弃修改重新读取修改。重试的成本高，所以只适用于<strong>冲突少</strong>的场景，类似于git，svn。</li>
 <li><strong>Synchronized的实现</strong>：</li>
 </ul>
+<p><a name="JVM底层"></a></p>
 <h2 id="jvm底层">JVM底层</h2>
+<p><a name="垃圾回收"></a></p>
 <h3 id="垃圾回收">垃圾回收</h3>
 <p><strong>GC 的几种主要的收集方法</strong>：标记清除、标记整理、复制算法</p>
 <ul>
@@ -445,13 +565,16 @@
 <li><strong>分代收集算法</strong>：整合了以上所有算法，综合了优点，并最大程度避免他们的缺点。根据对象存活周期的不同将堆分成新生代和老生代（Java8以前还有个永久代）,默认比例为 1 : 2，新生代又分为 Eden 区， from Survivor 区（简称S0），to Survivor 区(简称 S1),三者的比例为 8: 1 : 1，这样就可以根据新老生代的特点选择最合适的垃圾回收算法，我们把新生代发生的 GC 称为 Young GC（也叫 Minor GC）,老年代发生的 GC 称为 Old GC（也称为 Full GC）。<br>
 需要再次梳理分代收集算法</li>
 </ul>
+<p><a name="AQS(AbstractQueuedSynchronizer)抽象队列同步器"></a></p>
 <h3 id="aqsabstractqueuedsynchronizer抽象队列同步器">AQS(AbstractQueuedSynchronizer)抽象队列同步器</h3>
 <p>ReentrantLock可重入锁与ReentrantReadWriteLock可可重入读写锁底层都是基于AQS实现的。</p>
+<p><a name="ArrayList"></a></p>
 <h3 id="arraylist">ArrayList</h3>
 <p><strong>ArrayList与Vector的区别</strong>：<br>
 Vector所有方法都是同步的，在不需要多线程保证线程安全的情况下可以使用ArrayList减少不必要的大量同步操作。<br>
 <br><strong>ArrayList的扩容机制</strong>：<br>
 <br><br><br><br></p>
+<p><a name="HashMap底层实现"></a></p>
 <h3 id="hashmap底层实现">HashMap底层实现</h3>
 <p><strong>java1.8之前</strong>：数组加链表组成的链表散列，通过key的扰动函数处理后得到hash值，通过(n-1)&amp;hash判断当前元素存放位置，如果当前位置存在元素，相当于已经有了这个key，如果key与hash都相同，直接覆盖当前位置的值。如果不相同就通过拉链法解决冲突。<br>
 <br><strong>扰动函数</strong>：<br>
@@ -460,8 +583,11 @@ Vector所有方法都是同步的，在不需要多线程保证线程安全的�
 <br><strong>初始化</strong>：哈希桶数组(node[] table)初始大小为16。负载因子默认为0.75。<br>
 <br><strong>扩容机制</strong>：在默认情况下每次put操作都会比较当前容量与存放数量(size)，如果size大于16*0.75=12时，会进行扩容操作。<strong>扩容时会重新计算每个元素在数组中的位置然后再进行存储，十分消耗性能</strong>。<br>
 <br><strong>线程不安全</strong>：resize()的时候多线程情况下头插法会使得链路出现环形链表甚至数组下标超出。而1.8后使用的是尾插去优化仍然带来了其他问题，比如尾插时计算相同的存放位置，如果在A线程put完成后，B线程又正好计算在Aput前计算完成存放位置，就会把A线程put的值给覆盖，而不是判断是否碰撞，造成线程不安全。</p>
+<p><a name="动态代理"></a></p>
 <h3 id="动态代理">动态代理</h3>
+<p><a name="Spring框架"></a></p>
 <h2 id="spring框架">Spring框架</h2>
+<p><a name="Spring-IOC"></a></p>
 <h3 id="spring-ioc">Spring IOC</h3>
 <ul>
 <li><strong>IoC - Inversion of Control, 控制反转</strong>：控制反转就是把创建和管理 bean 的过程转移给了第三方。而这个第三方，就是 Spring IoC Container，对于 IoC 来说，最重要的就是容器。</li>
@@ -471,8 +597,11 @@ Vector所有方法都是同步的，在不需要多线程保证线程安全的�
 <li><strong>对象在容器中是否单例</strong>：是</li>
 <li><strong>容器的对象是什么时候创建的</strong>：每次启动容器的时候就已经创建好其中的对象了。</li>
 </ul>
+<p><a name="Spring-AOP"></a></p>
 <h3 id="spring-aop">Spring AOP</h3>
+<p><a name="Redis"></a></p>
 <h2 id="redis">Redis</h2>
+<p><a name="五大数据结构"></a></p>
 <h3 id="五大数据结构">五大数据结构</h3>
 <ul>
 <li>String</li>
@@ -481,35 +610,43 @@ Vector所有方法都是同步的，在不需要多线程保证线程安全的�
 <li>Set</li>
 <li>SortedSet</li>
 </ul>
+<p><a name="缓存过期"></a></p>
 <h3 id="缓存过期">缓存过期</h3>
 <ul>
 <li>过于集中的缓存过期时间会导致短暂卡顿现象——<strong>缓存雪崩</strong>。<br>解决：将失效时间加上随机值，分散过期。</li>
 </ul>
+<p><a name="持久化"></a></p>
 <h3 id="持久化">持久化</h3>
 <ul>
 <li><strong>RDB做镜像全量持久化，AOF做增量持久化</strong>。全量需要时间长，容易丢失大量数据，需要AOF配合。恢复的时候也是一样，先全量恢复，然后增量恢复到重启前状态。<br>突然断电的情况数据丢失取决于AOF日志于sync配置，但是往往每条指令都sync一下到磁盘是不现实的，一般使用定时，一秒一次，最多丢失一秒的数据。</li>
 <li><strong>RDB原理</strong>：fork AND cow——fork值redis通过创建子进程进行rdb操作；cow指的是copy on write，父子进程共享数据段，父进程继续提供读写服务，写脏的页面数据会逐渐和子进程分离开。</li>
 </ul>
+<p><a name="JAVA8如何优化CAS性能"></a></p>
 <h3 id="同步机制">同步机制</h3>
 <ul>
 <li><strong>可以主从同步或从从同步</strong>。第一次同步时，主节点做一次bgsave，并同时将后续修改操作记录到内存buffer，待完成后将RDB文件全量同步到复制节点，复制节点接受完成后将RDB镜像加载到内存。加载完成后，再通知主节点将期间修改的操作记录同步到复制节点进行重放就完成了同步过程。后续的增量数据通过AOF日志同步即可，有点类似数据库的binlog。</li>
 </ul>
+<p><a name="集群与高可用"></a></p>
 <h3 id="集群与高可用">集群与高可用</h3>
 <ul>
 <li><strong>Redis Sentinal</strong> 着眼于高可用，在master宕机时会自动将slave提升为master，继续提供服务。</li>
 <li><strong>Redis Cluster</strong> 着眼于扩展性，在单个redis内存不足时，使用Cluster进行分片存储。</li>
 </ul>
+<p><a name="分布式锁"></a></p>
 <h3 id="分布式锁">分布式锁</h3>
 <ul>
 <li>先拿setnx来争抢锁，抢到后使用<strong>expire</strong>来设置过期时间。</li>
 <li><strong>存在问题(同存在与Zookeeper、Mysql中)</strong>：当JAVA中执行的GC为STW stop the world的时候，可能会导致锁获得锁的线程A停顿等待GC完成，此时获取到的分布式锁过期，超时释放。其他线程B获取继续获取到锁，开始写数据。而A线程GC完成，继续执行写数据的操作。导致分布式锁不安全(相当于是2个线程同时获取到锁)。</li>
 <li><strong>不能执行过长时间的任务</strong>：加锁和释放锁之间的逻辑执行得太长，以至于超出了锁的超时限制，导致代码无法严格的串行执行。锁被提前释放，提前持有。<br>解决：稍微安全一点的方案是 将锁的 value 值设置为一个随机数，释放锁时先匹配随机数是否一致，然后再删除 key，这是为了 确保当前线程占有的锁不会被其他线程释放，除非这个锁是因为过期了而被服务器自动释放的。但是匹配 value 和删除 key 在 Redis 中并不是一个原子性的操作，也没有类似保证原子性的指令，所以可能需要使用像 Lua 这样的脚本来处理了，因为 Lua 脚本可以 保证多个指令的原子性执行。</li>
 </ul>
+<p><a name="跳跃表"></a></p>
 <h3 id="跳跃表">跳跃表</h3>
 <ul>
 <li><strong>多层链表</strong>：从最上层的链表(节点少)去查找并比对，一层一层往下定位直到找到位置。<br>优势：可以跳过很多节点，提高查找效率。</li>
 </ul>
+<p><a name="数据结构与算法"></a></p>
 <h2 id="数据结构与算法">数据结构与算法</h2>
+<p><a name="红黑树(自平衡二叉查找树)"></a></p>
 <h3 id="红黑树自平衡二叉查找树">红黑树(自平衡二叉查找树)</h3>
 <ul>
 <li><strong>二叉查找树（BST）特性</strong>：<br>1.左子树上所有结点的值均小于或等于它的根结点的值。<br>2.右子树上所有结点的值均大于或等于它的根结点的值。<br>3.左、右子树也分别为二叉排序树。</li>
