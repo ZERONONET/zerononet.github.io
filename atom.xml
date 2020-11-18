@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zerononet.github.io</id>
     <title>ZERONONET&apos;s blog</title>
-    <updated>2020-11-17T11:34:58.421Z</updated>
+    <updated>2020-11-18T01:58:52.022Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zerononet.github.io"/>
     <link rel="self" href="https://zerononet.github.io/atom.xml"/>
@@ -58,7 +58,7 @@
 <center><a href="#AQS(AbstractQueuedSynchronizer)抽象队列同步器">AQS(AbstractQueuedSynchronizer)抽象队列同步器</a></center>
 <center><a href="#ArrayList">ArrayList</a></center>
 <center><a href="#HashMap底层实现">HashMap底层实现</a></center>
-<center><a href="#动态代理">动态代理</a></center>
+<center><a href="#JAVA代理">JAVA代理</a></center>
 <center><strong><h2>Spring框架</h2></strong></center>
 <center><a href="#Spring-IOC">Spring IOC</a></center>
 <center><a href="#Spring-AOP">Spring AOP</a></center>
@@ -537,8 +537,17 @@ Vector所有方法都是同步的，在不需要多线程保证线程安全的�
 <br><strong>初始化</strong>：哈希桶数组(node[] table)初始大小为16。负载因子默认为0.75。<br>
 <br><strong>扩容机制</strong>：在默认情况下每次put操作都会比较当前容量与存放数量(size)，如果size大于16*0.75=12时，会进行扩容操作。<strong>扩容时会重新计算每个元素在数组中的位置然后再进行存储，十分消耗性能</strong>。<br>
 <br><strong>线程不安全</strong>：resize()的时候多线程情况下头插法会使得链路出现环形链表甚至数组下标超出。而1.8后使用的是尾插去优化仍然带来了其他问题，比如尾插时计算相同的存放位置，如果在A线程put完成后，B线程又正好计算在Aput前计算完成存放位置，就会把A线程put的值给覆盖，而不是判断是否碰撞，造成线程不安全。</p>
+<p><a name="JAVA代理"></a></p>
+<h3 id="java代理">JAVA代理</h3>
+<p><a name="静态代理"></a></p>
+<h4 id="静态代理">静态代理</h4>
+<p>需要继承对应代理的相同接口来实现静态代理，当存在多个目标的情况下代理的数量就会增多。虽然静态代理生成的是.class字节码文件，性能好效率高，但是过多的目标下导致代码繁杂不易维护。</p>
 <p><a name="动态代理"></a></p>
-<h3 id="动态代理">动态代理</h3>
+<h4 id="动态代理">动态代理</h4>
+<p>必须实现InvocationHandler接口，通过JAVA反射的方式动态的在去生成代理，虽然可以灵活使用，但是比较消耗性能。</p>
+<p><a name="CGLIB代理"></a></p>
+<h4 id="cglib代理">CGLIB代理</h4>
+<p>CGLIB代理无需实现接口，通过生成类字节码实现代理，比反射稍快，不存在性能问题，但是会继承目标对象，需要重写方法。所以目标对象不能是final类。</p>
 <p><a name="Spring框架"></a></p>
 <h2 id="spring框架">Spring框架</h2>
 <p><a name="Spring-IOC"></a></p>
@@ -558,7 +567,7 @@ Vector所有方法都是同步的，在不需要多线程保证线程安全的�
 <br><strong>术语</strong></p>
 <ul>
 <li>切入点（Pointcut）<br>
-<br>在哪些类，哪些方法上切入（where）</li>
+在哪些类，哪些方法上切入（where）</li>
 <li>通知（Advice）<br>
 在方法执行的什么实际（when:方法前/方法后/方法前后）做什么（what:增强的功能）</li>
 <li>切面（Aspect）<br>
@@ -566,7 +575,8 @@ Vector所有方法都是同步的，在不需要多线程保证线程安全的�
 <li>织入（Weaving）<br>
 把切面加入到对象，并创建出代理对象的过程。（由 Spring 来完成）</li>
 </ul>
-<p><strong><font color="red">CFC总结：</font></strong>个人觉得在整体的AOP配置过程中，主要需要注意2个点：<br>1.切点的定义，需要同时规范同类型的织入类的类命名，再使用尽可能准确的正则表达式对切点作出限制。<br>2.连接点的选择，具体是以类为连接点还是某个方法为连接点，需要根据实际情况针对某个切面作出规范。<br>以上都是针对协同开发总结的注意点。</p>
+<p><strong><font color="red">CFC总结：</font></strong>个人觉得在整体的AOP配置过程中，主要需要注意2个点：<br>1.切点的定义，需要同时规范同类型的织入类的类命名，再使用尽可能准确的正则表达式对切点作出限制。<br>2.连接点的选择，具体是以类为连接点还是某个方法为连接点，需要根据实际情况针对某个切面作出规范。<br>以上都是针对协同开发总结的注意点。<br>
+<br><strong>关键的点</strong>：Spring AOP 默认使用标准的 JDK 动态代理(dynamic proxy)技术来实现 AOP 代理, 通过它, 我们可以为任意的接口实现代理。如果需要为一个类实现代理, 那么可以使用 CGLIB 代理。 当一个业务逻辑对象没有实现接口时, 那么Spring AOP 就默认使用 CGLIB 来作为 AOP 代理了. 即如果我们需要为一个方法织入 advice, 但是这个方法不是一个接口所提供的方法, 则此时 Spring AOP 会使用 CGLIB 来实现动态代理. 鉴于此, Spring AOP 建议基于接口编程, 对接口进行 AOP 而不是类。</p>
 <p><a name="Redis"></a></p>
 <h2 id="redis">Redis</h2>
 <p><a name="五大数据结构"></a></p>
