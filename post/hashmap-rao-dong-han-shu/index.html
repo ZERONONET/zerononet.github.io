@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>HashMap扰动函数 | ZERONONET&#39;s blog</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://zerononet.github.io/favicon.ico?v=1605769447467">
+<link rel="stylesheet" href="https://zerononet.github.io/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="上源码
+JDK8
+
+// 以下来源JDK8源码：
+// 找到元素在数组中的位置，n为数组长度。
+　i = (n - 1) &amp; hash
+// 计算Key的Hash值
+static final int hash(Object key)..." />
+    <meta name="keywords" content="" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://zerononet.github.io">
+        <img src="https://zerononet.github.io/images/avatar.png?v=1605769447467" class="site-logo">
+        <h1 class="site-title">ZERONONET&#39;s blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            目录
+          </a>
+        
+      
+        
+          <a href="https://zerononet.github.io/post/zhuan-zai" class="site-nav">
+            转载
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank"> ZERONONET</a> | <a class="rss" href="https://zerononet.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">HashMap扰动函数</h2>
+            <div class="post-date">2020-11-19</div>
+            
+            <div class="post-content" v-pre>
+              <h4>上源码</h4>
+JDK8
+<blockquote>
+<p>// 以下来源JDK8源码：<br>
+// 找到元素在数组中的位置，n为数组长度。<br>
+　i = (n - 1) &amp; hash</p>
+<p>// 计算Key的Hash值<br>
+static final int hash(Object key) {<br>
+　　int h;<br>
+　　return (key == null) ? 0 : (h = key.hashCode()) ^ (h &gt;&gt;&gt; 16);<br>
+　}</p>
+</blockquote>
+<p>JDK7</p>
+<blockquote>
+<p>static int indexFor(int h, int length) { //jdk1.7的源码，jdk1.8没有这个方法，但是实现原理相同<br>
+　　return h &amp; (length-1); //第三步 取模运算<br>
+　}</p>
+</blockquote>
+<p>三部曲：这里的Hash算法本质上就是三步：<strong>取key的hashCode值、高位运算、取模运算。</strong><br>
+<br><font color="green" ><strong>扰动目的</strong></font>：任意的key计算出的数组下标都能足够散列，尽量均匀分布，减少Hash碰撞，就能减少链表长度，虽然JDK8以后链表长度超过8会转成红黑树。<br>
+<br>由于Hash值是int类型的，所以需要很长的的数组，但现实情况是数组的长度是有限的，所以<font color="blue">取低几位的运算会得到相对满足的散列值。而任何2的整数幂，减一得到的二进制位全部是一。</font>如：16-1=15，二进制表示为：1111；32-1=31，二进制表示为：11111。所以让Hash值与（&amp;）上n-1后得到的就是低位Hash值，例如：</p>
+<blockquote>
+<p>   00100100 10100101 11000100 00100101    // Hash值<br>
+&amp;   00000000 00000000 00000000 00001111    // 16 - 1 = 15<br>
+　-----------------------------------------------------<br>
+　00000000 00000000 00000000 00000101    // 高位全部归零，只保留末四位。</p>
+</blockquote>
+<p><br>但是如果只是简单的取最后几位，碰撞也会非常严重。如果再加上散列本身做的不好的话，分布上成等差数列的漏洞，恰好使最后几个低位呈现规律性重复。就会加大链表长度。<br>
+<br><strong>正片来了</strong>：<br>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/20201119142954.png" alt="扰动函数二进制计算步骤" loading="lazy"></center><br>
+<br><center>异或运算</center><br>
+<br>右移16bit，正好是32bit的一半，用自己的高位区跟低位区做异或，不仅能保留高低位信息，又可以使得在低位区相同高位区不同的Hash值可以得到较好的散列随机性，减少碰撞。</p>
+<blockquote>
+<p>// Hash碰撞示例：<br>
+H1: 00000000 00000000 00000000 00000101 &amp; 1111 = 0101<br>
+H2: 00000000 11111111 00000000 00000101 &amp; 1111 = 0101</p>
+</blockquote>
+<blockquote>
+<p>//扰动示例<br>
+00000000 00000000 00000000 00000101 // H1<br>00000000 00000000 00000000 00000000 // H1 &gt;&gt;&gt; 16<br>00000000 00000000 00000000 00000101 // hash = H1 ^ (H1 &gt;&gt;&gt; 16) = 5<br><br>00000000 11111111 00000000 00000101 // H2<br>00000000 00000000 00000000 11111111 // H2 &gt;&gt;&gt; 16<br>00000000 00000000 00000000 11111010 // hash = H2 ^ (H2 &gt;&gt;&gt; 16) = 250</p>
+</blockquote>
+<p>最终结果：</p>
+<blockquote>
+<p>// 没有Hash碰撞<br>index1 = (n - 1) &amp; H1 = (16 - 1) &amp; 5 = 5<br>index2 = (n - 1) &amp; H2 = (16 - 1) &amp; 250 = 10</p>
+</blockquote>
+<p><br>问题回忆：为什么HashMap的长度是2的整数幂？为什么扰动后要跟数组长度-1做与运算？</p>
+<font color="white">
+<br><center>彩蛋：</center>
+异或运算规则：(同为0，异为1)<br>与运算规则：0&0=0;0&1=0;1&0=0;1&1=1;
+</font>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://zerononet.github.io/post/zhi-shi-dian-bei-cha-shou-ce/">
+                  <h3 class="post-title">
+                    知识点备查手册(持续更新中)
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+
+  </body>
+</html>
