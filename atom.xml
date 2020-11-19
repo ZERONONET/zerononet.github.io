@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zerononet.github.io</id>
     <title>ZERONONET&apos;s blog</title>
-    <updated>2020-11-19T07:09:55.924Z</updated>
+    <updated>2020-11-19T07:13:15.054Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zerononet.github.io"/>
     <link rel="self" href="https://zerononet.github.io/atom.xml"/>
@@ -213,7 +213,6 @@ JDK8
 </ul>
 <p><a name="外观模式"></a></p>
 <h3 id="7-外观模式">7、<a href="http://c.biancheng.net/view/1369.html">外观模式</a></h3>
-<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/waiguan.png" alt="外观模式结构图" loading="lazy"></center></li>
@@ -225,7 +224,6 @@ JDK8
 </ul>
 <p><a name="装饰模式"></a></p>
 <h3 id="8-装饰模式">8、<a href="http://c.biancheng.net/view/1366.html">装饰模式</a></h3>
-<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zhuangshi.png" alt="装饰模式的结构图" loading="lazy"></center></li>
@@ -237,7 +235,6 @@ JDK8
 </ul>
 <p><a name="适配器模式"></a></p>
 <h3 id="9-适配器模式">9、<a href="http://c.biancheng.net/view/1361.html">适配器模式</a></h3>
-<p><a href=""></a></p>
 <ul>
 <li><strong>类适配器UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/shipeiqi-lei.png" alt="" loading="lazy"></center></li>
@@ -252,7 +249,6 @@ JDK8
 </ul>
 <p><a name="亨元模式"></a></p>
 <h3 id="10-亨元模式">10、<a href="http://c.biancheng.net/view/1371.html">亨元模式</a></h3>
-<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/hengyuan.png" alt="亨元模式结构图" loading="lazy"></center></li>
@@ -264,7 +260,6 @@ JDK8
 </ul>
 <p><a name="组合模式"></a></p>
 <h3 id="11-组合模式">11、<a href="http://c.biancheng.net/view/1373.html">组合模式</a></h3>
-<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><strong>透明式组合模式</strong>中，由于抽象构件声明了所有子类中的全部方法，所以客户端无须区别树叶对象和树枝对象，对客户端来说是透明的。但其缺点是：树叶构件本来没有 Add()、Remove() 及 GetChild() 方法，却要实现它们（空实现或抛异常），这样会带来一些安全性问题。其结构图如图所示。<br>
@@ -282,7 +277,6 @@ JDK8
 </ul>
 <p><a name="桥接模式"></a></p>
 <h3 id="12-桥接模式">12、<a href="http://c.biancheng.net/view/1364.html">桥接模式</a></h3>
-<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/qiaojie.png" alt="桥接模式结构图" loading="lazy"></center></li>
@@ -294,7 +288,6 @@ JDK8
 </ul>
 <p><a name="代理模式"></a></p>
 <h3 id="13-代理模式">13、<a href="http://c.biancheng.net/view/1359.html">代理模式</a></h3>
-<p><a href=""></a></p>
 <ul>
 <li>
 <p><strong>UML图</strong><br>
@@ -322,7 +315,6 @@ JDK8
 </ul>
 <p><a name="模板方法模式"></a></p>
 <h3 id="14-模板方法模式">14、<a href="http://c.biancheng.net/view/1376.html">模板方法模式</a></h3>
-<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/mubanfangfa.gif" alt="模板方法结构图" loading="lazy"></center></li>
@@ -336,7 +328,6 @@ JDK8
 </ul>
 <p><a name="迭代器模式"></a></p>
 <h3 id="15-迭代器模式">15、<a href="http://c.biancheng.net/view/1395.html">迭代器模式</a></h3>
-<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/diedaiqi.gif" alt="迭代器结构图" loading="lazy"></center></li>
@@ -348,7 +339,6 @@ JDK8
 </ul>
 <p><a name="策略模式"></a></p>
 <h3 id="16-策略模式">16、<a href="http://c.biancheng.net/view/1378.html">策略模式</a></h3>
-<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/celue.gif" alt="策略模式结构图" loading="lazy"></center></li>
@@ -364,7 +354,6 @@ JDK8
 </ul>
 <p><a name="解释器模式"></a></p>
 <h3 id="17-解释器模式">17、<a href="http://c.biancheng.net/view/1402.html">解释器模式</a></h3>
-<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/jieshiqi.gif" alt="解释器模式结构图" loading="lazy"></center></li>
@@ -372,10 +361,10 @@ JDK8
 <li><strong>优点</strong><br>1.扩展性好。由于在解释器模式中使用类来表示语言的文法规则，因此可以通过继承等机制来改变或扩展文法。<br>2.容易实现。在语法树中的每个表达式节点类都是相似的，所以实现其文法较为容易。</li>
 <li><strong>缺点</strong><br>1.执行效率较低。解释器模式中通常使用大量的循环和递归调用，当要解释的句子较复杂时，其运行速度很慢，且代码的调试过程也比较麻烦。<br>2.会引起类膨胀。解释器模式中的每条规则至少需要定义一个类，当包含的文法规则很多时，类的个数将急剧增加，导致系统难以管理与维护。<br>3.可应用的场景比较少。在软件开发中，需要定义语言文法的应用实例非常少，所以这种模式很少被使用到。</li>
 <li><strong>应用场景</strong>：<br>1.当语言的文法较为简单，且执行效率不是关键问题时。<br>2.当问题重复出现，且可以用一种简单的语言来进行表达时。<br>3.当一个语言需要解释执行，并且语言中的句子可以表示为一个抽象语法树的时候，如 XML 文档解释。<br>注意：解释器模式在实际的软件开发中使用比较少，因为它会引起效率、性能以及维护等问题。如果碰到对表达式的解释，在 Java 中可以用 Expression4J 或 Jep 等来设计。</li>
+<li><strong><font color="red">CFC总结：</font></strong>实现其实不难，举个拼接SQL的例子来说，只要一个Util类就可以实现。正常情况下我们可能在实际情况中有意无意的都会涉及点解释器模式的东西。</li>
 </ul>
 <p><a name="观察者模式"></a></p>
 <h3 id="18-观察者模式">18、<a href="http://c.biancheng.net/view/1390.html">观察者模式</a></h3>
-<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/guancazhe.gif" alt="" loading="lazy"></center></li>
@@ -388,7 +377,6 @@ JDK8
 </ul>
 <p><a name="备忘录模式"></a></p>
 <h3 id="19-备忘录模式">19、<a href="http://c.biancheng.net/view/1400.html">备忘录模式</a></h3>
-<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/beiwanglu.gif" alt="备忘录模式结构图" loading="lazy"></center></li>
@@ -401,7 +389,6 @@ JDK8
 </ul>
 <p><a name="命令模式"></a></p>
 <h3 id="20-命令模式">20、<a href="http://c.biancheng.net/view/1380.html">命令模式</a></h3>
-<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/mingling.gif" alt="命令模式结构图" loading="lazy"></center></li>
@@ -414,7 +401,6 @@ JDK8
 </ul>
 <p><a name="中介者模式"></a></p>
 <h3 id="21-中介者模式">21、<a href="http://c.biancheng.net/view/1393.html">中介者模式</a></h3>
-<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zhongjiezhe.gif" alt="中介者模式结构图" loading="lazy"></center></li>
@@ -427,7 +413,6 @@ JDK8
 </ul>
 <p><a name="责任链模式"></a></p>
 <h3 id="22-责任链模式">22、<a href="http://c.biancheng.net/view/1383.html">责任链模式</a></h3>
-<p><a href=""></a></p>
 <ul>
 <li><strong>UML图</strong><br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zerenlian.gif" alt="责任链模式结构图" loading="lazy"></center></li>
@@ -575,7 +560,7 @@ Vector所有方法都是同步的，在不需要多线程保证线程安全的�
 <p><a name="HashMap底层实现"></a></p>
 <h3 id="hashmap底层实现">HashMap底层实现</h3>
 <p><strong>java1.8之前</strong>：数组加链表组成的链表散列，通过key的扰动函数处理后得到hash值，通过(n-1)&amp;hash判断当前元素存放位置，如果当前位置存在元素，相当于已经有了这个key，如果key与hash都相同，直接覆盖当前位置的值。如果不相同就通过拉链法解决冲突。<br>
-<br><strong>扰动函数</strong>：<br>
+<br><strong><a href="https://zerononet.github.io/post/hashmap-rao-dong-han-shu/">扰动函数</a></strong><br>
 <br><strong>存储结构</strong>：数组+链表+红黑树(1.8+)，链表长度大于8时转成链表转成红黑树。<br>
 <br><strong>链地址法</strong>：数组加链表的结合。每个数组上都有个链表结构，执行key的hashcode()方法得到hash值，再通过Hash算法的后两步运算(高位运算和取模运算)定位该键值对的存储位置，如果2个key定位到相同位置说明发生hash碰撞，碰撞概率取决与桶(node)的大小与Hash算法。所以为了减少碰撞会有扩容机制。<br>
 <br><strong>初始化</strong>：哈希桶数组(node[] table)初始大小为16。负载因子默认为0.75。<br>
