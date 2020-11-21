@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zerononet.github.io</id>
     <title>ZERONONET&apos;s blog</title>
-    <updated>2020-11-19T07:13:15.054Z</updated>
+    <updated>2020-11-21T04:28:43.557Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zerononet.github.io"/>
     <link rel="self" href="https://zerononet.github.io/atom.xml"/>
@@ -102,6 +102,7 @@ JDK8
 <center><a href="#AQS(AbstractQueuedSynchronizer)抽象队列同步器">AQS(AbstractQueuedSynchronizer)抽象队列同步器</a></center>
 <center><a href="#ArrayList">ArrayList</a></center>
 <center><a href="#HashMap底层实现">HashMap底层实现</a></center>
+<center><a href="#ConcurrentHashMap底层实现">ConcurrentHashMap底层实现</a></center>
 <center><a href="#JAVA代理">JAVA代理</a></center>
 <center><strong><h2>Spring框架</h2></strong></center>
 <center><a href="#Spring-IOC">Spring IOC</a></center>
@@ -469,8 +470,7 @@ JDK8
 <li><strong>底层原理</strong>：首先获取变量值，询问比较是否发生变化，如果变化则重新获取值，如果未变化则赋值，最后完成这一CAS原子操作。由于加了先比较后赋值的处理机制，可以去掉加锁的机制，所以所有线程可以同步进行这一CAS原子操作。</li>
 <li><strong>缺点</strong>：由于获取值的过程中会有大量的获取动作(会有大量的比较失败的情况)，导致高并发的时候线程空循环，自旋，性能效率不是很理想。</li>
 <li><strong>针对缺点的优化</strong>：JAVA8中推出了新的类-LongAdder，再采取分段CAS以及自动分段迁移的方式大幅提升多线程高并发的性能问题。</li>
-<li><strong>分段CAS机制</strong>：<br>
-需要再次梳理分段CAS机制</li>
+<li><strong>分段CAS机制</strong>：<font color="red">找了很多别人写的文章，依然只看到同样的针对base值的累加时，使用cell数组将线程分组，并且每组各个只针对对应组的cell一个元素做累加，并且最后将所有cell汇总到base减少线程自旋等待。这里就有个问题，假如在使用CAS的时候并不是涉及自增或者自减的时候，是否能用，或者在能用的情况下是如何实现的？</font></li>
 </ul>
 <p><a name="各种锁的应用场景"></a></p>
 <h3 id="3-各种锁的应用场景">3、各种锁的应用场景</h3>
@@ -566,6 +566,10 @@ Vector所有方法都是同步的，在不需要多线程保证线程安全的�
 <br><strong>初始化</strong>：哈希桶数组(node[] table)初始大小为16。负载因子默认为0.75。<br>
 <br><strong>扩容机制</strong>：在默认情况下每次put操作都会比较当前容量与存放数量(size)，如果size大于16*0.75=12时，会进行扩容操作。<strong>扩容时会重新计算每个元素在数组中的位置然后再进行存储，十分消耗性能</strong>。<br>
 <br><strong>线程不安全</strong>：resize()的时候多线程情况下头插法会使得链路出现环形链表甚至数组下标超出。而1.8后使用的是尾插去优化仍然带来了其他问题，比如尾插时计算相同的存放位置，如果在A线程put完成后，B线程又正好计算在Aput前计算完成存放位置，就会把A线程put的值给覆盖，而不是判断是否碰撞，造成线程不安全。</p>
+<p><a name="ConcurrentHashMap底层实现"></a></p>
+<h3 id="concurrenthashmap">ConcurrentHashMap</h3>
+<p><a href="https://my.oschina.net/pingpangkuangmo/blog/817973#h2_12">以下总结转载自本链接</a><br>
+<br>1.8的ConcurrentHashMap摒弃了1.7的segment设计，而是在1.8HashMap的基础上实现了线程安全的版本，即也是采用数组+链表+红黑树的形式。数组可以扩容，链表可以转化为红黑树。</p>
 <p><a name="JAVA代理"></a></p>
 <h3 id="java代理">JAVA代理</h3>
 <p><a name="静态代理"></a></p>
@@ -694,5 +698,27 @@ Vector所有方法都是同步的，在不需要多线程保证线程安全的�
 #### 正排索引，倒排索引 ####
 
 -->]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[JAVA的三种代理]]></title>
+        <id>https://zerononet.github.io/post/dai-bu-chong-dong-tai-dai-li/</id>
+        <link href="https://zerononet.github.io/post/dai-bu-chong-dong-tai-dai-li/">
+        </link>
+        <updated>2020-06-17T12:53:39.000Z</updated>
+        <content type="html"><![CDATA[<p>不论任何的代理，其实都是使用了代理模式的设计模式。</p>
+<h1 id="center静态代理center"><center>静态代理</center></h1>
+<p>需要跟代理的目标实现同一个接口，然后在代理类中增加方法接收传入的对应初始化接口的实现类target，然后实现接口方法中使用target去调用接口方法就可以做到代理。<br>
+<br><strong>代码实现结构</strong><br>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/20201121110516.png" alt="静态代理UML类图" loading="lazy"></center><br>
+<br><center>UML图</center><br>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/20201121110356.png" alt="接口类" loading="lazy"></center><br>
+<br><center>图：接口类</center><br>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/20201121104933.png" alt="实现类" loading="lazy"></center><br>
+<br><center>图：实现类</center><br>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/20201121104716.png" alt="代理类" loading="lazy"></center><br>
+<br><center>图：代理类</center><br>
+<br>可以明显的看出来，当接口多了的情况下(接口隔离原则)所需要的代理实现类就多了，不方便维护。而其中的好处就是这个代理不通过反射动态生成，在编译的时候就可以生成字节码.class文件，运行高效，可以作为优化使用。</p>
+<h1 id="centerjdk动态代理center"><center>JDK动态代理</center></h1>
+]]></content>
     </entry>
 </feed>

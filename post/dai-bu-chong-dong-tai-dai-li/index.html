@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8" >
 
-<title>动态代理 | ZERONONET&#39;s blog</title>
+<title>JAVA的三种代理 | ZERONONET&#39;s blog</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://zerononet.github.io/favicon.ico?v=1605769992235">
+<link rel="shortcut icon" href="https://zerononet.github.io/favicon.ico?v=1605932920881">
 <link rel="stylesheet" href="https://zerononet.github.io/styles/main.css">
 
 
@@ -18,12 +18,10 @@
 
 
 
-    <meta name="description" content="1、JDK动态代理
-2、CGLIB动态代理
---配置与实现
---性能与优化
---效果
-" />
+    <meta name="description" content="不论任何的代理，其实都是使用了代理模式的设计模式。
+静态代理
+需要跟代理的目标实现同一个接口，然后在代理类中增加方法接收传入的对应初始化接口的实现类target，然后实现接口方法中使用target去调用接口方法就可以做到代理。
+代码实现结构..." />
     <meta name="keywords" content="待补充,JAVA" />
   </head>
   <body>
@@ -33,7 +31,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://zerononet.github.io">
-        <img src="https://zerononet.github.io/images/avatar.png?v=1605769992235" class="site-logo">
+        <img src="https://zerononet.github.io/images/avatar.png?v=1605932920881" class="site-logo">
         <h1 class="site-title">ZERONONET&#39;s blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -89,15 +87,24 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">动态代理</h2>
+            <h2 class="post-title">JAVA的三种代理</h2>
             <div class="post-date">2020-06-17</div>
             
             <div class="post-content" v-pre>
-              <p>1、JDK动态代理<br>
-2、CGLIB动态代理<br>
---配置与实现<br>
---性能与优化<br>
---效果</p>
+              <p>不论任何的代理，其实都是使用了代理模式的设计模式。</p>
+<h1 id="center静态代理center"><center>静态代理</center></h1>
+<p>需要跟代理的目标实现同一个接口，然后在代理类中增加方法接收传入的对应初始化接口的实现类target，然后实现接口方法中使用target去调用接口方法就可以做到代理。<br>
+<br><strong>代码实现结构</strong><br>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/20201121110516.png" alt="静态代理UML类图" loading="lazy"></center><br>
+<br><center>UML图</center><br>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/20201121110356.png" alt="接口类" loading="lazy"></center><br>
+<br><center>图：接口类</center><br>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/20201121104933.png" alt="实现类" loading="lazy"></center><br>
+<br><center>图：实现类</center><br>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/20201121104716.png" alt="代理类" loading="lazy"></center><br>
+<br><center>图：代理类</center><br>
+<br>可以明显的看出来，当接口多了的情况下(接口隔离原则)所需要的代理实现类就多了，不方便维护。而其中的好处就是这个代理不通过反射动态生成，在编译的时候就可以生成字节码.class文件，运行高效，可以作为优化使用。</p>
+<h1 id="centerjdk动态代理center"><center>JDK动态代理</center></h1>
 
             </div>
             

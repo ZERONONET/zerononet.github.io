@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://zerononet.github.io/favicon.ico?v=1605769992235">
+<link rel="shortcut icon" href="https://zerononet.github.io/favicon.ico?v=1605932920881">
 <link rel="stylesheet" href="https://zerononet.github.io/styles/main.css">
 
 
@@ -46,7 +46,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://zerononet.github.io">
-        <img src="https://zerononet.github.io/images/avatar.png?v=1605769992235" class="site-logo">
+        <img src="https://zerononet.github.io/images/avatar.png?v=1605932920881" class="site-logo">
         <h1 class="site-title">ZERONONET&#39;s blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -149,6 +149,7 @@
 <center><a href="#AQS(AbstractQueuedSynchronizer)抽象队列同步器">AQS(AbstractQueuedSynchronizer)抽象队列同步器</a></center>
 <center><a href="#ArrayList">ArrayList</a></center>
 <center><a href="#HashMap底层实现">HashMap底层实现</a></center>
+<center><a href="#ConcurrentHashMap底层实现">ConcurrentHashMap底层实现</a></center>
 <center><a href="#JAVA代理">JAVA代理</a></center>
 <center><strong><h2>Spring框架</h2></strong></center>
 <center><a href="#Spring-IOC">Spring IOC</a></center>
@@ -516,8 +517,7 @@
 <li><strong>底层原理</strong>：首先获取变量值，询问比较是否发生变化，如果变化则重新获取值，如果未变化则赋值，最后完成这一CAS原子操作。由于加了先比较后赋值的处理机制，可以去掉加锁的机制，所以所有线程可以同步进行这一CAS原子操作。</li>
 <li><strong>缺点</strong>：由于获取值的过程中会有大量的获取动作(会有大量的比较失败的情况)，导致高并发的时候线程空循环，自旋，性能效率不是很理想。</li>
 <li><strong>针对缺点的优化</strong>：JAVA8中推出了新的类-LongAdder，再采取分段CAS以及自动分段迁移的方式大幅提升多线程高并发的性能问题。</li>
-<li><strong>分段CAS机制</strong>：<br>
-需要再次梳理分段CAS机制</li>
+<li><strong>分段CAS机制</strong>：<font color="red">找了很多别人写的文章，依然只看到同样的针对base值的累加时，使用cell数组将线程分组，并且每组各个只针对对应组的cell一个元素做累加，并且最后将所有cell汇总到base减少线程自旋等待。这里就有个问题，假如在使用CAS的时候并不是涉及自增或者自减的时候，是否能用，或者在能用的情况下是如何实现的？</font></li>
 </ul>
 <p><a name="各种锁的应用场景"></a></p>
 <h3 id="3-各种锁的应用场景">3、各种锁的应用场景</h3>
@@ -613,6 +613,10 @@ Vector所有方法都是同步的，在不需要多线程保证线程安全的�
 <br><strong>初始化</strong>：哈希桶数组(node[] table)初始大小为16。负载因子默认为0.75。<br>
 <br><strong>扩容机制</strong>：在默认情况下每次put操作都会比较当前容量与存放数量(size)，如果size大于16*0.75=12时，会进行扩容操作。<strong>扩容时会重新计算每个元素在数组中的位置然后再进行存储，十分消耗性能</strong>。<br>
 <br><strong>线程不安全</strong>：resize()的时候多线程情况下头插法会使得链路出现环形链表甚至数组下标超出。而1.8后使用的是尾插去优化仍然带来了其他问题，比如尾插时计算相同的存放位置，如果在A线程put完成后，B线程又正好计算在Aput前计算完成存放位置，就会把A线程put的值给覆盖，而不是判断是否碰撞，造成线程不安全。</p>
+<p><a name="ConcurrentHashMap底层实现"></a></p>
+<h3 id="concurrenthashmap">ConcurrentHashMap</h3>
+<p><a href="https://my.oschina.net/pingpangkuangmo/blog/817973#h2_12">以下总结转载自本链接</a><br>
+<br>1.8的ConcurrentHashMap摒弃了1.7的segment设计，而是在1.8HashMap的基础上实现了线程安全的版本，即也是采用数组+链表+红黑树的形式。数组可以扩容，链表可以转化为红黑树。</p>
 <p><a name="JAVA代理"></a></p>
 <h3 id="java代理">JAVA代理</h3>
 <p><a name="静态代理"></a></p>
@@ -743,6 +747,15 @@ Vector所有方法都是同步的，在不需要多线程保证线程安全的�
 -->
             </div>
             
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://zerononet.github.io/post/dai-bu-chong-dong-tai-dai-li/">
+                  <h3 class="post-title">
+                    JAVA的三种代理
+                  </h3>
+                </a>
+              </div>
             
 
             
