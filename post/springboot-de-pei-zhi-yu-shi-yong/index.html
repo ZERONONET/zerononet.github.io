@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://zerononet.github.io/favicon.ico?v=1606449284187">
+<link rel="shortcut icon" href="https://zerononet.github.io/favicon.ico?v=1606452163643">
 <link rel="stylesheet" href="https://zerononet.github.io/styles/main.css">
 
 
@@ -18,12 +18,13 @@
 
 
 
-    <meta name="description" content="
-导读：课程概览
-第01课：Spring Boot开发环境搭建和项目启动
-第02课：Spring Boot返回Json数据及数据封装
-第03课：Spring Boot使用slf4j进行日志记录
-第04课：Spring Boot中的项目属性配..." />
+    <meta name="description" content=" 目录
+Spring Boot开发环境搭建和项目启动
+Spring Boot返回Json数据及数据封装
+ Spring Boot使用slf4j进行日志记录
+ Spring Boot中的项目属性配置
+ Spring Boot中的MVC支持
+S..." />
     <meta name="keywords" content="" />
   </head>
   <body>
@@ -33,7 +34,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://zerononet.github.io">
-        <img src="https://zerononet.github.io/images/avatar.png?v=1606449284187" class="site-logo">
+        <img src="https://zerononet.github.io/images/avatar.png?v=1606452163643" class="site-logo">
         <h1 class="site-title">ZERONONET&#39;s blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -93,28 +94,27 @@
             <div class="post-date">2020-11-27</div>
             
             <div class="post-content" v-pre>
-              <ul>
-<li>导读：课程概览</li>
-<li>第01课：Spring Boot开发环境搭建和项目启动</li>
-<li>第02课：Spring Boot返回Json数据及数据封装</li>
-<li>第03课：Spring Boot使用slf4j进行日志记录</li>
-<li>第04课：Spring Boot中的项目属性配置</li>
-<li>第05课：Spring Boot中的MVC支持</li>
-<li>第06课：Spring Boot集成Swagger2展现在线接口文档</li>
-<li>第07课：Spring Boot集成Thymeleaf模板引擎</li>
-<li>第08课：Spring Boot中的全局异常处理</li>
-<li>第09课：Spring Boot中的切面AOP处理</li>
-<li>第10课：Spring Boot中集成MyBatis</li>
-<li>第11课：Spring Boot事务配置管理</li>
-<li>第12课：Spring Boot中使用监听器</li>
-<li>第13课：Spring Boot中使用拦截器</li>
-<li>第14课：Spring Boot中集成Redis</li>
-<li>第15课：Spring Boot中集成ActiveMQ</li>
-<li>第16课：Spring Boot中集成Shiro</li>
-<li>第17课：Spring Boot中结成Lucence</li>
-<li>第18课：Spring Boot搭建实际项目开发中的架构</li>
-</ul>
-<h1 id="第01课spring-boot开发环境搭建和项目启动">第01课：Spring Boot开发环境搭建和项目启动</h1>
+              <h1 id="center-目录"><center> 目录</h1>
+<center><a href="#开发环境搭建和项目启动">Spring Boot开发环境搭建和项目启动</a></center>
+<center><a href="#返回Json数据及数据封装">Spring Boot返回Json数据及数据封装</a></center>
+<center> <a href="#使用slf4j进行日志记录">Spring Boot使用slf4j进行日志记录</a></center>
+<center> <a href="#项目属性配置">Spring Boot中的项目属性配置</a></center>
+<center> <a href="#MVC支持">Spring Boot中的MVC支持</a></center>
+<center><a href="#集成Swagger2展现在线接口文档">Spring Boot集成Swagger2展现在线接口文档</a></center>
+<center> <a href="#集成Thymeleaf模板引擎">Spring Boot集成Thymeleaf模板引擎</a></center>
+<center><a href="#全局异常处理">Spring Boot中的全局异常处理</a></center>
+<center> <a href="#切面AOP处理">Spring Boot中的切面AOP处理</a></center>
+<center><a href="#集成MyBatis">Spring Boot中集成MyBatis</a></center>
+<center><a href="#事务配置管理">Spring Boot事务配置管理</a></center>
+<center> <a href="#使用监听器">Spring Boot中使用监听器</a></center>
+<center> <a href="#拦截器">Spring Boot中使用拦截器</a></center>
+<center> <a href="#集成Redis">Spring Boot中集成Redis</a></center>
+<center><a href="#集成ActiveMQ">Spring Boot中集成ActiveMQ</a></center>
+<center> <a href="#集成Shiro">Spring Boot中集成Shiro</a></center>
+<center> <a href="#集成Lucence">Spring Boot中集成Lucence</a></center>
+<center> <a href="#搭建实际项目开发中的架构">Spring Boot搭建实际项目开发中的架构</a></center>
+<p><a name="开发环境搭建和项目启动"></a></p>
+<h1 id="spring-boot开发环境搭建和项目启动">Spring Boot开发环境搭建和项目启动</h1>
 <p>上一节对 SpringBoot 的特性做了一个介绍，本节主要对 <strong>jdk 的配置、Spring Boot工程的构建和项目的启动、Spring Boot 项目工程的结构做一下讲解和分析</strong>。</p>
 <h2 id="1-jdk-的配置">1. jdk 的配置</h2>
 <p>本课程是使用 IDEA 进行开发，在IDEA 中配置 jdk 的方式很简单，打开<code>File-&gt;Project Structure</code>，如下图所：</p>
@@ -199,7 +199,8 @@ public class StartController {
 <h2 id="4-总结">4. 总结</h2>
 <p>本节我们快速学习了如何在 IDEA 中导入 jdk，以及使用 IDEA 如何配置 maven 和编码，如何快速的创建和启动 Spring Boot 工程。IDEA 对 Spring Boot 的支持非常友好，建议大家使用 IDEA 进行 Spring Boot 的开发，从下一课开始，我们真正进入 Spring Boot 的学习中。<br>
 课程源代码下载地址：<a href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第02课spring-boot返回json数据及数据封装">第02课：Spring Boot返回Json数据及数据封装</h1>
+<p><a name="返回Json数据及数据封装"></a></p>
+<h1 id="spring-boot返回json数据及数据封装">Spring Boot返回Json数据及数据封装</h1>
 <p>在项目开发中，接口与接口之间，前后端之间数据的传输都使用 Json 格式，在 Spring Boot 中，接口返回 Json 格式的数据很简单，在 Controller 中使用<code>@RestController</code>注解即可返回 Json 格式的数据，<code>@RestController</code>也是 Spring Boot 新增的一个注解，我们点进去看一下该注解都包含了哪些东西。</p>
 <pre><code class="language-java">@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
@@ -545,7 +546,8 @@ public class JsonResultController {
 <h2 id="4-总结-2">4. 总结</h2>
 <p>本节主要对 Spring Boot 中 json 数据的返回做了详细的分析，从 Spring Boot 默认的 jackson 框架到阿里巴巴的 fastJson 框架，分别对它们的配置做了相应的讲解。另外，结合实际项目情况，总结了实际项目中使用的 json 封装结构体，加入了状态码和提示信息，使得返回的 json 数据信息更加完整。<br>
 课程源代码下载地址：<a href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第03课spring-boot使用slf4j进行日志记录">第03课：Spring Boot使用slf4j进行日志记录</h1>
+<p><a name="使用slf4j进行日志记录"></a></p>
+<h1 id="spring-boot使用slf4j进行日志记录">Spring Boot使用slf4j进行日志记录</h1>
 <p>在开发中，我们经常使用 <code>System.out.println()</code> 来打印一些信息，但是这样不好，因为大量的使用 <code>System.out</code> 会增加资源的消耗。我们实际项目中使用的是 slf4j 的 logback 来输出日志，效率挺高的，Spring Boot 提供了一套日志系统，logback 是最优的选择。</p>
 <h2 id="1-slf4j-介绍">1. slf4j 介绍</h2>
 <p>引用百度百科里的一段话：</p>
@@ -669,7 +671,8 @@ public class TestController {
 <h2 id="5-总结">5. 总结</h2>
 <p>本节课主要对 slf4j 做了一个简单的介绍，并且对 Spring Boot 中如何使用 slf4j 输出日志做了详细的说明，着重分析了 <code>logback.xml</code> 文件中对日志相关信息的配置，包括日志的不同级别。最后针对这些配置，在代码中使用 Logger 打印出一些进行测试。在实际项目中，这些日志都是排查问题的过程中非常重要的资料。<br>
 课程源代码下载地址：<a href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第04课spring-boot中的项目属性配置">第04课：Spring Boot中的项目属性配置</h1>
+<p><a name="项目属性配置"></a></p>
+<h1 id="spring-boot中的项目属性配置">Spring Boot中的项目属性配置</h1>
 <p>我们知道，在项目中，很多时候需要用到一些配置的信息，这些信息可能在测试环境和生产环境下会有不同的配置，后面根据实际业务情况有可能还会做修改，针对这种情况，我们不能将这些配置在代码中写死，最好就是写到配置文件中。比如可以把这些信息写到 <code>application.yml</code> 文件中。</p>
 <h2 id="1-少量配置信息的情形">1. 少量配置信息的情形</h2>
 <p>举个例子，在微服务架构中，最常见的就是某个服务需要调用其他服务来获取其提供的相关信息，那么在该服务的配置文件中需要配置被调用的服务地址，比如在当前服务里，我们需要调用订单微服务获取订单相关的信息，假设 订单服务的端口号是 8002，那我们可以做如下配置：</p>
@@ -787,7 +790,8 @@ server:
 <h2 id="4-总结-3">4. 总结</h2>
 <p>本节课主要讲解了 Spring Boot 中如何在业务代码中读取相关配置，包括单一配置和多个配置项，在微服务中，这种情况非常常见，往往会有很多其他微服务需要调用，所以封装一个配置类来接收这些配置是个很好的处理方式。除此之外，例如数据库相关的连接参数等等，也可以放到一个配置类中，其他遇到类似的场景，都可以这么处理。最后介绍了开发环境和生产环境配置的快速切换方式，省去了项目部署时，诸多配置信息的修改。<br>
 课程源代码下载地址：<a href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第05课spring-boot中的mvc支持">第05课：Spring Boot中的MVC支持</h1>
+<p><a name="MVC支持"></a></p>
+<h1 id="spring-boot中的mvc支持">Spring Boot中的MVC支持</h1>
 <p>Spring Boot 的 MVC 支持主要来介绍实际项目中最常用的几个注解，包括 <code>@RestController</code>、 <code>@RequestMapping</code>、<code>@PathVariable</code>、<code>@RequestParam</code> 以及 <code>@RequestBody</code>。主要介绍这几个注解常用的使用方式和特点。</p>
 <h2 id="1-restcontroller">1. @RestController</h2>
 <p><code>@RestController</code> 是 Spring Boot 新增的一个注解，我们看一下该注解都包含了哪些东西。</p>
@@ -926,7 +930,8 @@ public String testRequestBody(@RequestBody User user) {
 <h2 id="6-总结">6. 总结</h2>
 <p>本节课主要讲解了 Spring Boot 中对 MVC 的支持，分析了 <code>@RestController</code>、 <code>@RequestMapping</code>、<code>@PathVariable</code>、 <code>@RequestParam</code> 和 <code>@RequestBody</code> 四个注解的使用方式，由于 <code>@RestController</code> 中集成了 <code>@ResponseBody</code> 所以对返回 json 的注解不再赘述。以上四个注解是使用频率很高的注解，在所有的实际项目中基本都会遇到，要熟练掌握。</p>
 <p>课程源代码下载地址：<a href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第06课spring-boot集成-swagger2-展现在线接口文档">第06课：Spring Boot集成 Swagger2 展现在线接口文档</h1>
+<p><a name="集成Swagger2展现在线接口文档"></a></p>
+<h1 id="spring-boot集成-swagger2-展现在线接口文档">Spring Boot集成 Swagger2 展现在线接口文档</h1>
 <h2 id="1-swagger-简介">1. Swagger 简介</h2>
 <h3 id="11-解决的问题">1.1 解决的问题</h3>
 <p>随着互联网技术的发展，现在的网站架构基本都由原来的后端渲染，变成了前后端分离的形态，而且前端技术和后端技术在各自的道路上越走越远。前端和后端的唯一联系，变成了 API 接口，所以 API 文档变成了前后端开发人员联系的纽带，变得越来越重要。</p>
@@ -1084,7 +1089,8 @@ public class TestController {
 <h2 id="5-总结-2">5. 总结</h2>
 <p>OK，本节课详细分析了 Swagger 的优点，以及 Spring Boot 如何集成 Swagger2，包括配置，相关注解的讲解，涉及到了实体类和接口类，以及如何使用。最后通过页面测试，体验了 Swagger 的强大之处，基本上是每个项目组中必备的工具之一，所以要掌握该工具的使用，也不难。</p>
 <p>课程源代码下载地址：<a href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第07课spring-boot集成thymeleaf模板引擎">第07课：Spring Boot集成Thymeleaf模板引擎</h1>
+<p><a name="集成Thymeleaf模板引擎"></a></p>
+<h1 id="spring-boot集成thymeleaf模板引擎">Spring Boot集成Thymeleaf模板引擎</h1>
 <h2 id="1-thymeleaf-介绍">1. Thymeleaf 介绍</h2>
 <blockquote>
 <p>Thymeleaf 是适用于 Web 和独立环境的现代服务器端 Java 模板引擎。<br>
@@ -1291,12 +1297,13 @@ public String getList(Model model) {
 <h2 id="5-总结-3">5. 总结</h2>
 <p>Thymeleaf 在 Spring Boot 中使用非常广泛，本节课主要分析了 thymeleaf 的优点，以及如何在 Spring Boot 中集成并使用 thymeleaf 模板，包括依赖、配置，相关数据的获取、以及一些注意事项等等。最后列举了一些 thymeleaf 中常用的标签，在实际项目中多使用，多查阅就能熟练掌握，thymeleaf 中的一些标签或者方法不用死记硬背，用到什么去查阅什么，关键是要会在 Spring Boot 中集成，用的多了就熟能生巧。</p>
 <p>课程源代码下载地址：<a href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第08课spring-boot中的全局异常处理">第08课：Spring Boot中的全局异常处理</h1>
+<p><a name="全局异常处理"></a></p>
+<h1 id="spring-boot中的全局异常处理">Spring Boot中的全局异常处理</h1>
 <p>在项目开发过程中，不管是对底层数据库的操作过程，还是业务层的处理过程，还是控制层的处理过程，都不可避免会遇到各种可预知的、不可预知的异常需要处理。如果对每个过程都单独作异常处理，那系统的代码耦合度会变得很高，此外，开发工作量也会加大而且不好统一，这也增加了代码的维护成本。<br>
 针对这种实际情况，我们需要将所有类型的异常处理从各处理过程解耦出来，这样既保证了相关处理过程的功能单一，也实现了异常信息的统一处理和维护。同时，我们也不希望直接把异常抛给用户，应该对异常进行处理，对错误信息进行封装，然后返回一个友好的信息给用户。这节主要总结一下项目中如何使用 Spring Boot 如何拦截并处理全局的异常。</p>
 <h2 id="1-定义返回的统一-json-结构">1. 定义返回的统一 json 结构</h2>
 <p>前端或者其他服务请求本服务的接口时，该接口需要返回对应的 json 数据，一般该服务只需要返回请求着需要的参数即可，但是在实际项目中，我们需要封装更多的信息，比如状态码 code、相关信息 msg 等等，这一方面是在项目中可以有个统一的返回结构，整个项目组都适用，另一方面是方便结合全局异常处理信息，因为异常处理信息中一般我们需要把状态码和异常内容反馈给调用方。<br>
-这个统一的 json 结构这可以参考<a href="https://gitbook.cn/gitchat/column/5b3c9f35a3442272491a176a">第02课：Spring Boot 返回 JSON 数据及数据封装</a>中封装的统一 json 结构，本节内容我们简化一下，只保留状态码 code 和异常信息 msg即可。如下：</p>
+这个统一的 json 结构这可以参考<a href="https://gitbook.cn/gitchat/column/5b3c9f35a3442272491a176a">Spring Boot 返回 JSON 数据及数据封装</a>中封装的统一 json 结构，本节内容我们简化一下，只保留状态码 code 和异常信息 msg即可。如下：</p>
 <pre><code class="language-java">public class JsonResult {
     /**
      * 异常码
@@ -1519,7 +1526,8 @@ public class ExceptionController {
 <h2 id="4-总结-4">4. 总结</h2>
 <p>本节课程主要讲解了Spring Boot 的全局异常处理，包括异常信息的封装、异常信息的捕获和处理，以及在实际项目中，我们用到的自定义异常枚举类和业务异常的捕获与处理，在项目中运用的非常广泛，基本上每个项目中都需要做全局异常处理。</p>
 <p>课程源代码下载地址：<a href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第09课spring-boot中的切面aop处理">第09课：Spring Boot中的切面AOP处理</h1>
+<p><a name="切面AOP处理"></a></p>
+<h1 id="spring-boot中的切面aop处理">Spring Boot中的切面AOP处理</h1>
 <h2 id="1-什么是aop">1. 什么是AOP</h2>
 <p>AOP：Aspect Oriented Programming 的缩写，意为：面向切面编程。面向切面编程的目标就是分离关注点。什么是关注点呢？就是关注点，就是你要做的事情。假如你是一位公子哥，没啥人生目标，每天衣来伸手，饭来张口，整天只知道一件事：玩（这就是你的关注点，你只要做这一件事）！但是有个问题，你在玩之前，你还需要起床、穿衣服、穿鞋子、叠被子、做早饭等等等等，但是这些事情你不想关注，也不用关注，你只想想玩，那么怎么办呢？</p>
 <p>对！这些事情通通交给下人去干。你有一个专门的仆人 A 帮你穿衣服，仆人 B 帮你穿鞋子，仆人 C 帮你叠好被子，仆人 D 帮你做饭，然后你就开始吃饭、去玩（这就是你一天的正事），你干完你的正事之后，回来，然后一系列仆人又开始帮你干这个干那个，然后一天就结束了！</p>
@@ -1717,7 +1725,8 @@ public class LogAspectHandler {
 <h2 id="3-总结">3. 总结</h2>
 <p>本节课针对 Spring Boot 中的切面 AOP 做了详细的讲解，主要介绍了 Spring Boot 中 AOP 的引入，常用注解的使用，参数的使用，以及常用 api 的介绍。AOP 在实际项目中很有用，对切面方法执行前后都可以根据具体的业务，做相应的预处理或者增强处理，同时也可以用作异常捕获处理，可以根据具体业务场景，合理去使用 AOP。</p>
 <p>课程源代码下载地址：<a href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第10课spring-boot集成mybatis">第10课：Spring Boot集成MyBatis</h1>
+<p><a name="集成MyBatis"></a></p>
+<h1 id="spring-boot集成mybatis">Spring Boot集成MyBatis</h1>
 <h2 id="1-mybatis-介绍">1. MyBatis 介绍</h2>
 <p>大家都知道，MyBatis 框架是一个持久层框架，是 Apache 下的顶级项目。Mybatis 可以让开发者的主要精力放在 sql 上，通过 Mybatis 提供的映射方式，自由灵活的生成满足需要的 sql 语句。使用简单的 XML 或注解来配置和映射原生信息，将接口和 Java 的 POJOs 映射成数据库中的记录，在国内可谓是占据了半壁江山。本节课程主要通过两种方式来对 Spring Boot 集成 MyBatis 做一讲解。重点讲解一下基于注解的方式。因为实际项目中使用注解的方式更多一点，更简洁一点，省去了很多 xml 配置（这不是绝对的，有些项目组中可能也在使用 xml 的方式）。</p>
 <h2 id="2-mybatis-的配置">2. MyBatis 的配置</h2>
@@ -1854,7 +1863,8 @@ User getUser(Long id);
 <h2 id="5-总结-4">5. 总结</h2>
 <p>本节课主要系统的讲解了 Spring Boot 集成 MyBatis 的过程，分为基于 xml 形式和基于注解的形式来讲解，通过实际配置手把手讲解了 Spring Boot 中 MyBatis 的使用方式，并针对注解方式，讲解了常见的问题已经解决方式，有很强的实战意义。在实际项目中，建议根据实际情况来确定使用哪种方式，一般 xml 和注解都在用。</p>
 <p>课程源代码下载地址：<a href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第11课spring-boot事务配置管理">第11课：Spring Boot事务配置管理</h1>
+<p><a name="事务配置管理"></a></p>
+<h1 id="spring-boot事务配置管理">Spring Boot事务配置管理</h1>
 <h2 id="1-事务相关">1. 事务相关</h2>
 <p>场景：我们在开发企业应用时，由于数据操作在顺序执行的过程中，线上可能有各种无法预知的问题，任何一步操作都有可能发生异常，异常则会导致后续的操作无法完成。此时由于业务逻辑并未正确的完成，所以在之前操作过数据库的动作并不可靠，需要在这种情况下进行数据的回滚。</p>
 <p>事务的作用就是为了保证用户的每一个操作都是可靠的，事务中的每一步操作都必须成功执行，只要有发生异常就回退到事务开始未进行操作的状态。这很好理解，转账、购票等等，必须整个事件流程全部执行完才能人为该事件执行成功，不能转钱转到一半，系统死了，转账人钱没了，收款人钱还没到。</p>
@@ -2001,7 +2011,8 @@ public class UserServiceImpl implements UserService {
 <h2 id="4-总结-5">4. 总结</h2>
 <p>本章主要总结了 Spring Boot 中如何使用事务，只要使用 <code>@Transactional</code> 注解即可使用，非常简单方便。除此之外，重点总结了三个在实际项目中可能遇到的坑点，这非常有意义，因为事务这东西不出问题还好，出了问题比较难以排查，所以总结的这三点注意事项，希望能帮助到开发中的朋友。</p>
 <p>课程源代码下载地址：<a href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第12课spring-boot中使用监听器">第12课：Spring Boot中使用监听器</h1>
+<p><a name="使用监听器"></a></p>
+<h1 id="spring-boot中使用监听器">Spring Boot中使用监听器</h1>
 <h2 id="1-监听器介绍">1. 监听器介绍</h2>
 <p>什么是 web 监听器？web 监听器是一种 Servlet 中特殊的类，它们能帮助开发者监听 web 中特定的事件，比如 ServletContext, HttpSession, ServletRequest 的创建和销毁；变量的创建、销毁和修改等。可以在某些动作前后增加处理，实现监控。</p>
 <h2 id="2-spring-boot中监听器的使用">2. Spring Boot中监听器的使用</h2>
@@ -2243,7 +2254,8 @@ public String getRequestInfo(HttpServletRequest request) {
 <h2 id="4-总结-6">4. 总结</h2>
 <p>本课系统的介绍了监听器原理，以及在 Spring Boot 中如何使用监听器，列举了监听器的三个常用的案例，有很好的实战意义。最后讲解了项目中如何自定义事件和监听器，并结合微服务中常见的场景，给出具体的代码模型，均能运用到实际项目中去，希望读者认真消化。</p>
 <p>课程源代码下载地址：<a href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第13课spring-boot中使用拦截器">第13课：Spring Boot中使用拦截器</h1>
+<p><a name="使用拦截器"></a></p>
+<h1 id="spring-boot中使用拦截器">Spring Boot中使用拦截器</h1>
 <p>拦截器的原理很简单，是 AOP 的一种实现，专门拦截对动态资源的后台请求，即拦截对控制层的请求。使用场景比较多的是判断用户是否有权限请求后台，更拔高一层的使用场景也有，比如拦截器可以结合 websocket 一起使用，用来拦截 websocket 请求，然后做相应的处理等等。拦截器不会拦截静态资源，Spring Boot 的默认静态目录为 resources/static，该目录下的静态页面、js、css、图片等等，不会被拦截（也要看如何实现，有些情况也会拦截，我在下文会指出）。</p>
 <h2 id="1-拦截器的快速使用">1. 拦截器的快速使用</h2>
 <p>使用拦截器很简单，只需要两步即可：定义拦截器和配置拦截器。在配置拦截器中，Spring Boot 2.0 以后的版本和之前的版本有所不同，我会重点讲解一下这里可能出现的坑。</p>
@@ -2400,7 +2412,8 @@ public boolean preHandle(HttpServletRequest request, HttpServletResponse respons
 <h2 id="3-总结-2">3. 总结</h2>
 <p>本节主要介绍了 Spring Boot 中拦截器的使用，从拦截器的创建、配置，到拦截器对静态资源的影响，都做了详细的分析。Spring Boot 2.0 之后拦截器的配置支持两种方式，可以根据实际情况选择不同的配置方式。最后结合实际中的使用，举了两个常用的场景，希望读者能够认真消化，掌握拦截器的使用。</p>
 <p>课程源代码下载地址：<a href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第14课spring-boot-中集成redis">第14课：Spring Boot 中集成Redis</h1>
+<p><a name="集成Redis"></a></p>
+<h1 id="spring-boot-中集成redis">Spring Boot 中集成Redis</h1>
 <h2 id="1-redis-介绍">1. Redis 介绍</h2>
 <p>Redis 是一种非关系型数据库（NoSQL），NoSQL 是以 key-value 的形式存储的，和传统的关系型数据库不一样，不一定遵循传统数据库的一些基本要求，比如说 SQL 标准，ACID 属性，表结构等等，这类数据库主要有以下特点：非关系型的、分布式的、开源的、水平可扩展的。<br>
 NoSQL 使用场景有：对数据高并发读写、对海量数据的高效率存储和访问、对数据的高可扩展性和高可用性等等。<br>
@@ -2660,7 +2673,8 @@ public class Course14ApplicationTests {
 <h2 id="4-总结-7">4. 总结</h2>
 <p>本节主要介绍了 redis 的使用场景、安装过程，以及 Spring Boot 中集成 redis 的详细步骤。在实际项目中，通常都用 redis 作为缓存，在查询数据库的时候，会先从 redis 中查找，如果有信息，则从 redis 中取；如果没有，则从数据库中查，并且同步到 redis 中，下次 redis 中就有了。更新和删除也是如此，都需要同步到 redis。redis 在高并发场景下运用的很多。</p>
 <p>课程源代码下载地址：<a href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第15课-spring-boot中集成activemq">第15课： Spring Boot中集成ActiveMQ</h1>
+<p><a name="集成ActiveMQ"></a></p>
+<h1 id="spring-boot中集成activemq">Spring Boot中集成ActiveMQ</h1>
 <h2 id="1-jms-和-activemq-介绍">1. JMS 和 ActiveMQ 介绍</h2>
 <h3 id="11-jms-是啥">1.1 JMS 是啥</h3>
 <p>百度百科的解释：</p>
@@ -2888,7 +2902,8 @@ public class TopicConsumer1 {
 <h2 id="4-总结-8">4. 总结</h2>
 <p>本章主要介绍了 jms 和 activemq 的相关概念、activemq 的安装与启动。详细分析了 Spring Boot 中点对点消息和发布/订阅消息两种方式的配置、消息生产和消费方式。ActiveMQ 是能力强劲的开源消息总线，在异步消息的处理上很有用，希望大家好好消化一下。</p>
 <p>课程源代码下载地址：<a href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第16课spring-boot中集成-shiro">第16课：Spring Boot中集成 Shiro</h1>
+<p><a name="集成Shiro"></a></p>
+<h1 id="spring-boot中集成-shiro">Spring Boot中集成 Shiro</h1>
 <p>Shiro 是一个强大、简单易用的 Java 安全框架，主要用来更便捷的认证，授权，加密，会话管等等，可为任何应用提供安全保障。本课程主要来介绍 Shiro 的认证和授权功能。</p>
 <h2 id="1-shiro-三大核心组件">1. Shiro 三大核心组件</h2>
 <p>Shiro 有三大核心的组件：<code>Subject</code>、<code>SecurityManager</code> 和 <code>Realm</code>。先来看一下它们之间的关系。</p>
@@ -3313,7 +3328,8 @@ public class UserController {
 <h2 id="3-总结-3">3. 总结</h2>
 <p>本节主要介绍了 Shiro 安全框架与 Spring Boot 的整合。先介绍了 Shiro 的三大核心组件已经它们的作用；然后介绍了 Shiro 的身份认证、角色认证和权限认证；最后结合代码，详细介绍了 Spring Boot 中是如何整合 Shiro 的，并设计了一套测试流程，逐步分析 Shiro 的工作流程和原理，让读者更直观地体会出 Shiro 的整套工作流程。Shiro 使用的很广泛，希望读者将其掌握，并能运用到实际项目中。</p>
 <p>课程源代码下载地址：<a href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第17课spring-boot中集成lucence">第17课：Spring Boot中集成Lucence</h1>
+<p><a name="集成Lucence"></a></p>
+<h1 id="spring-boot中集成lucence">Spring Boot中集成Lucence</h1>
 <h2 id="1-lucence-和全文检索">1. Lucence 和全文检索</h2>
 <p>Lucene 是什么？看一下百度百科：</p>
 <blockquote>
@@ -3767,7 +3783,8 @@ public class IndexController {
 <h2 id="3-总结-4">3. 总结</h2>
 <p>本节课首先详细的分析了全文检索的理论规则，然后结合 Lucene，系统的讲述了在 Spring Boot 的集成步骤，首先快速带领大家从直观上感受 Lucene 如何建立索引已经如果检索，其次通过中文检索的具体实例，展示了 Lucene 在全文检索中的广泛应用。Lucene 不难，主要就是步骤比较多，代码不用死记硬背，拿到项目中根据实际情况做对应的修改即可。</p>
 <p>课程源代码下载地址：<a href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第18课spring-boot搭建实际项目开发中的架构">第18课：Spring Boot搭建实际项目开发中的架构</h1>
+<p><a name="搭建实际项目开发中的架构"></a></p>
+<h1 id="spring-boot搭建实际项目开发中的架构">Spring Boot搭建实际项目开发中的架构</h1>
 <p>前面的课程中，我主要给大家讲解了 Spring Boot 中常用的一些技术点，这些技术点在实际项目中可能不会全部用得到，因为不同的项目可能使用的技术不同，但是希望大家都能掌握如何使用，并能自己根据实际项目中的需求进行相应的扩展。</p>
 <p>不知道大家了不了解单片机，单片机里有个最小系统，这个最小系统搭建好了之后，就可以在此基础上进行人为的扩展。这节课我们要做的就是搭建一个 “Spring Boot 最小系统架构” 。拿着这个架构，可以在此基础上根据实际需求做相应的扩展。</p>
 <p>从零开始搭建一个环境，主要要考虑几点：统一封装的数据结构、可调式的接口、json的处理、模板引擎的使用（本文不写该项，因为现在大部分项目都前后端分离了，但是考虑到也还有非前后端分离的项目，所以我在源代码里也加上了 thymeleaf）、持久层的集成、拦截器（这个也是可选的）和全局异常处理。一般包括这些东西的话，基本上一个 Spring Boot 项目环境就差不多了，然后就是根据具体情况来扩展了。</p>
