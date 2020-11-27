@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zerononet.github.io</id>
     <title>ZERONONET&apos;s blog</title>
-    <updated>2020-11-27T04:42:46.367Z</updated>
+    <updated>2020-11-27T07:05:38.571Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zerononet.github.io"/>
     <link rel="self" href="https://zerononet.github.io/atom.xml"/>
@@ -4089,7 +4089,7 @@ JDK8
         <link href="https://zerononet.github.io/post/zhi-shi-dian-bei-cha-shou-ce/">
         </link>
         <updated>2020-11-17T02:23:54.000Z</updated>
-        <content type="html"><![CDATA[<center> <h1><strong> 目录</strong> </h1> </center>
+        <content type="html"><![CDATA[<center> <h1><strong> 目录 </strong> </h1> </center>
 <center><strong><h2>设计模式之七大原则</h2></strong></center>
 <center><a href="#开闭原则">开闭原则</a></center>
 <center><a href="#里氏替换原则">里氏替换原则</a></center>
@@ -4148,6 +4148,285 @@ JDK8
 <center><a href="#跳跃表">跳跃表</a></center>
 <center><strong><h2>数据结构与算法</h2></strong></center>
 <center><a href="#红黑树(自平衡二叉查找树)">红黑树(自平衡二叉查找树)</a></center>
+<p><a name="JAVA并发编程"></a></p>
+<h2 id="java并发编程">JAVA并发编程</h2>
+<p><a name="volatile"></a></p>
+<h3 id="1-volatile">1、volatile</h3>
+<ul>
+<li>强制将变量修改后的值从工作内存写入主内存，保证线程变量的可见性及有序性。但是有序又涉及到了复杂的指令重排、内存屏障等，未做了解。<br></li>
+<li>volatile并不能保证原子性，原子性问题得依赖synchronized、ReentrantLock等加锁机制来解决。</li>
+<li>另外，多个线程同时修改同一个变量，可能导致线程安全问题，数据混乱问题(修改错乱)，这也是不能保证原子性的原因。</li>
+<li><strong>问题一(总线风暴)</strong>：每个处理器通过嗅探在总线上传播的数据来验证自己缓存的数据是否过期。而<strong>嗅探的缺点</strong>是由于Volatile的MESI缓存一直性协议，需要不断的从主内存嗅探和CAS循环，无效的交互会达到总线的峰值。</li>
+<li><strong>问题二(禁止指令重排)</strong>：涉及很多计算机底层，告辞</li>
+<li><strong>指令重排(一般指令重排分为三种)</strong>：<br>&lt;a&gt;编译器优化的重排序。编译器在不改变单线程程序语义的前提下，可以重新安排语句的执行顺序;<br>&lt;b&gt;指令级并行的重排序。现代处理器采用了指令级并行技术来将多条指令重叠执行。如果不存在数据依赖性，处理器可以改变语句对应机器指令的执行顺序;<br>&lt;c&gt;内存系统的重排序。由于处理器使用缓存和读/写缓冲区，这使得加载和存储操作看上去可能是在乱序执行的。</li>
+</ul>
+<p><a name="JAVA8如何优化CAS性能"></a></p>
+<h3 id="2-java8如何优化cas性能">2、JAVA8如何优化CAS性能</h3>
+<ul>
+<li>全称compare and set——<strong>先比较再设置</strong></li>
+<li>在并发操作变量时，cas提供了一系列的Atomic原子类来提供操作。</li>
+<li><strong>优化的点</strong>：可以代替synchronized变量的高并发修改赋值，也就是不需要重复的等待锁-&gt;加锁-&gt;修改赋值-&gt;释放锁的类似串行化的步骤。</li>
+<li><strong>原子性</strong>：操作完整执行完并且不会被别人打断。</li>
+<li><strong>底层原理</strong>：首先获取变量值，询问比较是否发生变化，如果变化则重新获取值，如果未变化则赋值，最后完成这一CAS原子操作。由于加了先比较后赋值的处理机制，可以去掉加锁的机制，所以所有线程可以同步进行这一CAS原子操作。</li>
+<li><strong>缺点</strong>：由于获取值的过程中会有大量的获取动作(会有大量的比较失败的情况)，导致高并发的时候线程空循环，自旋，性能效率不是很理想。</li>
+<li><strong>针对缺点的优化</strong>：JAVA8中推出了新的类-LongAdder，再采取分段CAS以及自动分段迁移的方式大幅提升多线程高并发的性能问题。</li>
+<li><strong>分段CAS机制</strong>：<font color="red">找了很多别人写的文章，依然只看到同样的针对base值的累加时，使用cell数组将线程分组，并且每组各个只针对对应组的cell一个元素做累加，并且最后将所有cell汇总到base减少线程自旋等待。这里就有个问题，假如在使用CAS的时候并不是涉及自增或者自减的时候，是否能用，或者在能用的情况下是如何实现的？</font></li>
+</ul>
+<p><a name="各种锁的应用场景"></a></p>
+<h3 id="3-各种锁的应用场景">3、各种锁的应用场景</h3>
+<ul>
+<li><strong>互斥锁</strong>：互斥锁加锁失败后会释放cpu给其他线程。<br>
+<br>互斥锁是一种独占锁，在A线程独占锁之后B线程加锁失败的情况下，并且B释放掉cpu后，就会阻塞后续的代码。这种锁是由<strong>操作系统底层内核实现</strong>的，当加锁失败后线程被设置为睡眠，后续由系统来在合适的时机唤醒线程，并继续加锁执行。<br>
+<br><strong>开销成本</strong>：有两次的上下文切换的成本。而这上下文切换的时间由于操作系统虚拟内存的原因会比较耗时，在代码执行时间短的情况下上下文切换的时间会比代码执行的时间更久，拖累线程速度。<br>
+<br><strong>线程的上下文切换的是什么？</strong>当两个线程是属于同一个进程，因为虚拟内存是共享的，所以在切换时，虚拟内存这些资源就保持不动，只需要切换线程的私有数据、寄存器等不共享的数据。</li>
+<li><strong>自旋锁</strong>：加锁失败后线程会忙等待，直到拿到锁。<br>
+<br>自旋锁是通过cpu提供的<strong>CAS函数(Compare and Swap)</strong>在[用户态]完成加锁和解锁的操作，不会主动产生上下文切换,比互斥锁开销会小。<br>一般加锁分为2个步骤：<br>1.查看锁的状态，如果是空闲的则执行第二步;<br>2.将锁设置为线程持有;<br>CAS函数将这2个步骤合并为一条硬件级指令，形成原子指令，这样就保证了要么执行完，要么完全没执行。<br>
+<br><strong>开销成本</strong>：在其他线程等待锁的情况下，会利用cpu周期不断自旋，如果在锁代码执行周期较长的情况下，会较大消耗cpu资源。<br>
+<br><h3> CFC小结： </h3>    以上2个锁构成了最基本的锁的方式。简单的可以从需要加锁的代码执行时长来判断使用哪种锁。</li>
+<li><strong>读写锁</strong>：分为公平性与非公平性，或读写的优先级锁。</li>
+<li><strong>公平锁</strong>即按照队列将读锁与写锁顺序执行。</li>
+<li><strong>非公平锁</strong>会造成锁之间的竞争，不管是读锁优先还是写锁优先都会造成另一个锁饥饿甚至饿死的情况。</li>
+<li><strong>悲观锁</strong>：以上即悲观。</li>
+<li><strong>乐观锁</strong>：其实是没有锁的状态也称无锁编程。主要是在先修改后比较原先资源是否被修改过，如果被修改过则放弃修改重新读取修改。重试的成本高，所以只适用于<strong>冲突少</strong>的场景，类似于git，svn。</li>
+<li><strong>Synchronized的实现</strong>：</li>
+</ul>
+<p><a name="JVM底层"></a></p>
+<h2 id="jvm底层">JVM底层</h2>
+<p><a name="垃圾回收"></a></p>
+<h3 id="垃圾回收">垃圾回收</h3>
+<p><strong>GC 的几种主要的收集方法</strong>：标记清除、标记整理、复制算法</p>
+<ul>
+<li><strong>垃圾的识别</strong>：<br>1. 引用计数器(无法解决循环引用问题)——当A实例引用B实例，B实例引用A实例时，对象没有其他引用后依然无法被识别并回收。<br>2.可达性算法：以GC ROOT为根不断寻找下一个节点，任何不在引用链上的都会被标记为垃圾。但是在标记前会执行一次(有且只有一次，如果已执行过则不执行)finalize方法，然后重新判断是否在引用链上，如果仍然不在才能被标记。<br>3.GC ROOT：<br>&lt;a&gt;虚拟机栈（栈帧中的本地变量表）中引用的对象。<br>&lt;b&gt;方法区中类静态属性引用的对象。<br>&lt;c&gt;方法区中常量引用的对象。<br>&lt;d&gt;本地方法栈中 JNI（即一般说的 Native 方法）引用的对象。</li>
+<li><strong>标记清除算法</strong>：根据可达性算法标记出相应的可回收对象，直接回收。</li>
+<li><strong>复制算法</strong>：首先要把堆分成2块区域A跟B，将清除后的内存空间A复制到B空间中并紧密排列，清理堆A中所有对象，释放A空间。</li>
+<li><strong>标记整理算法</strong>：在标记清除算法的基础上将所有存活的对象都往一个方向移动，并清理掉另外一边所有区域。频繁移动存货对象导致效率低下。</li>
+<li><strong>分代收集算法</strong>：整合了以上所有算法，综合了优点，并最大程度避免他们的缺点。根据对象存活周期的不同将堆分成新生代和老生代（Java8以前还有个永久代）,默认比例为 1 : 2，新生代又分为 Eden 区， from Survivor 区（简称S0），to Survivor 区(简称 S1),三者的比例为 8: 1 : 1，这样就可以根据新老生代的特点选择最合适的垃圾回收算法，我们把新生代发生的 GC 称为 Young GC（也叫 Minor GC）,老年代发生的 GC 称为 Old GC（也称为 Full GC）。<br>
+需要再次梳理分代收集算法</li>
+</ul>
+<p><a name="AQS(AbstractQueuedSynchronizer)抽象队列同步器"></a></p>
+<h3 id="aqsabstractqueuedsynchronizer抽象队列同步器">AQS(AbstractQueuedSynchronizer)抽象队列同步器</h3>
+<p>ReentrantLock可重入锁与ReentrantReadWriteLock可可重入读写锁底层都是基于AQS实现的。</p>
+<p><a name="ArrayList"></a></p>
+<h3 id="arraylist">ArrayList</h3>
+<p><strong>ArrayList与Vector的区别</strong>：<br>
+Vector所有方法都是同步的，在不需要多线程保证线程安全的情况下可以使用ArrayList减少不必要的大量同步操作。<br>
+<br><strong>ArrayList的扩容机制</strong>：<br>
+<br>自动扩容源码</p>
+<blockquote>
+<p>// 扩容一个<br>
+<br>private Object[] grow() {<br>
+<br>   	return grow(size + 1);<br>
+<br> }<br>
+<br>// 保证扩容到期望容量minCapacity及以上<br>
+<br>private Object[] grow(int minCapacity) {<br>
+<br>      return elementData = Arrays.copyOf(elementData,newCapacity(minCapacity));<br>
+<br>}<br>
+<br>// 根据期望容量minCapacity计算实际需要扩容的容量<br>
+<br>private int newCapacity(int minCapacity) {<br>
+<br>    // overflow-conscious code<br>
+<br>    int oldCapacity = elementData.length; // 得到旧容量<br>
+<br>    int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1); // 设置新容量为旧容量的1.5倍<br>
+<br>    if (newCapacity - minCapacity &lt;= 0) { // 如果新容量仍然小于期望容量<br>
+<br>    if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) // 如果是使用的默认容量<br>
+<br>        return Math.max(DEFAULT_CAPACITY, minCapacity); // 取默认容量和期望容量较大值返回<br>
+<br>    if (minCapacity &lt; 0) // overflow // 检查期望容量是否越界（int 的范围）<br>
+<br>        throw new OutOfMemoryError();<br>
+<br>        return minCapacity; // 返回期望容量<br>
+<br>  }<br>
+<br>  // 如果新容量大于期望容量，判断一下新容量是否越界<br>
+<br>  return (newCapacity - MAX_ARRAY_SIZE &lt;= 0)? newCapacity : hugeCapacity(minCapacity);<br>
+<br>}</p>
+</blockquote>
+<p>手动扩容源码</p>
+<blockquote>
+<p>public void ensureCapacity(int minCapacity) {<br>
+<br>  if (minCapacity &gt; elementData.length&amp;&amp; !(elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA&amp;&amp; minCapacity &lt;= DEFAULT_CAPACITY)) {<br>
+<br>       modCount++;<br>
+<br>       grow(minCapacity);<br>
+<br>    }<br>
+<br>  }</p>
+</blockquote>
+<p><strong>调用ADD方法执行流程</strong><br>
+<br>当使用无参构造的时候，在第一次调用add方法之后的执行流程<br>
+<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/arraylistgrowflow.png" alt="调用ADD方法执行流程" loading="lazy"></center><br>
+<br>这是第一次调用add方法的过程，当扩容值capacity为10之后</p>
+<ul>
+<li>继续添加第2个元素（先注意调用ensureCapacityInternal方法传递的参数为size+1=1+1=2）</li>
+<li>ensureExplicitCapacity方法中minCapacity为刚刚传递的2，所以第二个if判断（2-10=-8）不会成立，即newCapacity 不比 MAX_ARRAY_SIZE大，则不会进入 grow 方法。数组容量为10，add方法中 return true,size增为1。</li>
+<li>假设又添加3、4......10个元素(其中过程类似，但是不会执行grow扩容方法)</li>
+<li>当add第11个元素时候，会进入grow方法时，计算newCapacity为15，比minCapacity（为10+1=11）大，第一个if判断不成立。新容量没有大于数组最大size，不会进入hugeCapacity方法。数组容量扩为15，add方法中return true,size增为11。<br>
+<strong>关于对指定位置插入数据的方法add(int index,E element)</strong>如非必要不要使用。在指定位置插入时，假设该位置合法，首先会检测是否有足够的数组空间，然后将index及其之后的数据都向后移动一位，最后将新的元素插入到index的位置。<br>其中<strong>复杂程度</strong>为O(N)，频繁移动导致的复杂程度将更高，影响效率。</li>
+</ul>
+<p><a name="HashMap底层实现"></a></p>
+<h3 id="hashmap底层实现">HashMap底层实现</h3>
+<p><strong>java1.8之前</strong>：数组加链表组成的链表散列，通过key的扰动函数处理后得到hash值，通过(n-1)&amp;hash判断当前元素存放位置，如果当前位置存在元素，相当于已经有了这个key，如果key与hash都相同，直接覆盖当前位置的值。如果不相同就通过拉链法解决冲突。<br>
+<br><strong><a href="https://zerononet.github.io/post/hashmap-rao-dong-han-shu/">扰动函数</a></strong><br>
+<br><strong>存储结构</strong>：数组+链表+红黑树(1.8+)，链表长度大于8时转成链表转成红黑树。<br>
+<br><strong>链地址法</strong>：数组加链表的结合。每个数组上都有个链表结构，执行key的hashcode()方法得到hash值，再通过Hash算法的后两步运算(高位运算和取模运算)定位该键值对的存储位置，如果2个key定位到相同位置说明发生hash碰撞，碰撞概率取决与桶(node)的大小与Hash算法。所以为了减少碰撞会有扩容机制。<br>
+<br><strong>初始化</strong>：哈希桶数组(node[] table)初始大小为16。负载因子默认为0.75。<br>
+<br><strong>扩容机制</strong>：在默认情况下每次put操作都会比较当前容量与存放数量(size)，如果size大于16*0.75=12时，会进行扩容操作。<strong>扩容时会重新计算每个元素在数组中的位置然后再进行存储，十分消耗性能</strong>。<br>
+<br><strong>线程不安全</strong>：resize()的时候多线程情况下头插法会使得链路出现环形链表甚至数组下标超出。而1.8后使用的是尾插去优化仍然带来了其他问题，比如尾插时计算相同的存放位置，如果在A线程put完成后，B线程又正好计算在Aput前计算完成存放位置，就会把A线程put的值给覆盖，而不是判断是否碰撞，造成线程不安全。</p>
+<p><a name="ConcurrentHashMap底层实现"></a></p>
+<h3 id="concurrenthashmap">ConcurrentHashMap</h3>
+<p><a href="https://my.oschina.net/pingpangkuangmo/blog/817973#h2_12">以下总结转载自本链接</a><br>
+<br>1.8的ConcurrentHashMap摒弃了1.7的segment设计，而是在1.8HashMap的基础上实现了线程安全的版本，即也是采用数组+链表+红黑树的形式。数组可以扩容，链表可以转化为红黑树。</p>
+<p><a name="JAVA代理"></a></p>
+<h3 id="java代理">JAVA代理</h3>
+<p><a name="静态代理"></a></p>
+<h4 id="静态代理">静态代理</h4>
+<p>需要继承对应代理的相同接口来实现静态代理，当存在多个目标的情况下代理的数量就会增多。虽然静态代理生成的是.class字节码文件，性能好效率高，但是过多的目标下导致代码繁杂不易维护。</p>
+<p><a name="动态代理"></a></p>
+<h4 id="动态代理">动态代理</h4>
+<p>必须实现InvocationHandler接口，通过JAVA反射的方式动态的在去生成代理，虽然可以灵活使用，但是比较消耗性能。</p>
+<p><a name="CGLIB代理"></a></p>
+<h4 id="cglib代理">CGLIB代理</h4>
+<p>CGLIB代理无需实现接口，通过生成类字节码实现代理，比反射稍快，不存在性能问题，但是会继承目标对象，需要重写方法。所以目标对象不能是final类。</p>
+<p><a name="Spring框架"></a></p>
+<h2 id="spring框架">Spring框架</h2>
+<p><a name="SpringBoot"></a></p>
+<h3 id="什么是spring-boot-stater">什么是Spring Boot Stater</h3>
+<blockquote>
+<p>Spring Boot 是 Spring 开源组织下的子项目，是 Spring 组件一站式解决方案，主要是简化了使用 Spring 的难度，简省了繁重的配置，提供了各种启动器，开发者能快速上手。<br>而Spring Boot Starter就是其中的一个启动器，节省了Spring的繁琐配置，高效搭建环境并进行开发。</p>
+</blockquote>
+<p><a name="SpringBoot优点"></a></p>
+<h3 id="spring-boot的优点">Spring Boot的优点</h3>
+<ul>
+<li>减少开发，测试时间和努力。</li>
+<li>使用JavaConfig有助于避免使用XML。</li>
+<li>避免大量的Maven导入和各种版本冲突。</li>
+<li>提供意见发展方法。</li>
+<li>通过提供默认值快速开始开发。</li>
+<li>没有单独的Web服务器需要。这意味着你不再需要启动Tomcat，Glassfish或其他任何东西。</li>
+<li>需要更少的配置 因为没有web.xml文件。只需添加用@ Configuration注释的类，然后添加用@Bean注释的方法，Spring将自动加载对象并像以前一样对其进行管理。您甚至可以将@Autowired添加到bean方法中，以使Spring自动装入需要的依赖关系中。基于环境的配置 使用这些属性，您可以将您正在使用的环境传递到应用程序：-Dspring.profiles.active = {enviornment}。在加载主应用程序属性文件后，Spring将在（application{environment} .properties）中加载后续的应用程序属性文件。</li>
+</ul>
+<p><a name="SpringBoot的核心配置文件"></a></p>
+<h3 id="spring-boot的核心配置文件">Spring Boot的核心配置文件</h3>
+<ul>
+<li>Spring Boot 的核心配置文件是 application 和 bootstrap 配置文件。</li>
+<li>application 配置文件这个容易理解，主要用于 Spring Boot 项目的自动化配置。</li>
+<li>bootstrap 配置文件有以下几个应用场景。<br>
+<br>使用 Spring Cloud Config 配置中心时，这时需要在 bootstrap 配置文件中添加连接到配置中心的配置属性来加载外部配置中心的配置信息； 一些固定的不能被覆盖的属性；一些加密/解密的场景</li>
+</ul>
+<h4 id="配置文件的格式">配置文件的格式</h4>
+<p>v.properties 和 .yml，它们的区别主要是书写格式不同。</p>
+<p><a name="SpringBoot的核心注解"></a></p>
+<h3 id="spring-boot-的核心注解是哪个它主要由哪几个注解组成的">Spring Boot 的核心注解是哪个？它主要由哪几个注解组成的？</h3>
+<blockquote>
+<p>启动类上面的注解是@SpringBootApplication，它也是 Spring Boot 的核心注解 主要组合包含了以下 3 个注解：<br>
+<br>1.@SpringBootConfiguration：组合了 @Configuration 注解，实现配置文件的功能。<br>
+<br>2.@EnableAutoConfiguration：打开自动配置的功能，也可以关闭某个自动配置的选项，如关闭数据源自动配置功能： @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })。<br>
+<br>3.@ComponentScan：Spring组件扫描。</p>
+</blockquote>
+<p><a name="SpringBoot的运行方式"></a></p>
+<h3 id="spring-boot的运行方式">Spring Boot的运行方式</h3>
+<ol>
+<li>打包用命令或者放到容器中运行</li>
+<li>用 Maven/ Gradle 插件运行</li>
+<li>直接执行 main 方法运行(Spring Boot内置了Tomcat/Jetty等容器)</li>
+</ol>
+<p><a name="SpringBoot实现分页和排序"></a></p>
+<h3 id="spring-boot实现分页和排序">Spring Boot实现分页和排序</h3>
+<p>使用Spring Data-JPA可以实现将可分页的org.springframework.data.domain.Pageable传递给存储库方法。</p>
+<p><a name="SpringBoot应用程序的安全性"></a></p>
+<h3 id="spring-boot应用程序的安全性">Spring Boot应用程序的安全性</h3>
+<p>为了实现Spring Boot的安全性，我们使用 spring-boot-starter-security依赖项，并且必须添加安全配置。它只需要很少的代码。配置类将必须扩展WebSecurityConfigurerAdapter并覆盖其方法。</p>
+<p><a name="SpringBoot中的监视器"></a></p>
+<h3 id="spring-boot中的监视器">Spring Boot中的监视器</h3>
+<p>Spring boot actuator是spring启动框架中的重要功能之一。Spring boot监视器可帮助您访问生产环境中正在运行的应用程序的当前状态。有几个指标必须在生产环境中进行检查和监控。即使一些外部应用程序可能正在使用这些服务来向相关人员触发警报消息。监视器模块公开了一组可直接作为HTTP URL访问的REST端点来检查状态。</p>
+<p><a name="SpringBoot实现Swagger"></a></p>
+<h3 id="spring-boot实现swagger">Spring Boot实现Swagger</h3>
+<p>Swagger广泛用于可视化API，使用Swagger UI为前端开发人员提供在线沙箱。Swagger是用于生成RESTful Web服务的可视化表示的工具，规范和完整框架实现。它使文档能够以与服务器相同的速度更新。当通过Swagger正确定义时，消费者可以使用最少量的实现逻辑来理解远程服务并与其进行交互。因此，Swagger消除了调用服务时的猜测。</p>
+<p><a name="SpringBoot实现异常处理"></a></p>
+<h3 id="spring-boot实现异常处理">Spring Boot实现异常处理</h3>
+<p>Spring提供了一种使用ControllerAdvice处理异常的非常有用的方法。 我们通过实现一个ControlerAdvice类，来处理控制器类抛出的所有异常。</p>
+<p><a name="RequestMapping和GetMapping的不同之处"></a></p>
+<h3 id="requestmapping-和-getmapping-的不同之处">RequestMapping 和 GetMapping 的不同之处</h3>
+<p>RequestMapping 具有类属性的，可以进行 GET,POST,PUT 或者其它的注释中具有的请求方法。<br>
+GetMapping 是 GET 请求方法中的一个特例。它只是 ResquestMapping 的一个延伸，目的是为了提高清晰度。</p>
+<p><a name="Spring-IOC"></a></p>
+<h3 id="spring-ioc">Spring IOC</h3>
+<ul>
+<li><strong>IoC - Inversion of Control, 控制反转</strong>：控制反转就是把创建和管理 bean 的过程转移给了第三方。而这个第三方，就是 Spring IoC Container，对于 IoC 来说，最重要的就是容器。</li>
+<li><strong>IOC其实是一个编程思想，具体实现是DI 依赖注入</strong></li>
+<li><strong>为什么需要使用IOC</strong>：解耦。</li>
+<li><strong>使用</strong>：通过xml配置bean属性，然后 ApplicationContext context = new ClassPathXmlApplicationContext(&quot;service.xml&quot;);通过context对象取得xml中配置的bean，并会自动将配置的属性对应值赋上。</li>
+<li><strong>对象在容器中是否单例</strong>：是</li>
+<li><strong>容器的对象是什么时候创建的</strong>：每次启动容器的时候就已经创建好其中的对象了。</li>
+</ul>
+<p><a name="Spring-AOP"></a></p>
+<h3 id="spring-aop">Spring AOP</h3>
+<p>众所周知Aspect Oriented Program 面向切面编程，将一整块需要实现的代码切分开来，区分核心业务，业务周边的系统功能。分开定义并实现，最后通过springAOP模块来将这些功能编织在一起形成一个完整的实现功能。<br>
+<br>个人认为一定程度上提高了代码复用性，增加了可读性和可维护性。<br>
+<br><strong>术语</strong></p>
+<ul>
+<li>切入点（Pointcut）<br>
+在哪些类，哪些方法上切入（where）</li>
+<li>通知（Advice）<br>
+在方法执行的什么实际（when:方法前/方法后/方法前后）做什么（what:增强的功能）</li>
+<li>切面（Aspect）<br>
+切面 = 切入点 + 通知，通俗点就是：在什么时机，什么地方，做什么增强！</li>
+<li>织入（Weaving）<br>
+把切面加入到对象，并创建出代理对象的过程。（由 Spring 来完成）</li>
+</ul>
+<p><strong><font color="red">CFC总结：</font></strong>个人觉得在整体的AOP配置过程中，主要需要注意2个点：<br>1.切点的定义，需要同时规范同类型的织入类的类命名，再使用尽可能准确的正则表达式对切点作出限制。<br>2.连接点的选择，具体是以类为连接点还是某个方法为连接点，需要根据实际情况针对某个切面作出规范。<br>以上都是针对协同开发总结的注意点。<br>
+<br><strong>关键的点</strong>：Spring AOP 默认使用标准的 JDK 动态代理(dynamic proxy)技术来实现 AOP 代理, 通过它, 我们可以为任意的接口实现代理。如果需要为一个类实现代理, 那么可以使用 CGLIB 代理。 当一个业务逻辑对象没有实现接口时, 那么Spring AOP 就默认使用 CGLIB 来作为 AOP 代理了. 即如果我们需要为一个方法织入 advice, 但是这个方法不是一个接口所提供的方法, 则此时 Spring AOP 会使用 CGLIB 来实现动态代理. 鉴于此, Spring AOP 建议基于接口编程, 对接口进行 AOP 而不是类。</p>
+<p><a name="Redis"></a></p>
+<h2 id="redis">Redis</h2>
+<p><a name="五大数据结构"></a></p>
+<h3 id="五大数据结构">五大数据结构</h3>
+<ul>
+<li>String</li>
+<li>Hash</li>
+<li>List</li>
+<li>Set</li>
+<li>SortedSet</li>
+</ul>
+<p><a name="缓存过期"></a></p>
+<h3 id="缓存过期">缓存过期</h3>
+<ul>
+<li>过于集中的缓存过期时间会导致短暂卡顿现象——<strong>缓存雪崩</strong>。<br>解决：将失效时间加上随机值，分散过期。</li>
+</ul>
+<p><a name="持久化"></a></p>
+<h3 id="持久化">持久化</h3>
+<ul>
+<li><strong>RDB做镜像全量持久化，AOF做增量持久化</strong>。全量需要时间长，容易丢失大量数据，需要AOF配合。恢复的时候也是一样，先全量恢复，然后增量恢复到重启前状态。<br>突然断电的情况数据丢失取决于AOF日志于sync配置，但是往往每条指令都sync一下到磁盘是不现实的，一般使用定时，一秒一次，最多丢失一秒的数据。</li>
+<li><strong>RDB原理</strong>：fork AND cow——fork值redis通过创建子进程进行rdb操作；cow指的是copy on write，父子进程共享数据段，父进程继续提供读写服务，写脏的页面数据会逐渐和子进程分离开。</li>
+</ul>
+<p><a name="JAVA8如何优化CAS性能"></a></p>
+<h3 id="同步机制">同步机制</h3>
+<ul>
+<li><strong>可以主从同步或从从同步</strong>。第一次同步时，主节点做一次bgsave，并同时将后续修改操作记录到内存buffer，待完成后将RDB文件全量同步到复制节点，复制节点接受完成后将RDB镜像加载到内存。加载完成后，再通知主节点将期间修改的操作记录同步到复制节点进行重放就完成了同步过程。后续的增量数据通过AOF日志同步即可，有点类似数据库的binlog。</li>
+</ul>
+<p><a name="集群与高可用"></a></p>
+<h3 id="集群与高可用">集群与高可用</h3>
+<ul>
+<li><strong>Redis Sentinal</strong> 着眼于高可用，在master宕机时会自动将slave提升为master，继续提供服务。</li>
+<li><strong>Redis Cluster</strong> 着眼于扩展性，在单个redis内存不足时，使用Cluster进行分片存储。</li>
+</ul>
+<p><a name="分布式锁"></a></p>
+<h3 id="分布式锁">分布式锁</h3>
+<ul>
+<li>先拿setnx来争抢锁，抢到后使用<strong>expire</strong>来设置过期时间。</li>
+<li><strong>存在问题(同存在与Zookeeper、Mysql中)</strong>：当JAVA中执行的GC为STW stop the world的时候，可能会导致锁获得锁的线程A停顿等待GC完成，此时获取到的分布式锁过期，超时释放。其他线程B获取继续获取到锁，开始写数据。而A线程GC完成，继续执行写数据的操作。导致分布式锁不安全(相当于是2个线程同时获取到锁)。</li>
+<li><strong>不能执行过长时间的任务</strong>：加锁和释放锁之间的逻辑执行得太长，以至于超出了锁的超时限制，导致代码无法严格的串行执行。锁被提前释放，提前持有。<br>解决：稍微安全一点的方案是 将锁的 value 值设置为一个随机数，释放锁时先匹配随机数是否一致，然后再删除 key，这是为了 确保当前线程占有的锁不会被其他线程释放，除非这个锁是因为过期了而被服务器自动释放的。但是匹配 value 和删除 key 在 Redis 中并不是一个原子性的操作，也没有类似保证原子性的指令，所以可能需要使用像 Lua 这样的脚本来处理了，因为 Lua 脚本可以 保证多个指令的原子性执行。</li>
+</ul>
+<p><a name="跳跃表"></a></p>
+<h3 id="跳跃表">跳跃表</h3>
+<ul>
+<li><strong>多层链表</strong>：从最上层的链表(节点少)去查找并比对，一层一层往下定位直到找到位置。<br>优势：可以跳过很多节点，提高查找效率。</li>
+</ul>
+<p><a name="数据结构与算法"></a></p>
+<h2 id="数据结构与算法">数据结构与算法</h2>
+<p><a name="红黑树(自平衡二叉查找树)"></a></p>
+<h3 id="红黑树自平衡二叉查找树">红黑树(自平衡二叉查找树)</h3>
+<ul>
+<li><strong>二叉查找树（BST）特性</strong>：<br>1.左子树上所有结点的值均小于或等于它的根结点的值。<br>2.右子树上所有结点的值均大于或等于它的根结点的值。<br>3.左、右子树也分别为二叉排序树。</li>
+<li><strong>只读操作相同</strong></li>
+<li><strong>红黑树性质：</strong><br>1.节点是红色或黑色。<br>2.根是黑色。<br>3.所有叶子都是黑色（叶子是NIL节点）。<br>4.每个红色节点必须有两个黑色的子节点。（从每个叶子到根的所有路径上不能有两个连续的红色节点。）<br>5.从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点。</li>
+<li><strong>操作：1.变色；2.左旋转；3.右旋转；</strong></li>
+<li><strong>插入</strong></li>
+<li><strong>删除</strong></li>
+</ul>
 <h2 id="设计模式">设计模式</h2>
 <p><a href="https://www.cnblogs.com/pony1223/p/7608955.html">总结参考</a><br>
 <br><a href="https://juejin.im/post/6844903695667167240">掘金JAVA设计模式</a><br>
@@ -4478,285 +4757,6 @@ JDK8
 <li><strong>应用场景</strong><br>1.当一个对象的行为取决于它的状态，并且它必须在运行时根据状态改变它的行为时，就可以考虑使用状态模式。<br>2.一个操作中含有庞大的分支结构，并且这些分支决定于对象的状态时。</li>
 <li><strong>实际应用UML</strong><br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/zhuangtaiYY.png" alt="状态模式实际应用UML" loading="lazy"></center><br>
 <br><center>学生成绩的状态转换程序的结构图</center></li>
-</ul>
-<p><a name="JAVA并发编程"></a></p>
-<h2 id="java并发编程">JAVA并发编程</h2>
-<p><a name="volatile"></a></p>
-<h3 id="1-volatile">1、volatile</h3>
-<ul>
-<li>强制将变量修改后的值从工作内存写入主内存，保证线程变量的可见性及有序性。但是有序又涉及到了复杂的指令重排、内存屏障等，未做了解。<br></li>
-<li>volatile并不能保证原子性，原子性问题得依赖synchronized、ReentrantLock等加锁机制来解决。</li>
-<li>另外，多个线程同时修改同一个变量，可能导致线程安全问题，数据混乱问题(修改错乱)，这也是不能保证原子性的原因。</li>
-<li><strong>问题一(总线风暴)</strong>：每个处理器通过嗅探在总线上传播的数据来验证自己缓存的数据是否过期。而<strong>嗅探的缺点</strong>是由于Volatile的MESI缓存一直性协议，需要不断的从主内存嗅探和CAS循环，无效的交互会达到总线的峰值。</li>
-<li><strong>问题二(禁止指令重排)</strong>：涉及很多计算机底层，告辞</li>
-<li><strong>指令重排(一般指令重排分为三种)</strong>：<br>&lt;a&gt;编译器优化的重排序。编译器在不改变单线程程序语义的前提下，可以重新安排语句的执行顺序;<br>&lt;b&gt;指令级并行的重排序。现代处理器采用了指令级并行技术来将多条指令重叠执行。如果不存在数据依赖性，处理器可以改变语句对应机器指令的执行顺序;<br>&lt;c&gt;内存系统的重排序。由于处理器使用缓存和读/写缓冲区，这使得加载和存储操作看上去可能是在乱序执行的。</li>
-</ul>
-<p><a name="JAVA8如何优化CAS性能"></a></p>
-<h3 id="2-java8如何优化cas性能">2、JAVA8如何优化CAS性能</h3>
-<ul>
-<li>全称compare and set——<strong>先比较再设置</strong></li>
-<li>在并发操作变量时，cas提供了一系列的Atomic原子类来提供操作。</li>
-<li><strong>优化的点</strong>：可以代替synchronized变量的高并发修改赋值，也就是不需要重复的等待锁-&gt;加锁-&gt;修改赋值-&gt;释放锁的类似串行化的步骤。</li>
-<li><strong>原子性</strong>：操作完整执行完并且不会被别人打断。</li>
-<li><strong>底层原理</strong>：首先获取变量值，询问比较是否发生变化，如果变化则重新获取值，如果未变化则赋值，最后完成这一CAS原子操作。由于加了先比较后赋值的处理机制，可以去掉加锁的机制，所以所有线程可以同步进行这一CAS原子操作。</li>
-<li><strong>缺点</strong>：由于获取值的过程中会有大量的获取动作(会有大量的比较失败的情况)，导致高并发的时候线程空循环，自旋，性能效率不是很理想。</li>
-<li><strong>针对缺点的优化</strong>：JAVA8中推出了新的类-LongAdder，再采取分段CAS以及自动分段迁移的方式大幅提升多线程高并发的性能问题。</li>
-<li><strong>分段CAS机制</strong>：<font color="red">找了很多别人写的文章，依然只看到同样的针对base值的累加时，使用cell数组将线程分组，并且每组各个只针对对应组的cell一个元素做累加，并且最后将所有cell汇总到base减少线程自旋等待。这里就有个问题，假如在使用CAS的时候并不是涉及自增或者自减的时候，是否能用，或者在能用的情况下是如何实现的？</font></li>
-</ul>
-<p><a name="各种锁的应用场景"></a></p>
-<h3 id="3-各种锁的应用场景">3、各种锁的应用场景</h3>
-<ul>
-<li><strong>互斥锁</strong>：互斥锁加锁失败后会释放cpu给其他线程。<br>
-<br>互斥锁是一种独占锁，在A线程独占锁之后B线程加锁失败的情况下，并且B释放掉cpu后，就会阻塞后续的代码。这种锁是由<strong>操作系统底层内核实现</strong>的，当加锁失败后线程被设置为睡眠，后续由系统来在合适的时机唤醒线程，并继续加锁执行。<br>
-<br><strong>开销成本</strong>：有两次的上下文切换的成本。而这上下文切换的时间由于操作系统虚拟内存的原因会比较耗时，在代码执行时间短的情况下上下文切换的时间会比代码执行的时间更久，拖累线程速度。<br>
-<br><strong>线程的上下文切换的是什么？</strong>当两个线程是属于同一个进程，因为虚拟内存是共享的，所以在切换时，虚拟内存这些资源就保持不动，只需要切换线程的私有数据、寄存器等不共享的数据。</li>
-<li><strong>自旋锁</strong>：加锁失败后线程会忙等待，直到拿到锁。<br>
-<br>自旋锁是通过cpu提供的<strong>CAS函数(Compare and Swap)</strong>在[用户态]完成加锁和解锁的操作，不会主动产生上下文切换,比互斥锁开销会小。<br>一般加锁分为2个步骤：<br>1.查看锁的状态，如果是空闲的则执行第二步;<br>2.将锁设置为线程持有;<br>CAS函数将这2个步骤合并为一条硬件级指令，形成原子指令，这样就保证了要么执行完，要么完全没执行。<br>
-<br><strong>开销成本</strong>：在其他线程等待锁的情况下，会利用cpu周期不断自旋，如果在锁代码执行周期较长的情况下，会较大消耗cpu资源。<br>
-<br><h3> CFC小结： </h3>    以上2个锁构成了最基本的锁的方式。简单的可以从需要加锁的代码执行时长来判断使用哪种锁。</li>
-<li><strong>读写锁</strong>：分为公平性与非公平性，或读写的优先级锁。</li>
-<li><strong>公平锁</strong>即按照队列将读锁与写锁顺序执行。</li>
-<li><strong>非公平锁</strong>会造成锁之间的竞争，不管是读锁优先还是写锁优先都会造成另一个锁饥饿甚至饿死的情况。</li>
-<li><strong>悲观锁</strong>：以上即悲观。</li>
-<li><strong>乐观锁</strong>：其实是没有锁的状态也称无锁编程。主要是在先修改后比较原先资源是否被修改过，如果被修改过则放弃修改重新读取修改。重试的成本高，所以只适用于<strong>冲突少</strong>的场景，类似于git，svn。</li>
-<li><strong>Synchronized的实现</strong>：</li>
-</ul>
-<p><a name="JVM底层"></a></p>
-<h2 id="jvm底层">JVM底层</h2>
-<p><a name="垃圾回收"></a></p>
-<h3 id="垃圾回收">垃圾回收</h3>
-<p><strong>GC 的几种主要的收集方法</strong>：标记清除、标记整理、复制算法</p>
-<ul>
-<li><strong>垃圾的识别</strong>：<br>1. 引用计数器(无法解决循环引用问题)——当A实例引用B实例，B实例引用A实例时，对象没有其他引用后依然无法被识别并回收。<br>2.可达性算法：以GC ROOT为根不断寻找下一个节点，任何不在引用链上的都会被标记为垃圾。但是在标记前会执行一次(有且只有一次，如果已执行过则不执行)finalize方法，然后重新判断是否在引用链上，如果仍然不在才能被标记。<br>3.GC ROOT：<br>&lt;a&gt;虚拟机栈（栈帧中的本地变量表）中引用的对象。<br>&lt;b&gt;方法区中类静态属性引用的对象。<br>&lt;c&gt;方法区中常量引用的对象。<br>&lt;d&gt;本地方法栈中 JNI（即一般说的 Native 方法）引用的对象。</li>
-<li><strong>标记清除算法</strong>：根据可达性算法标记出相应的可回收对象，直接回收。</li>
-<li><strong>复制算法</strong>：首先要把堆分成2块区域A跟B，将清除后的内存空间A复制到B空间中并紧密排列，清理堆A中所有对象，释放A空间。</li>
-<li><strong>标记整理算法</strong>：在标记清除算法的基础上将所有存活的对象都往一个方向移动，并清理掉另外一边所有区域。频繁移动存货对象导致效率低下。</li>
-<li><strong>分代收集算法</strong>：整合了以上所有算法，综合了优点，并最大程度避免他们的缺点。根据对象存活周期的不同将堆分成新生代和老生代（Java8以前还有个永久代）,默认比例为 1 : 2，新生代又分为 Eden 区， from Survivor 区（简称S0），to Survivor 区(简称 S1),三者的比例为 8: 1 : 1，这样就可以根据新老生代的特点选择最合适的垃圾回收算法，我们把新生代发生的 GC 称为 Young GC（也叫 Minor GC）,老年代发生的 GC 称为 Old GC（也称为 Full GC）。<br>
-需要再次梳理分代收集算法</li>
-</ul>
-<p><a name="AQS(AbstractQueuedSynchronizer)抽象队列同步器"></a></p>
-<h3 id="aqsabstractqueuedsynchronizer抽象队列同步器">AQS(AbstractQueuedSynchronizer)抽象队列同步器</h3>
-<p>ReentrantLock可重入锁与ReentrantReadWriteLock可可重入读写锁底层都是基于AQS实现的。</p>
-<p><a name="ArrayList"></a></p>
-<h3 id="arraylist">ArrayList</h3>
-<p><strong>ArrayList与Vector的区别</strong>：<br>
-Vector所有方法都是同步的，在不需要多线程保证线程安全的情况下可以使用ArrayList减少不必要的大量同步操作。<br>
-<br><strong>ArrayList的扩容机制</strong>：<br>
-<br>自动扩容源码</p>
-<pre><code class="language-java">    // 扩容一个
-    private Object[] grow() {
-	    return grow(size + 1);
-    }
-    // 保证扩容到期望容量minCapacity及以上
-    private Object[] grow(int minCapacity) {
-        return elementData = Arrays.copyOf(elementData,newCapacity(minCapacity));
-    }
-    // 根据期望容量minCapacity计算实际需要扩容的容量
-    private int newCapacity(int minCapacity) {
-    // overflow-conscious code
-    int oldCapacity = elementData.length; // 得到旧容量
-    int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1); // 设置新容量为旧容量的1.5倍
-    if (newCapacity - minCapacity &lt;= 0) { // 如果新容量仍然小于期望容量
-        if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) // 如果是使用的默认容量
-            return Math.max(DEFAULT_CAPACITY, minCapacity); // 取默认容量和期望容量较大值返回
-        if (minCapacity &lt; 0) // overflow // 检查期望容量是否越界（int 的范围）
-            throw new OutOfMemoryError();
-        return minCapacity; // 返回期望容量
-    }
-// 如果新容量大于期望容量，判断一下新容量是否越界
-    return (newCapacity - MAX_ARRAY_SIZE &lt;= 0)? newCapacity : hugeCapacity(minCapacity);
-}
-</code></pre>
-<p>手动扩容源码</p>
-<pre><code class="language-java"> public void ensureCapacity(int minCapacity) {
-    if (minCapacity &gt; elementData.length
-    &amp;&amp; !(elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA
-    &amp;&amp; minCapacity &lt;= DEFAULT_CAPACITY)) {
-        modCount++;
-        grow(minCapacity);
-    }
-}
-</code></pre>
-<p><strong>调用ADD方法执行流程</strong><br>
-<br>当使用无参构造的时候，在第一次调用add方法之后的执行流程<br>
-<br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/arraylistgrowflow.png" alt="调用ADD方法执行流程" loading="lazy"></center><br>
-<br>这是第一次调用add方法的过程，当扩容值capacity为10之后</p>
-<ul>
-<li>继续添加第2个元素（先注意调用ensureCapacityInternal方法传递的参数为size+1=1+1=2）</li>
-<li>ensureExplicitCapacity方法中minCapacity为刚刚传递的2，所以第二个if判断（2-10=-8）不会成立，即newCapacity 不比 MAX_ARRAY_SIZE大，则不会进入 grow 方法。数组容量为10，add方法中 return true,size增为1。</li>
-<li>假设又添加3、4......10个元素(其中过程类似，但是不会执行grow扩容方法)</li>
-<li>当add第11个元素时候，会进入grow方法时，计算newCapacity为15，比minCapacity（为10+1=11）大，第一个if判断不成立。新容量没有大于数组最大size，不会进入hugeCapacity方法。数组容量扩为15，add方法中return true,size增为11。<br>
-<strong>关于对指定位置插入数据的方法add(int index,E element)</strong>如非必要不要使用。在指定位置插入时，假设该位置合法，首先会检测是否有足够的数组空间，然后将index及其之后的数据都向后移动一位，最后将新的元素插入到index的位置。<br>其中<strong>复杂程度</strong>为O(N)，频繁移动导致的复杂程度将更高，影响效率。</li>
-</ul>
-<p><a name="HashMap底层实现"></a></p>
-<h3 id="hashmap底层实现">HashMap底层实现</h3>
-<p><strong>java1.8之前</strong>：数组加链表组成的链表散列，通过key的扰动函数处理后得到hash值，通过(n-1)&amp;hash判断当前元素存放位置，如果当前位置存在元素，相当于已经有了这个key，如果key与hash都相同，直接覆盖当前位置的值。如果不相同就通过拉链法解决冲突。<br>
-<br><strong><a href="https://zerononet.github.io/post/hashmap-rao-dong-han-shu/">扰动函数</a></strong><br>
-<br><strong>存储结构</strong>：数组+链表+红黑树(1.8+)，链表长度大于8时转成链表转成红黑树。<br>
-<br><strong>链地址法</strong>：数组加链表的结合。每个数组上都有个链表结构，执行key的hashcode()方法得到hash值，再通过Hash算法的后两步运算(高位运算和取模运算)定位该键值对的存储位置，如果2个key定位到相同位置说明发生hash碰撞，碰撞概率取决与桶(node)的大小与Hash算法。所以为了减少碰撞会有扩容机制。<br>
-<br><strong>初始化</strong>：哈希桶数组(node[] table)初始大小为16。负载因子默认为0.75。<br>
-<br><strong>扩容机制</strong>：在默认情况下每次put操作都会比较当前容量与存放数量(size)，如果size大于16*0.75=12时，会进行扩容操作。<strong>扩容时会重新计算每个元素在数组中的位置然后再进行存储，十分消耗性能</strong>。<br>
-<br><strong>线程不安全</strong>：resize()的时候多线程情况下头插法会使得链路出现环形链表甚至数组下标超出。而1.8后使用的是尾插去优化仍然带来了其他问题，比如尾插时计算相同的存放位置，如果在A线程put完成后，B线程又正好计算在Aput前计算完成存放位置，就会把A线程put的值给覆盖，而不是判断是否碰撞，造成线程不安全。</p>
-<p><a name="ConcurrentHashMap底层实现"></a></p>
-<h3 id="concurrenthashmap">ConcurrentHashMap</h3>
-<p><a href="https://my.oschina.net/pingpangkuangmo/blog/817973#h2_12">以下总结转载自本链接</a><br>
-<br>1.8的ConcurrentHashMap摒弃了1.7的segment设计，而是在1.8HashMap的基础上实现了线程安全的版本，即也是采用数组+链表+红黑树的形式。数组可以扩容，链表可以转化为红黑树。</p>
-<p><a name="JAVA代理"></a></p>
-<h3 id="java代理">JAVA代理</h3>
-<p><a name="静态代理"></a></p>
-<h4 id="静态代理">静态代理</h4>
-<p>需要继承对应代理的相同接口来实现静态代理，当存在多个目标的情况下代理的数量就会增多。虽然静态代理生成的是.class字节码文件，性能好效率高，但是过多的目标下导致代码繁杂不易维护。</p>
-<p><a name="动态代理"></a></p>
-<h4 id="动态代理">动态代理</h4>
-<p>必须实现InvocationHandler接口，通过JAVA反射的方式动态的在去生成代理，虽然可以灵活使用，但是比较消耗性能。</p>
-<p><a name="CGLIB代理"></a></p>
-<h4 id="cglib代理">CGLIB代理</h4>
-<p>CGLIB代理无需实现接口，通过生成类字节码实现代理，比反射稍快，不存在性能问题，但是会继承目标对象，需要重写方法。所以目标对象不能是final类。</p>
-<p><a name="Spring框架"></a></p>
-<h2 id="spring框架">Spring框架</h2>
-<p><a name="SpringBoot"></a></p>
-<h3 id="什么是spring-boot-stater">什么是Spring Boot Stater</h3>
-<blockquote>
-<p>Spring Boot 是 Spring 开源组织下的子项目，是 Spring 组件一站式解决方案，主要是简化了使用 Spring 的难度，简省了繁重的配置，提供了各种启动器，开发者能快速上手。<br>而Spring Boot Starter就是其中的一个启动器，节省了Spring的繁琐配置，高效搭建环境并进行开发。</p>
-</blockquote>
-<p><a name="SpringBoot优点"></a></p>
-<h3 id="spring-boot的优点">Spring Boot的优点</h3>
-<ul>
-<li>减少开发，测试时间和努力。</li>
-<li>使用JavaConfig有助于避免使用XML。</li>
-<li>避免大量的Maven导入和各种版本冲突。</li>
-<li>提供意见发展方法。</li>
-<li>通过提供默认值快速开始开发。</li>
-<li>没有单独的Web服务器需要。这意味着你不再需要启动Tomcat，Glassfish或其他任何东西。</li>
-<li>需要更少的配置 因为没有web.xml文件。只需添加用@ Configuration注释的类，然后添加用@Bean注释的方法，Spring将自动加载对象并像以前一样对其进行管理。您甚至可以将@Autowired添加到bean方法中，以使Spring自动装入需要的依赖关系中。基于环境的配置 使用这些属性，您可以将您正在使用的环境传递到应用程序：-Dspring.profiles.active = {enviornment}。在加载主应用程序属性文件后，Spring将在（application{environment} .properties）中加载后续的应用程序属性文件。</li>
-</ul>
-<p><a name="SpringBoot的核心配置文件"></a></p>
-<h3 id="spring-boot的核心配置文件">Spring Boot的核心配置文件</h3>
-<ul>
-<li>Spring Boot 的核心配置文件是 application 和 bootstrap 配置文件。</li>
-<li>application 配置文件这个容易理解，主要用于 Spring Boot 项目的自动化配置。</li>
-<li>bootstrap 配置文件有以下几个应用场景。<br>
-<br>使用 Spring Cloud Config 配置中心时，这时需要在 bootstrap 配置文件中添加连接到配置中心的配置属性来加载外部配置中心的配置信息； 一些固定的不能被覆盖的属性；一些加密/解密的场景</li>
-</ul>
-<h4 id="配置文件的格式">配置文件的格式</h4>
-<p>v.properties 和 .yml，它们的区别主要是书写格式不同。</p>
-<p><a name="SpringBoot的核心注解"></a></p>
-<h3 id="spring-boot-的核心注解是哪个它主要由哪几个注解组成的">Spring Boot 的核心注解是哪个？它主要由哪几个注解组成的？</h3>
-<blockquote>
-<p>启动类上面的注解是@SpringBootApplication，它也是 Spring Boot 的核心注解 主要组合包含了以下 3 个注解：<br>
-<br>1.@SpringBootConfiguration：组合了 @Configuration 注解，实现配置文件的功能。<br>
-<br>2.@EnableAutoConfiguration：打开自动配置的功能，也可以关闭某个自动配置的选项，如关闭数据源自动配置功能： @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })。<br>
-<br>3.@ComponentScan：Spring组件扫描。</p>
-</blockquote>
-<p><a name="SpringBoot的运行方式"></a></p>
-<h3 id="spring-boot的运行方式">Spring Boot的运行方式</h3>
-<ol>
-<li>打包用命令或者放到容器中运行</li>
-<li>用 Maven/ Gradle 插件运行</li>
-<li>直接执行 main 方法运行(Spring Boot内置了Tomcat/Jetty等容器)</li>
-</ol>
-<p><a name="SpringBoot实现分页和排序"></a></p>
-<h3 id="spring-boot实现分页和排序">Spring Boot实现分页和排序</h3>
-<p>使用Spring Data-JPA可以实现将可分页的org.springframework.data.domain.Pageable传递给存储库方法。</p>
-<p><a name="SpringBoot应用程序的安全性"></a></p>
-<h3 id="spring-boot应用程序的安全性">Spring Boot应用程序的安全性</h3>
-<p>为了实现Spring Boot的安全性，我们使用 spring-boot-starter-security依赖项，并且必须添加安全配置。它只需要很少的代码。配置类将必须扩展WebSecurityConfigurerAdapter并覆盖其方法。</p>
-<p><a name="SpringBoot中的监视器"></a></p>
-<h3 id="spring-boot中的监视器">Spring Boot中的监视器</h3>
-<p>Spring boot actuator是spring启动框架中的重要功能之一。Spring boot监视器可帮助您访问生产环境中正在运行的应用程序的当前状态。有几个指标必须在生产环境中进行检查和监控。即使一些外部应用程序可能正在使用这些服务来向相关人员触发警报消息。监视器模块公开了一组可直接作为HTTP URL访问的REST端点来检查状态。</p>
-<p><a name="SpringBoot实现Swagger"></a></p>
-<h3 id="spring-boot实现swagger">Spring Boot实现Swagger</h3>
-<p>Swagger广泛用于可视化API，使用Swagger UI为前端开发人员提供在线沙箱。Swagger是用于生成RESTful Web服务的可视化表示的工具，规范和完整框架实现。它使文档能够以与服务器相同的速度更新。当通过Swagger正确定义时，消费者可以使用最少量的实现逻辑来理解远程服务并与其进行交互。因此，Swagger消除了调用服务时的猜测。</p>
-<p><a name="SpringBoot实现异常处理"></a></p>
-<h3 id="spring-boot实现异常处理">Spring Boot实现异常处理</h3>
-<p>Spring提供了一种使用ControllerAdvice处理异常的非常有用的方法。 我们通过实现一个ControlerAdvice类，来处理控制器类抛出的所有异常。</p>
-<p><a name="RequestMapping和GetMapping的不同之处"></a></p>
-<h3 id="requestmapping-和-getmapping-的不同之处">RequestMapping 和 GetMapping 的不同之处</h3>
-<p>RequestMapping 具有类属性的，可以进行 GET,POST,PUT 或者其它的注释中具有的请求方法。<br>
-GetMapping 是 GET 请求方法中的一个特例。它只是 ResquestMapping 的一个延伸，目的是为了提高清晰度。</p>
-<p><a name="Spring-IOC"></a></p>
-<h3 id="spring-ioc">Spring IOC</h3>
-<ul>
-<li><strong>IoC - Inversion of Control, 控制反转</strong>：控制反转就是把创建和管理 bean 的过程转移给了第三方。而这个第三方，就是 Spring IoC Container，对于 IoC 来说，最重要的就是容器。</li>
-<li><strong>IOC其实是一个编程思想，具体实现是DI 依赖注入</strong></li>
-<li><strong>为什么需要使用IOC</strong>：解耦。</li>
-<li><strong>使用</strong>：通过xml配置bean属性，然后 ApplicationContext context = new ClassPathXmlApplicationContext(&quot;service.xml&quot;);通过context对象取得xml中配置的bean，并会自动将配置的属性对应值赋上。</li>
-<li><strong>对象在容器中是否单例</strong>：是</li>
-<li><strong>容器的对象是什么时候创建的</strong>：每次启动容器的时候就已经创建好其中的对象了。</li>
-</ul>
-<p><a name="Spring-AOP"></a></p>
-<h3 id="spring-aop">Spring AOP</h3>
-<p>众所周知Aspect Oriented Program 面向切面编程，将一整块需要实现的代码切分开来，区分核心业务，业务周边的系统功能。分开定义并实现，最后通过springAOP模块来将这些功能编织在一起形成一个完整的实现功能。<br>
-<br>个人认为一定程度上提高了代码复用性，增加了可读性和可维护性。<br>
-<br><strong>术语</strong></p>
-<ul>
-<li>切入点（Pointcut）<br>
-在哪些类，哪些方法上切入（where）</li>
-<li>通知（Advice）<br>
-在方法执行的什么实际（when:方法前/方法后/方法前后）做什么（what:增强的功能）</li>
-<li>切面（Aspect）<br>
-切面 = 切入点 + 通知，通俗点就是：在什么时机，什么地方，做什么增强！</li>
-<li>织入（Weaving）<br>
-把切面加入到对象，并创建出代理对象的过程。（由 Spring 来完成）</li>
-</ul>
-<p><strong><font color="red">CFC总结：</font></strong>个人觉得在整体的AOP配置过程中，主要需要注意2个点：<br>1.切点的定义，需要同时规范同类型的织入类的类命名，再使用尽可能准确的正则表达式对切点作出限制。<br>2.连接点的选择，具体是以类为连接点还是某个方法为连接点，需要根据实际情况针对某个切面作出规范。<br>以上都是针对协同开发总结的注意点。<br>
-<br><strong>关键的点</strong>：Spring AOP 默认使用标准的 JDK 动态代理(dynamic proxy)技术来实现 AOP 代理, 通过它, 我们可以为任意的接口实现代理。如果需要为一个类实现代理, 那么可以使用 CGLIB 代理。 当一个业务逻辑对象没有实现接口时, 那么Spring AOP 就默认使用 CGLIB 来作为 AOP 代理了. 即如果我们需要为一个方法织入 advice, 但是这个方法不是一个接口所提供的方法, 则此时 Spring AOP 会使用 CGLIB 来实现动态代理. 鉴于此, Spring AOP 建议基于接口编程, 对接口进行 AOP 而不是类。</p>
-<p><a name="Redis"></a></p>
-<h2 id="redis">Redis</h2>
-<p><a name="五大数据结构"></a></p>
-<h3 id="五大数据结构">五大数据结构</h3>
-<ul>
-<li>String</li>
-<li>Hash</li>
-<li>List</li>
-<li>Set</li>
-<li>SortedSet</li>
-</ul>
-<p><a name="缓存过期"></a></p>
-<h3 id="缓存过期">缓存过期</h3>
-<ul>
-<li>过于集中的缓存过期时间会导致短暂卡顿现象——<strong>缓存雪崩</strong>。<br>解决：将失效时间加上随机值，分散过期。</li>
-</ul>
-<p><a name="持久化"></a></p>
-<h3 id="持久化">持久化</h3>
-<ul>
-<li><strong>RDB做镜像全量持久化，AOF做增量持久化</strong>。全量需要时间长，容易丢失大量数据，需要AOF配合。恢复的时候也是一样，先全量恢复，然后增量恢复到重启前状态。<br>突然断电的情况数据丢失取决于AOF日志于sync配置，但是往往每条指令都sync一下到磁盘是不现实的，一般使用定时，一秒一次，最多丢失一秒的数据。</li>
-<li><strong>RDB原理</strong>：fork AND cow——fork值redis通过创建子进程进行rdb操作；cow指的是copy on write，父子进程共享数据段，父进程继续提供读写服务，写脏的页面数据会逐渐和子进程分离开。</li>
-</ul>
-<p><a name="JAVA8如何优化CAS性能"></a></p>
-<h3 id="同步机制">同步机制</h3>
-<ul>
-<li><strong>可以主从同步或从从同步</strong>。第一次同步时，主节点做一次bgsave，并同时将后续修改操作记录到内存buffer，待完成后将RDB文件全量同步到复制节点，复制节点接受完成后将RDB镜像加载到内存。加载完成后，再通知主节点将期间修改的操作记录同步到复制节点进行重放就完成了同步过程。后续的增量数据通过AOF日志同步即可，有点类似数据库的binlog。</li>
-</ul>
-<p><a name="集群与高可用"></a></p>
-<h3 id="集群与高可用">集群与高可用</h3>
-<ul>
-<li><strong>Redis Sentinal</strong> 着眼于高可用，在master宕机时会自动将slave提升为master，继续提供服务。</li>
-<li><strong>Redis Cluster</strong> 着眼于扩展性，在单个redis内存不足时，使用Cluster进行分片存储。</li>
-</ul>
-<p><a name="分布式锁"></a></p>
-<h3 id="分布式锁">分布式锁</h3>
-<ul>
-<li>先拿setnx来争抢锁，抢到后使用<strong>expire</strong>来设置过期时间。</li>
-<li><strong>存在问题(同存在与Zookeeper、Mysql中)</strong>：当JAVA中执行的GC为STW stop the world的时候，可能会导致锁获得锁的线程A停顿等待GC完成，此时获取到的分布式锁过期，超时释放。其他线程B获取继续获取到锁，开始写数据。而A线程GC完成，继续执行写数据的操作。导致分布式锁不安全(相当于是2个线程同时获取到锁)。</li>
-<li><strong>不能执行过长时间的任务</strong>：加锁和释放锁之间的逻辑执行得太长，以至于超出了锁的超时限制，导致代码无法严格的串行执行。锁被提前释放，提前持有。<br>解决：稍微安全一点的方案是 将锁的 value 值设置为一个随机数，释放锁时先匹配随机数是否一致，然后再删除 key，这是为了 确保当前线程占有的锁不会被其他线程释放，除非这个锁是因为过期了而被服务器自动释放的。但是匹配 value 和删除 key 在 Redis 中并不是一个原子性的操作，也没有类似保证原子性的指令，所以可能需要使用像 Lua 这样的脚本来处理了，因为 Lua 脚本可以 保证多个指令的原子性执行。</li>
-</ul>
-<p><a name="跳跃表"></a></p>
-<h3 id="跳跃表">跳跃表</h3>
-<ul>
-<li><strong>多层链表</strong>：从最上层的链表(节点少)去查找并比对，一层一层往下定位直到找到位置。<br>优势：可以跳过很多节点，提高查找效率。</li>
-</ul>
-<p><a name="数据结构与算法"></a></p>
-<h2 id="数据结构与算法">数据结构与算法</h2>
-<p><a name="红黑树(自平衡二叉查找树)"></a></p>
-<h3 id="红黑树自平衡二叉查找树">红黑树(自平衡二叉查找树)</h3>
-<ul>
-<li><strong>二叉查找树（BST）特性</strong>：<br>1.左子树上所有结点的值均小于或等于它的根结点的值。<br>2.右子树上所有结点的值均大于或等于它的根结点的值。<br>3.左、右子树也分别为二叉排序树。</li>
-<li><strong>只读操作相同</strong></li>
-<li><strong>红黑树性质：</strong><br>1.节点是红色或黑色。<br>2.根是黑色。<br>3.所有叶子都是黑色（叶子是NIL节点）。<br>4.每个红色节点必须有两个黑色的子节点。（从每个叶子到根的所有路径上不能有两个连续的红色节点。）<br>5.从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点。</li>
-<li><strong>操作：1.变色；2.左旋转；3.右旋转；</strong></li>
-<li><strong>插入</strong></li>
-<li><strong>删除</strong></li>
 </ul>
 <!--
 # <center>升级之路</center> #
