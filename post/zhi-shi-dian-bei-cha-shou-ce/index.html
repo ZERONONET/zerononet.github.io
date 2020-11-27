@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://zerononet.github.io/favicon.ico?v=1606105408882">
+<link rel="shortcut icon" href="https://zerononet.github.io/favicon.ico?v=1606448788309">
 <link rel="stylesheet" href="https://zerononet.github.io/styles/main.css">
 
 
@@ -46,7 +46,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://zerononet.github.io">
-        <img src="https://zerononet.github.io/images/avatar.png?v=1606105408882" class="site-logo">
+        <img src="https://zerononet.github.io/images/avatar.png?v=1606448788309" class="site-logo">
         <h1 class="site-title">ZERONONET&#39;s blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -152,6 +152,7 @@
 <center><a href="#ConcurrentHashMap底层实现">ConcurrentHashMap底层实现</a></center>
 <center><a href="#JAVA代理">JAVA代理</a></center>
 <center><strong><h2>Spring框架</h2></strong></center>
+<center><a href="#SpringBoot">SpringBoot</a></center>
 <center><a href="#Spring-IOC">Spring IOC</a></center>
 <center><a href="#Spring-AOP">Spring AOP</a></center>
 <center><strong><h2>Redis</h2></strong></center>
@@ -559,40 +560,38 @@
 Vector所有方法都是同步的，在不需要多线程保证线程安全的情况下可以使用ArrayList减少不必要的大量同步操作。<br>
 <br><strong>ArrayList的扩容机制</strong>：<br>
 <br>自动扩容源码</p>
-<blockquote>
-<p>// 扩容一个<br>
-<br>private Object[] grow() {<br>
-<br>   	return grow(size + 1);<br>
-<br> }<br>
-<br>// 保证扩容到期望容量minCapacity及以上<br>
-<br>private Object[] grow(int minCapacity) {<br>
-<br>      return elementData = Arrays.copyOf(elementData,newCapacity(minCapacity));<br>
-<br>}<br>
-<br>// 根据期望容量minCapacity计算实际需要扩容的容量<br>
-<br>private int newCapacity(int minCapacity) {<br>
-<br>    // overflow-conscious code<br>
-<br>    int oldCapacity = elementData.length; // 得到旧容量<br>
-<br>    int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1); // 设置新容量为旧容量的1.5倍<br>
-<br>    if (newCapacity - minCapacity &lt;= 0) { // 如果新容量仍然小于期望容量<br>
-<br>    if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) // 如果是使用的默认容量<br>
-<br>        return Math.max(DEFAULT_CAPACITY, minCapacity); // 取默认容量和期望容量较大值返回<br>
-<br>    if (minCapacity &lt; 0) // overflow // 检查期望容量是否越界（int 的范围）<br>
-<br>        throw new OutOfMemoryError();<br>
-<br>        return minCapacity; // 返回期望容量<br>
-<br>  }<br>
-<br>  // 如果新容量大于期望容量，判断一下新容量是否越界<br>
-<br>  return (newCapacity - MAX_ARRAY_SIZE &lt;= 0)? newCapacity : hugeCapacity(minCapacity);<br>
-<br>}</p>
-</blockquote>
+<pre><code class="language-java">    // 扩容一个
+    private Object[] grow() {
+	    return grow(size + 1);
+    }
+    // 保证扩容到期望容量minCapacity及以上
+    private Object[] grow(int minCapacity) {
+        return elementData = Arrays.copyOf(elementData,newCapacity(minCapacity));
+    }
+    // 根据期望容量minCapacity计算实际需要扩容的容量
+    private int newCapacity(int minCapacity) {
+    // overflow-conscious code
+    int oldCapacity = elementData.length; // 得到旧容量
+    int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1); // 设置新容量为旧容量的1.5倍
+    if (newCapacity - minCapacity &lt;= 0) { // 如果新容量仍然小于期望容量
+    if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) // 如果是使用的默认容量
+    return Math.max(DEFAULT_CAPACITY, minCapacity); // 取默认容量和期望容量较大值返回
+    if (minCapacity &lt; 0) // overflow // 检查期望容量是否越界（int 的范围）
+        throw new OutOfMemoryError();
+        return minCapacity; // 返回期望容量
+    }
+// 如果新容量大于期望容量，判断一下新容量是否越界
+    return (newCapacity - MAX_ARRAY_SIZE &lt;= 0)? newCapacity : hugeCapacity(minCapacity);
+}
+</code></pre>
 <p>手动扩容源码</p>
-<blockquote>
-<p>public void ensureCapacity(int minCapacity) {<br>
-<br>  if (minCapacity &gt; elementData.length&amp;&amp; !(elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA&amp;&amp; minCapacity &lt;= DEFAULT_CAPACITY)) {<br>
-<br>       modCount++;<br>
-<br>       grow(minCapacity);<br>
-<br>    }<br>
-<br>  }</p>
-</blockquote>
+<pre><code class="language-java"> public void ensureCapacity(int minCapacity) {
+    if (minCapacity &gt; elementData.length&amp;&amp; !(elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA&amp;&amp; minCapacity &lt;= DEFAULT_CAPACITY)) {
+        modCount++;
+        grow(minCapacity);
+    }
+}
+</code></pre>
 <p><strong>调用ADD方法执行流程</strong><br>
 <br>当使用无参构造的时候，在第一次调用add方法之后的执行流程<br>
 <br><center><img src="https://raw.githubusercontent.com/ZERONONET/photos/master/Gridea/arraylistgrowflow.png" alt="调用ADD方法执行流程" loading="lazy"></center><br>
@@ -630,6 +629,66 @@ Vector所有方法都是同步的，在不需要多线程保证线程安全的�
 <p>CGLIB代理无需实现接口，通过生成类字节码实现代理，比反射稍快，不存在性能问题，但是会继承目标对象，需要重写方法。所以目标对象不能是final类。</p>
 <p><a name="Spring框架"></a></p>
 <h2 id="spring框架">Spring框架</h2>
+<p><a name="SpringBoot"></a></p>
+<h3 id="什么是spring-boot-stater">什么是Spring Boot Stater</h3>
+<blockquote>
+<p>Spring Boot 是 Spring 开源组织下的子项目，是 Spring 组件一站式解决方案，主要是简化了使用 Spring 的难度，简省了繁重的配置，提供了各种启动器，开发者能快速上手。<br>而Spring Boot Starter就是其中的一个启动器，节省了Spring的繁琐配置，高效搭建环境并进行开发。</p>
+</blockquote>
+<p><a name="SpringBoot优点"></a></p>
+<h3 id="spring-boot的优点">Spring Boot的优点</h3>
+<ul>
+<li>减少开发，测试时间和努力。</li>
+<li>使用JavaConfig有助于避免使用XML。</li>
+<li>避免大量的Maven导入和各种版本冲突。</li>
+<li>提供意见发展方法。</li>
+<li>通过提供默认值快速开始开发。</li>
+<li>没有单独的Web服务器需要。这意味着你不再需要启动Tomcat，Glassfish或其他任何东西。</li>
+<li>需要更少的配置 因为没有web.xml文件。只需添加用@ Configuration注释的类，然后添加用@Bean注释的方法，Spring将自动加载对象并像以前一样对其进行管理。您甚至可以将@Autowired添加到bean方法中，以使Spring自动装入需要的依赖关系中。基于环境的配置 使用这些属性，您可以将您正在使用的环境传递到应用程序：-Dspring.profiles.active = {enviornment}。在加载主应用程序属性文件后，Spring将在（application{environment} .properties）中加载后续的应用程序属性文件。</li>
+</ul>
+<p><a name="SpringBoot的核心配置文件"></a></p>
+<h3 id="spring-boot的核心配置文件">Spring Boot的核心配置文件</h3>
+<ul>
+<li>Spring Boot 的核心配置文件是 application 和 bootstrap 配置文件。</li>
+<li>application 配置文件这个容易理解，主要用于 Spring Boot 项目的自动化配置。</li>
+<li>bootstrap 配置文件有以下几个应用场景。<br>
+<br>使用 Spring Cloud Config 配置中心时，这时需要在 bootstrap 配置文件中添加连接到配置中心的配置属性来加载外部配置中心的配置信息； 一些固定的不能被覆盖的属性；一些加密/解密的场景</li>
+</ul>
+<h4 id="配置文件的格式">配置文件的格式</h4>
+<p>v.properties 和 .yml，它们的区别主要是书写格式不同。</p>
+<p><a name="SpringBoot的核心注解"></a></p>
+<h3 id="spring-boot-的核心注解是哪个它主要由哪几个注解组成的">Spring Boot 的核心注解是哪个？它主要由哪几个注解组成的？</h3>
+<blockquote>
+<p>启动类上面的注解是@SpringBootApplication，它也是 Spring Boot 的核心注解 主要组合包含了以下 3 个注解：<br>
+<br>1.@SpringBootConfiguration：组合了 @Configuration 注解，实现配置文件的功能。<br>
+<br>2.@EnableAutoConfiguration：打开自动配置的功能，也可以关闭某个自动配置的选项，如关闭数据源自动配置功能： @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })。<br>
+<br>3.@ComponentScan：Spring组件扫描。</p>
+</blockquote>
+<p><a name="SpringBoot的运行方式"></a></p>
+<h3 id="spring-boot的运行方式">Spring Boot的运行方式</h3>
+<ol>
+<li>打包用命令或者放到容器中运行</li>
+<li>用 Maven/ Gradle 插件运行</li>
+<li>直接执行 main 方法运行(Spring Boot内置了Tomcat/Jetty等容器)</li>
+</ol>
+<p><a name="SpringBoot实现分页和排序"></a></p>
+<h3 id="spring-boot实现分页和排序">Spring Boot实现分页和排序</h3>
+<p>使用Spring Data-JPA可以实现将可分页的org.springframework.data.domain.Pageable传递给存储库方法。</p>
+<p><a name="SpringBoot应用程序的安全性"></a></p>
+<h3 id="spring-boot应用程序的安全性">Spring Boot应用程序的安全性</h3>
+<p>为了实现Spring Boot的安全性，我们使用 spring-boot-starter-security依赖项，并且必须添加安全配置。它只需要很少的代码。配置类将必须扩展WebSecurityConfigurerAdapter并覆盖其方法。</p>
+<p><a name="SpringBoot中的监视器"></a></p>
+<h3 id="spring-boot中的监视器">Spring Boot中的监视器</h3>
+<p>Spring boot actuator是spring启动框架中的重要功能之一。Spring boot监视器可帮助您访问生产环境中正在运行的应用程序的当前状态。有几个指标必须在生产环境中进行检查和监控。即使一些外部应用程序可能正在使用这些服务来向相关人员触发警报消息。监视器模块公开了一组可直接作为HTTP URL访问的REST端点来检查状态。</p>
+<p><a name="SpringBoot实现Swagger"></a></p>
+<h3 id="spring-boot实现swagger">Spring Boot实现Swagger</h3>
+<p>Swagger广泛用于可视化API，使用Swagger UI为前端开发人员提供在线沙箱。Swagger是用于生成RESTful Web服务的可视化表示的工具，规范和完整框架实现。它使文档能够以与服务器相同的速度更新。当通过Swagger正确定义时，消费者可以使用最少量的实现逻辑来理解远程服务并与其进行交互。因此，Swagger消除了调用服务时的猜测。</p>
+<p><a name="SpringBoot实现异常处理"></a></p>
+<h3 id="spring-boot实现异常处理">Spring Boot实现异常处理</h3>
+<p>Spring提供了一种使用ControllerAdvice处理异常的非常有用的方法。 我们通过实现一个ControlerAdvice类，来处理控制器类抛出的所有异常。</p>
+<p><a name="RequestMapping和GetMapping的不同之处"></a></p>
+<h3 id="requestmapping-和-getmapping-的不同之处">RequestMapping 和 GetMapping 的不同之处</h3>
+<p>RequestMapping 具有类属性的，可以进行 GET,POST,PUT 或者其它的注释中具有的请求方法。<br>
+GetMapping 是 GET 请求方法中的一个特例。它只是 ResquestMapping 的一个延伸，目的是为了提高清晰度。</p>
 <p><a name="Spring-IOC"></a></p>
 <h3 id="spring-ioc">Spring IOC</h3>
 <ul>
