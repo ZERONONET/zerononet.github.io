@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://zerononet.github.io/favicon.ico?v=1606448788309">
+<link rel="shortcut icon" href="https://zerononet.github.io/favicon.ico?v=1606449284187">
 <link rel="stylesheet" href="https://zerononet.github.io/styles/main.css">
 
 
@@ -46,7 +46,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://zerononet.github.io">
-        <img src="https://zerononet.github.io/images/avatar.png?v=1606448788309" class="site-logo">
+        <img src="https://zerononet.github.io/images/avatar.png?v=1606449284187" class="site-logo">
         <h1 class="site-title">ZERONONET&#39;s blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -574,10 +574,10 @@ Vector所有方法都是同步的，在不需要多线程保证线程安全的�
     int oldCapacity = elementData.length; // 得到旧容量
     int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1); // 设置新容量为旧容量的1.5倍
     if (newCapacity - minCapacity &lt;= 0) { // 如果新容量仍然小于期望容量
-    if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) // 如果是使用的默认容量
-    return Math.max(DEFAULT_CAPACITY, minCapacity); // 取默认容量和期望容量较大值返回
-    if (minCapacity &lt; 0) // overflow // 检查期望容量是否越界（int 的范围）
-        throw new OutOfMemoryError();
+        if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) // 如果是使用的默认容量
+            return Math.max(DEFAULT_CAPACITY, minCapacity); // 取默认容量和期望容量较大值返回
+        if (minCapacity &lt; 0) // overflow // 检查期望容量是否越界（int 的范围）
+            throw new OutOfMemoryError();
         return minCapacity; // 返回期望容量
     }
 // 如果新容量大于期望容量，判断一下新容量是否越界
@@ -586,7 +586,9 @@ Vector所有方法都是同步的，在不需要多线程保证线程安全的�
 </code></pre>
 <p>手动扩容源码</p>
 <pre><code class="language-java"> public void ensureCapacity(int minCapacity) {
-    if (minCapacity &gt; elementData.length&amp;&amp; !(elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA&amp;&amp; minCapacity &lt;= DEFAULT_CAPACITY)) {
+    if (minCapacity &gt; elementData.length
+    &amp;&amp; !(elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA
+    &amp;&amp; minCapacity &lt;= DEFAULT_CAPACITY)) {
         modCount++;
         grow(minCapacity);
     }
